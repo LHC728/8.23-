@@ -2,7 +2,7 @@
 
 ```text
 Q1_MID_REVIEW_PROGRAM_VERDICT = PASS_WITH_MINOR_FIX
-Q1_MID_REVIEW_HUMAN_VERDICT = PENDING
+Q1_MID_REVIEW_HUMAN_VERDICT = PASS
 ```
 
 本卡不要求阅读源码或重新推导公式。程序审查已经确认不存在 FATAL 或 MAJOR 模型问题；最后裁决只能由用户给出。
@@ -58,7 +58,7 @@ Q1_MID_REVIEW_HUMAN_VERDICT = PENDING
 ## 用户最终裁决
 
 ```text
-Q1_MID_REVIEW_HUMAN_VERDICT = PENDING
+Q1_MID_REVIEW_HUMAN_VERDICT = PASS
 ```
 
-允许值：`PASS`、`NEEDS_CLARIFICATION`、`FAIL`。只有用户明确给出裁决后才能修改；在此之前不得关闭 Q1 整体或开始 Q2。
+该 PASS 由用户本人明确给出。允许值：`PASS`、`NEEDS_CLARIFICATION`、`FAIL`；本裁决不改变数学模型、正式数字、冻结路线或 Q2 状态。
