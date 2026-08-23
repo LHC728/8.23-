@@ -1,0 +1,220 @@
+{
+  "gate": "Q1_1_MINIMUM_GATE",
+  "status": "PASS",
+  "scope": "deterministic candidate/oracle/rank checks only; no batch simulation",
+  "cases": [
+    {
+      "name": "ideal_nondegenerate",
+      "pass": true,
+      "truth": [
+        1.5,
+        1.0
+      ],
+      "observed_angles_rad": [
+        2.173083672929861,
+        1.9138202672156,
+        2.1962813670341257
+      ],
+      "main_candidates": [
+        [
+          1.5000000000000004,
+          1.0000000000000002
+        ]
+      ],
+      "checker_roots": [
+        [
+          1.499999999981428,
+          1.0000000000036773
+        ]
+      ],
+      "main_status": [
+        "atan2_holdout_or_arc_rejected:ab",
+        "atan2_holdout_or_arc_rejected:ac",
+        "atan2_holdout_or_arc_rejected:bc",
+        "transmitter_receiver_coincidence_rejected"
+      ],
+      "checker_status": [],
+      "checker_attempts": 972,
+      "rank_certificate": {
+        "rank": 2,
+        "sigma_min": 0.5398825815734558,
+        "sigma_max": 1.05430251417905,
+        "condition_number": 1.9528366910937334,
+        "full_rank": true
+      }
+    },
+    {
+      "name": "mirror_multibranch",
+      "pass": true,
+      "observed_angles_rad": [
+        0.7853981633974483,
+        1.5707963267948966,
+        0.7853981633974483
+      ],
+      "main_candidates": [
+        [
+          -1.1102230246251565e-16,
+          0.9999999999999999
+        ],
+        [
+          -1.1102230246251565e-16,
+          -0.9999999999999999
+        ]
+      ],
+      "checker_roots": [
+        [
+          3.025953146844416e-09,
+          -0.999999995810185
+        ],
+        [
+          -4.461793731043982e-10,
+          1.0000000002866205
+        ]
+      ],
+      "main_status": [
+        "merged_circle_centers:ac",
+        "multiple_candidates_retained",
+        "tangent_circle_intersection",
+        "transmitter_receiver_coincidence_rejected"
+      ],
+      "checker_status": [
+        "checker_multiple_roots"
+      ],
+      "rank_plus": {
+        "rank": 2,
+        "sigma_min": 0.43701602444882104,
+        "sigma_max": 1.1441228056353687,
+        "condition_number": 2.6180339887498953,
+        "full_rank": true
+      },
+      "rank_minus": {
+        "rank": 2,
+        "sigma_min": 0.43701602444882104,
+        "sigma_max": 1.1441228056353687,
+        "condition_number": 2.6180339887498953,
+        "full_rank": true
+      }
+    },
+    {
+      "name": "explicit_multiroot_simple_example",
+      "pass": true,
+      "expected_root_count": 2,
+      "retained_root_count": 2,
+      "status": [
+        "merged_circle_centers:ac",
+        "multiple_candidates_retained",
+        "tangent_circle_intersection",
+        "transmitter_receiver_coincidence_rejected"
+      ]
+    },
+    {
+      "name": "tangent_constraint_branch",
+      "pass": true,
+      "tangent_events": 2,
+      "coincident_circle_events": 0,
+      "retained_root_count": 0,
+      "status": [
+        "atan2_holdout_or_arc_rejected:bc",
+        "merged_circle_centers:bc",
+        "no_certified_finite_candidate",
+        "tangent_circle_intersection",
+        "transmitter_receiver_coincidence_rejected"
+      ]
+    },
+    {
+      "name": "near_degenerate_small_angle",
+      "pass": true,
+      "truth": [
+        0.0,
+        20.0
+      ],
+      "observed_angles_rad": [
+        0.09991679144388552,
+        0.04995839572194276,
+        0.04995839572194276
+      ],
+      "main_candidates": [
+        [
+          8.326672684688674e-16,
+          20.0
+        ],
+        [
+          -1.1657341758564144e-15,
+          -20.0
+        ]
+      ],
+      "checker_roots": [
+        [
+          -2.30118685208108e-09,
+          20.000000001890502
+        ],
+        [
+          -2.3607462977377172e-08,
+          -19.99999999344147
+        ]
+      ],
+      "main_status": [
+        "angle_near_0_or_pi",
+        "atan2_holdout_or_arc_rejected:ab",
+        "atan2_holdout_or_arc_rejected:ac",
+        "atan2_holdout_or_arc_rejected:bc",
+        "multiple_candidates_retained",
+        "transmitter_receiver_coincidence_rejected"
+      ],
+      "checker_status": [
+        "checker_multiple_roots"
+      ],
+      "checker_attempts": 972,
+      "rank_certificate": {
+        "rank": 2,
+        "sigma_min": 0.0041835945692440734,
+        "sigma_max": 0.006771782667369512,
+        "condition_number": 1.6186517491806318,
+        "full_rank": true
+      }
+    },
+    {
+      "name": "zero_angle_boundary",
+      "pass": true,
+      "observed_angles_rad": [
+        0.0,
+        0.7853981633974483,
+        0.7853981633974483
+      ],
+      "main_status": [
+        "angle_near_0_or_pi",
+        "boundary_input_safely_rejected",
+        "no_certified_finite_candidate"
+      ],
+      "checker_status": [
+        "checker_boundary_angle_safely_rejected"
+      ]
+    },
+    {
+      "name": "pi_angle_boundary",
+      "pass": true,
+      "observed_angles_rad": [
+        3.141592653589793,
+        1.5707963267948966,
+        1.5707963267948966
+      ],
+      "main_status": [
+        "angle_near_0_or_pi",
+        "boundary_input_safely_rejected",
+        "no_certified_finite_candidate"
+      ],
+      "checker_status": [
+        "checker_boundary_angle_safely_rejected"
+      ]
+    }
+  ],
+  "requirements_checked": {
+    "known_truth_recovered": true,
+    "both_sides_not_artificially_deleted": true,
+    "multiroot_not_mislabelled_unique": true,
+    "raw_atan2_revalidation": true,
+    "independent_checker_agrees": true,
+    "degeneracy_recognized_or_rejected": true,
+    "target_branch_has_rank_two": true
+  }
+}

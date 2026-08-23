@@ -6,7 +6,11 @@ OPENING_STATUS = COMPLETE
 STRATEGY_STATUS = FROZEN
 NEXT_EXECUTOR = CODEX
 SOURCE_OF_TRUTH = opening/07_STRATEGY_FREEZE.md
-CODEX_NEXT_ACTION = 推导并实现 Q1(1) 双侧定夹角完整候选器及独立多根检查器，先以理想、镜像、相切和近退化小例证明不会漏根；Gate 通过前不进行编队批量仿真。
+Q1_1_MINIMUM_GATE = PASS
+Q1_1_OFFICIAL_RESULT = results/q1_1/Q1_1_OFFICIAL_RESULT.md
+Q1_1_HUMAN_CHECK_CARD = human_check/Q1_1_HUMAN_CHECK_CARD.md
+Q1_1_PAPER_HANDOFF = paper_handoff/Q1_1_PAPER_HANDOFF.md
+CODEX_NEXT_ACTION = 按 Checkpoint & Backup Policy 创建并成功 push Q1(1) milestone checkpoint；确认远程恢复点后，执行 Q1(2) 的冻结 Gate。
 ```
 
 ## Frozen winner
