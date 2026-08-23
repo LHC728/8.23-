@@ -1,0 +1,194 @@
+{
+  "gate": "Q1_2_PROGRAM_GATE",
+  "status": "PASS",
+  "scope": "finite deterministic identity/branch audit only; no batch random experiment or Q1(3)",
+  "local_slot_radius_m": 1.0,
+  "checks": {
+    "m0_counterexample": true,
+    "m1_complete_identity_enumeration": true,
+    "m1_correct_identity_recovered": true,
+    "m1_wrong_identity_excluded_from_1m_local_domain": true,
+    "m1_geometry_branches_retained": true,
+    "full_3x2_rank": true,
+    "identity_separation_certificate": true,
+    "far_roots_explicitly_checked": true,
+    "m2_fail_safe_complete_ordered_enumeration": true,
+    "independent_checker_agrees": true,
+    "information_boundary": true
+  },
+  "m0_counterexample": {
+    "receiver": 2,
+    "observed_angle_rad": 1.2217304763960306,
+    "target_point": [
+      76.60444431189781,
+      64.27876096865393
+    ],
+    "alternative_point": [
+      74.26814310660345,
+      65.55084068176637
+    ],
+    "alternative_angle_residual": 0.0,
+    "counterexample_pass": true
+  },
+  "rank_metrics": {
+    "minimum_sigma": 0.0021595556531065615,
+    "minimum_sigma_times_R": 0.21595556531065616,
+    "minimum_sigma_arg": [
+      5,
+      9
+    ],
+    "minimum_best_2x2_det": 8.816349035423251e-06,
+    "minimum_best_2x2_det_times_R2": 0.08816349035423252,
+    "minimum_best_2x2_det_arg": [
+      5,
+      9
+    ]
+  },
+  "identity_separation_certificate": {
+    "local_radius_m": 1.0,
+    "minimum_target_signature_separation_rad": 0.3490658503988655,
+    "minimum_target_signature_separation_deg": 19.99999999999998,
+    "minimum_target_separation_arg": [
+      6,
+      4,
+      8
+    ],
+    "conservative_image_separation_lower_bound_rad": 0.2783389150503047,
+    "conservative_lower_bound_arg": [
+      6,
+      5,
+      7
+    ],
+    "certificate_pass": true
+  },
+  "m1_audit": {
+    "receiver_count": 8,
+    "legal_identities_per_receiver": 7,
+    "truth_identity_cases": 56,
+    "identity_hypotheses_tested": 392,
+    "retained_identity_geometry_records": 350,
+    "wrong_identity_records_inside_local_domain": [],
+    "far_records_count": 294,
+    "far_records_examples": [
+      [
+        2,
+        3,
+        4,
+        [
+          40.76037345479524,
+          70.59903775918711
+        ]
+      ],
+      [
+        2,
+        3,
+        5,
+        [
+          9.239626545204782,
+          52.40052604587701
+        ]
+      ],
+      [
+        2,
+        3,
+        5,
+        [
+          -3.2088886237956036,
+          -18.198511713310026
+        ]
+      ],
+      [
+        2,
+        3,
+        6,
+        [
+          -3.2088886237956027,
+          18.198511713310033
+        ]
+      ],
+      [
+        2,
+        3,
+        6,
+        [
+          9.239626545204779,
+          -52.400526045877
+        ]
+      ],
+      [
+        2,
+        3,
+        7,
+        [
+          40.76037345479523,
+          -70.59903775918711
+        ]
+      ],
+      [
+        2,
+        3,
+        8,
+        [
+          76.6044443118978,
+          -64.27876096865394
+        ]
+      ],
+      [
+        2,
+        4,
+        5,
+        [
+          31.59654680379974,
+          68.12344275016537
+        ]
+      ],
+      [
+        2,
+        4,
+        5,
+        [
+          1.4838765081221332,
+          -40.04734669141233
+        ]
+      ],
+      [
+        2,
+        4,
+        6,
+        [
+          1.4838765081221352,
+          40.04734669141233
+        ]
+      ]
+    ]
+  },
+  "m2_fail_safe": {
+    "receiver": 2,
+    "true_ordered_token_identities": [
+      3,
+      4
+    ],
+    "ordered_identity_permutations_tested": 42,
+    "retained_records": 2,
+    "correct_local_root_recovered": true,
+    "wrong_local_records": []
+  },
+  "independent_checker": {
+    "receiver": 2,
+    "true_anonymous_identity": 3,
+    "primary_candidates": [
+      [
+        76.6044443118978,
+        64.27876096865393
+      ]
+    ],
+    "checker_roots": [
+      [
+        76.60444431490376,
+        64.27876096549959
+      ]
+    ],
+    "checker_status": [],
+    "agrees": true
+  }
+}

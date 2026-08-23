@@ -14,11 +14,23 @@ Q1_1_PAPER_HANDOFF = paper_handoff/Q1_1_PAPER_HANDOFF.md
 Q1_1_HUMAN_VERDICT = PASS
 Q1_1_REMOTE_CHECKPOINT = SUCCESS
 Q1_1_FINAL_FREEZE = PASS
+Q1_1_FINAL_CHECKPOINT = SUCCESS
+Q1_1_FINAL_LOCAL_COMMIT = 75b1ad5d861d04124302e15d5c844a370030fa39
+Q1_1_FINAL_REMOTE_COMMIT = 75b1ad5d861d04124302e15d5c844a370030fa39
+Q1_1_FINAL_REMOTE_VERIFICATION = origin/main HEAD matches local final-freeze commit; human verdict, final-freeze state, and Q1(1) package confirmed present
 Q1_1_LOCAL_COMMIT = 63bc9b1 (Q1.1: pass minimum gate and freeze official result)
 REMOTE_CHECKPOINT = SUCCESS
 REMOTE_COMMIT = 63bc9b11bab7355782378a7ece00c6c0dcc68cb2
 REMOTE_VERIFICATION = origin/main HEAD matches local HEAD; required Q1(1) package and governance/reference files confirmed present
-CODEX_NEXT_ACTION = 完成 Q1(1) final-freeze commit 与远程核查后，执行 Q1(2) 的最少数量 Gate。
+Q1_2_PROGRAM_GATE = PASS
+Q1_2_OFFICIAL_RESULT = results/q1_2/Q1_2_OFFICIAL_RESULT.md
+Q1_2_HUMAN_CHECK_CARD = human_check/Q1_2_HUMAN_CHECK_CARD.md
+Q1_2_PAPER_HANDOFF = paper_handoff/Q1_2_PAPER_HANDOFF.md
+Q1_2_HUMAN_VERDICT = PASS
+Q1_2_FINAL_FREEZE = PASS
+Q1_2_SOL_DELEGATION = NO
+Q1_3_STARTED = NO
+CODEX_NEXT_ACTION = Q1_2_FINAL_CHECKPOINT
 ```
 
 ## Frozen winner
