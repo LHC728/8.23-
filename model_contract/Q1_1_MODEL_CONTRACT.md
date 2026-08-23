@@ -1,41 +1,41 @@
-# Q1(1) Model Contract
+# Q1(1) 模型契约
 
-## Scope and information firewall
+## 范围与在线信息隔离约束
 
-This contract implements only Q1(1). A receiver-local call takes labelled ideal transmitter coordinates `(q_a, q_b, q_c)`, the receiver identifier, and that receiver's three raw unsigned angles `(y_ab, y_ac, y_bc)`. The solver neither receives nor exchanges any angle observed by another receiver. Coordinates are proof, simulation, and offline-evaluation quantities only; no truth coordinate is an online input.
+本契约仅实现 Q1(1)。接收机本地调用接收带编号、无偏差的理想发射机坐标 `(q_a,q_b,q_c)`、接收机编号，以及该接收机自身测得的三条原始无符号夹角 `(y_ab,y_ac,y_bc)`。求解器既不接收也不交换其他接收机测得的任何角度。坐标只属于证明、仿真和离线评估量；仿真真值坐标不是在线输入。
 
-## Frozen mathematical map
+## 冻结的数学映射
 
-For receiver position `x`, the raw observation is
+接收机位置为 `x` 时，原始纯方位观测分量为
 
 \[
-h_{ij}(x)=\operatorname{atan2}(|(q_i-x)\times(q_j-x)|,(q_i-x)^\mathsf T(q_j-x))\in[0,\pi].
+h_{ij}(x)=\mathrm{atan2}(|(q_i-x)\times(q_j-x)|,(q_i-x)^\mathsf T(q_j-x))\in[0,\pi].
 \]
 
-For each nonboundary angle `0 < theta < pi`, construct both circle-center branches for its transmitter chord:
+对每个满足 `0 < theta < pi` 的非边界角，均构造定夹角圆心的双侧分支：
 
 \[
 \rho=\frac{\|A-B\|}{2\sin\theta},\qquad
 d_\perp=\rho|\cos\theta|.
 \]
 
-The primary implementation enumerates every pair among `ab`, `ac`, and `bc`, intersects every pair of their circle branches, removes receiver/transmitter coincidences and duplicate intersections, and retains a point only after all three original `atan2` angles are re-evaluated. The unused angle is therefore a branch/order holdout for each primary pair. No first numerical root is treated as unique.
+主实现遍历 `ab`、`ac`、`bc` 的任意两条约束，求每一对圆分支的全部交点，去除接收机/发射机重合点和重复交点；仅当候选重新满足三条原始 `atan2` 角时才保留。未参与构造的角因此只作为同一接收机内的分支/顺序留出角约束检验。不得把数值求解器首先返回的根视为唯一解。
 
-Boundary angles `0/pi`, merged centers, coincident circles, tangencies, transmitter/receiver coincidence, and near-boundary angles are explicit status outputs. Certification requires exactly one candidate in the receiver's local slot domain and a full-rank local Jacobian; this minimum Gate only establishes candidate completeness and local rank, not global uniqueness.
+`0/pi` 边界角、圆心合并、圆重合、相切、收发机重合和近边界角均输出明确状态。局部唯一性判定要求接收机编号对应的局部目标槽位域内恰有一个候选，且局部 Jacobian 满秩；本最小确定性程序验收只建立候选完备性和局部秩，不建立全局唯一性。
 
-## Independent oracle
+## 独立数值复核器
 
-The checker uses deterministic multi-start damped Gauss-Newton on each two-angle residual pair, with finite-difference Jacobians and full three-angle `atan2` validation. It intentionally uses no circle construction. Agreement means same finite retained root set within tolerance; it is implementation cross-checking, not external validation.
+独立数值复核器对每一组两角残差使用确定性多初值、阻尼 Gauss--Newton 求解，并以有限差分 Jacobian 和完整三角原始 `atan2` 回代检查。它不构造圆。二者一致仅表示在容差内保留的有限根集相同，属于实现交叉复核，不是外部验证。
 
-## Local rank
+## 局部秩
 
-Away from `0/pi`, for signed cross product `s=(A-x)\times(B-x)` and dot product `d=(A-x)^\mathsf T(B-x)`,
+在远离 `0/pi` 的区域，令有向叉积 `s=(A-x)\times(B-x)`、点积 `d=(A-x)^\mathsf T(B-x)`，则
 
 \[
-\nabla h_{AB}(x)=\operatorname{sign}(s)\,
+\nabla h_{AB}(x)=\mathrm{sign}(s)\,
 \frac{d\nabla s-s\nabla d}{d^2+s^2},\quad
 \nabla s=(A_y-B_y,B_x-A_x),\quad
 \nabla d=-[(A-x)+(B-x)].
 \]
 
-The two selected primary rows form `DG(x)`. Its singular values, rank, and condition number are reported at the known target in deterministic tests.
+选定的两条主约束角对应 `DG(x)` 的两行。在已知目标点的确定性测试中报告其奇异值、秩和条件数。

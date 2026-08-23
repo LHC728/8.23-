@@ -1,94 +1,94 @@
-# Q1(1) Paper Handoff
+# Q1(1) 论文交接材料
 
-## 1. One-sentence direct answer
+## 1. 一句话直接答案
 
-For a receiver observing the three pairwise unsigned angles from FY00 and two labelled, error-free peripheral transmitters, enumerate the two-sided constant-angle branches, retain only intersections that reproduce all raw local angles, and certify a local position only when the receiver's slot domain contains one full-rank candidate.
+接收机从 FY00 和两架编号已知、位置无偏差的外围发射机获得三条两两无符号夹角后，枚举定夹角圆的双侧分支，只保留能复现全部原始本机角的交点；仅当编号对应的局部槽位域内存在唯一满秩候选时，才作局部位置判定。
 
-## 2. Role in the full problem
+## 2. 在全题中的作用
 
-This is the geometric foundation for Q1(2): under any fixed identity hypothesis, Q1(1) returns all finite position candidates rather than concealing ambiguity with one numerical root. It contributes the common stable angle kernel, branch semantics, Jacobian interface, and reject interface used later; it does not determine the anonymous-identity minimum by itself.
+本问为 Q1(2) 提供几何基础：在任一固定编号假设下，Q1(1) 返回全部有限位置候选，而不以单个数值根掩盖歧义。它提供稳定夹角内核、分支语义、Jacobian 接口和拒绝接口；自身不决定匿名编号的最少数量。
 
-## 3. Recommended narrative
+## 3. 推荐叙事
 
-Use an **evidence progression**:
+采用**证据递进**：
 
-1. The obstacle is that unsigned pairwise angles can have mirrored, tangent, or degenerate branches.
-2. State the local `atan2` observation and the two-sided constant-angle circle construction.
-3. Enumerate intersections using two constraints and use the third local angle as a same-source holdout.
-4. State the local-rank condition and distinguish a local certificate from global uniqueness.
-5. Report the deterministic branch/degeneracy checks.
+1. 无符号两两夹角会产生镜像、相切或退化分支；
+2. 给出本机 `atan2` 观测与定夹角圆双侧构造；
+3. 用两条约束枚举交点，并将第三条本机角用作同源留出角约束检验；
+4. 给出局部秩条件，区分局部判定与全局唯一性；
+5. 报告确定性的分支与退化检查。
 
-## 4. Core mathematics
+## 4. 核心数学
 
-### MAIN_TEXT
+### 正文保留
 
-- The raw unsigned angle `h_ab(x)=atan2(|(q_a-x)×(q_b-x)|,(q_a-x)^T(q_b-x))`.
-- The constant-angle radius and signed-side center offset `rho=||A-B||/(2 sin theta)`, `d_perp=rho|cos theta|`.
-- The set-valued candidate definition and the condition `rank DG(q_r)=2` for local regularity.
-- One explicit sentence that every retained point is re-evaluated against all three original angles.
+- 原始无符号角 `h_ab(x)=\mathrm{atan2}(|(q_a-x)×(q_b-x)|,(q_a-x)^T(q_b-x))`；
+- 定夹角半径 `rho=||A-B||/(2 sin theta)` 与有向侧圆心偏移 `d_perp=rho|cos theta|`；
+- 集合值候选定义及 `rank DG(q_r)=2` 的局部正则条件；
+- 明确说明每个保留点均重新代回三条原始角。
 
-### APPENDIX
+### 附录保留
 
-- Full analytic gradient formula.
-- Arc/branch enumeration pseudocode, tolerances, duplicate rule, and complete deterministic case table.
-- Multi-start checker settings and all status flags.
+- 完整解析梯度公式；
+- 圆弧/分支枚举伪代码、容差、去重规则和完整确定性样例表；
+- 多初值独立数值复核器设置及全部状态标记。
 
-### OMIT
+### 不写入正文
 
-- Internal debugging iterations and rejected Newton trajectories.
-- Any wording that suggests a generic numerical solver creates uniqueness.
+- 内部调试迭代和被拒绝的 Newton 轨迹；
+- 暗示一般数值求解器能够产生唯一性的措辞。
 
-## 5. Result package
+## 5. 结果包
 
-- Main table: the seven deterministic cases from `q1_1_minimum_gate.json`, with expected branch behavior and pass/fail.
-- Explanation figure: a single diagram of chord `AB`, its two circle centers, the retained intersection(s), and the mirror branch.
-- High-value check: independent multi-start nonlinear roots agree with the geometric candidate set; exact `0/pi` inputs are explicitly rejected.
+- 主表：`q1_1_minimum_gate.json` 的七个确定性样例、预期分支行为和通过状态；
+- 解释图：弦 `AB`、两个圆心、保留交点及镜像分支的单图；
+- 高价值核查：独立多初值非线性根与几何候选集一致；精确 `0/pi` 输入被明确拒绝。
 
-## 6. Evidence nature
+## 6. 证据性质
 
-- Internal consistency: all retained candidates pass three raw local-angle evaluations.
-- Implementation cross-check: circle construction versus independent multi-start numerical roots.
-- Boundary evidence: tangent, near-degenerate, and exact `0/pi` cases.
-- Local mathematical condition: singular-value/rank calculation at known deterministic targets.
-- External evidence: none.
+- 内部一致性：全部保留候选通过三条原始本机角回代；
+- 实现交叉复核：圆构造与独立多初值数值根；
+- 边界证据：相切、近退化及精确 `0/pi`；
+- 局部数学条件：已知确定性目标处的奇异值/秩计算；
+- 外部证据：无。
 
-## 7. Claim strength
+## 7. 结论强度
 
-### Can write
+### 可以写
 
-- “在精确、非退化且目标邻域内，模型返回全部有限候选；当编号槽位内仅保留一个满秩候选时，可作局部认证。”
+- “在精确、非退化且目标邻域内，模型返回全部有限候选；当编号槽位内仅保留一个满秩候选时，可作局部唯一性判定。”
 - “镜像样例保留两个候选，说明模型不会将多根误写为唯一位置。”
 
-### Must not write
+### 不应写
 
 - “三个夹角在全平面唯一定位。”
 - “该方法对任意初始偏差均可定位。”
 - “数值求解收敛因而得到全局唯一解。”
 - “第三角是独立外部验证。”
 
-## 8. Innovation / contribution
+## 8. 创新/贡献
 
-The relevant contribution is not a new solver: it is the explicit candidate-completeness and rejection layer that fixes the baseline weakness of silently selecting one root. Evidence is the two-sided enumeration, raw-angle revalidation, independent checker agreement, and preserved mirror roots.
+本问贡献不是新求解器，而是显式的候选完备性和拒绝层：它修复了基线静默选择单根的缺陷。证据为双侧枚举、原始角回代、独立数值复核器一致及镜像根保留。
 
-## 9. Paragraph-level outline
+## 9. 给论文作者的段落级提纲
 
-1. Define the receiver-local geometry and the source of branch ambiguity.
-2. Derive both constant-angle circle branches and the all-pairs intersection procedure.
-3. Define raw-angle filtering, degenerate statuses, and the local rank certificate.
-4. Present the deterministic case table and independent-checker agreement.
-5. State local applicability and the interface passed to Q1(2).
+1. 定义接收机本地几何与分支歧义来源；
+2. 推导定夹角圆双侧分支及两两交点流程；
+3. 定义原始角过滤、退化状态和局部秩判据；
+4. 给出确定性样例表与独立数值复核器一致性；
+5. 说明局部适用域及传递给 Q1(2) 的接口。
 
-## 10. Source interface
+## 10. 来源接口
 
-- Official result: `results/q1_1/Q1_1_OFFICIAL_RESULT.md`.
-- Raw result: `results/q1_1/q1_1_minimum_gate.json`.
-- Model contract: `model_contract/Q1_1_MODEL_CONTRACT.md`.
-- Code: `src/q1_1_geometry.py`.
-- Verification: `tests/q1_1_minimum_gate.py`.
-- Writing reference: `writing_reference/SAFE_WRITING_GUIDE.md`.
+- 正式结果：`results/q1_1/Q1_1_OFFICIAL_RESULT.md`；
+- 原始结果：`results/q1_1/q1_1_minimum_gate.json`；
+- 模型契约：`model_contract/Q1_1_MODEL_CONTRACT.md`；
+- 代码：`src/q1_1_geometry.py`；
+- 验证：`tests/q1_1_minimum_gate.py`；
+- 写作参考：`writing_reference/SAFE_WRITING_GUIDE.md`。
 
-## 11. Remaining writing risks
+## 11. 剩余写作风险
 
-- Do not convert local full-rank regularity into a global uniqueness assertion.
-- Do not describe same-receiver third-angle filtering as external validation.
-- Generate the proposed geometry figure only from the formal case data, and keep it explanatory rather than presenting it as a flight test.
+- 不得将局部满秩正则性转换为全局唯一性；
+- 不得将同一接收机的第三角过滤表述为外部验证；
+- 提议的几何图只能由正式样例数据生成，且只能解释机制，不得表述为飞行试验。
