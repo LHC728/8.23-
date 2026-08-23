@@ -173,7 +173,7 @@ $h_{AB}(x)=y_{AB},\qquad h_{AC}(x)=y_{AC},\qquad h_{BC}(x)=y_{BC}.$
 
 因此输出是集合
 
-$\mathcal C(y) = \left\{ x:\ h_{AB}(x)=y_{AB},\ h_{AC}(x)=y_{AC},\ h_{BC}(x)=y_{BC} \right\},$
+$\mathcal C(y) = \{x:\ h_{AB}(x)=y_{AB},\ h_{AC}(x)=y_{AC},\ h_{BC}(x)=y_{BC}\},$
 
 而不是被强制选择的单点。
 
@@ -277,7 +277,7 @@ $\Phi_b(x) = \begin{bmatrix} h_{01}(x)\\ h_{0b}(x)\\ h_{1b}(x) \end{bmatrix}.$
 
 所有局部身份—位置联合解为
 
-$\mathcal S_1(y) = \bigcup_{b\in\mathcal B_r} \left\{ (b,x):\Phi_b(x)=y,\ x\in U_r \right\}.$
+$\mathcal S_1(y) = \bigcup_{b\in\mathcal B_r} \{(b,x):\Phi_b(x)=y,\ x\in U_r\}.$
 
 求解步骤为：
 

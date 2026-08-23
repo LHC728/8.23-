@@ -136,12 +136,12 @@ h_{BC}(x)=y_{BC}.
 ```math
 \mathcal C(x)
 =
-\left\{
+\{
 x:
 h_{AB}(x)=y_{AB},
 h_{AC}(x)=y_{AC},
 h_{BC}(x)=y_{BC}
-\right\}.
+\}.
 ```
 
 ### 2.3 怎样判断目标位置附近是不是唯一？
@@ -247,10 +247,10 @@ h_{1b}(x)
 \mathcal S_1(y)
 =
 \bigcup_b
-\left\{
+\{
 (b,x):
 \Phi_b(x)=y,\ x\in U_r
-\right\}.
+\}.
 ```
 
 如果不同身份在这个局部区域产生的观测集合彼此分开，即
