@@ -70,10 +70,13 @@ class ObservationPlant:
         self._main_pairs, self._target = main_pairs, target_angles
         self._axes = np.asarray(axes, dtype=float)
         self._start = world[receiver].copy()
+        self.observation_events = []
 
     def observe(self, local_displacement):
         point = self._start + self._axes @ np.asarray(local_displacement, dtype=float)
-        return np.array([pair_angle(point, self._world, pair)-angle for pair,angle in zip(self._main_pairs,self._target)])
+        residual = np.array([pair_angle(point, self._world, pair)-angle for pair,angle in zip(self._main_pairs,self._target)])
+        self.observation_events.append({"receiver": self._receiver, "dimension": int(residual.size), "pairs": [list(pair) for pair in self._main_pairs]})
+        return residual
 
     def analytic_jacobian(self, local_displacement):
         point = self._start + self._axes @ np.asarray(local_displacement, dtype=float)

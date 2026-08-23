@@ -37,6 +37,7 @@ Q1_3_STARTED = YES
 Q1_3_CORE_IMPLEMENTATION = COMPLETE
 Q1_3_PROGRAM_GATE = PASS
 Q1_3_REMEDIATION = PASS
+Q1_3_VALIDATOR_HARDENING = PASS
 Q1_3_WORK_AUDIT = REMEDIATED: preloaded ideal signatures, plant/controller isolation, actual holdouts, independent exact oracle, full metamorphic test, same-metric ablation, and mechanical schedule/firewall checks
 Q1_3_OFFICIAL_RESULT = results/q1_3/Q1_3_OFFICIAL_RESULT.md
 Q1_3_HUMAN_CHECK_CARD = human_check/Q1_3_HUMAN_CHECK_CARD.md

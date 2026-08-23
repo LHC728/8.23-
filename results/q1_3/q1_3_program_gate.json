@@ -32,84 +32,53 @@
       "status": "PASS",
       "evidence": {
         "oracle_function": "analytic_jacobian_Newton",
-        "finite_difference_controller_called": false,
-        "max_target_error_m": 3.469835618376088e-12
+        "monkeypatch_fd_call_count": 0,
+        "max_target_error_m": 3.469835618376088e-12,
+        "target_error_threshold_m": 1e-06
       }
     },
     "preloaded_signature": {
       "status": "PASS",
       "evidence": {
-        "2": {
-          "main_angles": [
-            1.2217304763960306,
-            0.8726646259971649
-          ],
-          "holdout_angles": [
-            0.1745329251994328,
-            2.0943951023931957,
-            1.0471975511965979,
-            1.0471975511965976
-          ]
-        },
-        "3": {
-          "main_angles": [
-            0.8726646259971649,
-            1.2217304763960308
-          ],
-          "holdout_angles": [
-            0.17453292519943314,
-            2.0943951023931957,
-            1.047197551196598,
-            1.0471975511965976
-          ]
-        },
-        "5": {
-          "main_angles": [
-            1.2217304763960306,
-            0.872664625997165
-          ],
-          "holdout_angles": [
-            0.174532925199433,
-            1.0471975511965976,
-            1.047197551196598,
-            2.0943951023931957
-          ]
-        },
-        "6": {
-          "main_angles": [
-            0.8726646259971648,
-            1.221730476396031
-          ],
-          "holdout_angles": [
-            0.17453292519943295,
-            1.0471975511965976,
-            1.047197551196598,
-            2.0943951023931957
-          ]
-        },
-        "8": {
-          "main_angles": [
-            0.8726646259971647,
-            1.2217304763960306
-          ],
-          "holdout_angles": [
-            0.17453292519943306,
-            1.0471975511965976,
-            2.0943951023931953,
-            1.0471975511965976
-          ]
-        },
-        "9": {
-          "main_angles": [
-            1.2217304763960306,
-            0.8726646259971649
-          ],
-          "holdout_angles": [
-            0.1745329251994329,
-            1.0471975511965976,
-            2.0943951023931953,
-            1.0471975511965976
-          ]
+        "signature_threshold": 1e-12,
+        "plant_change_lower_bound": 1e-08,
+        "per_receiver": {
+          "2": {
+            "main_max_difference": 0.0,
+            "holdout_max_difference": 0.0,
+            "anchor_perturbation_preloaded_change": 0.0,
+            "plant_anchor_perturbation_actual_residual_change": 0.0011297670558955142
+          },
+          "3": {
+            "main_max_difference": 0.0,
+            "holdout_max_difference": 0.0,
+            "anchor_perturbation_preloaded_change": 0.0,
+            "plant_anchor_perturbation_actual_residual_change": 0.003654869026696428
+          },
+          "5": {
+            "main_max_difference": 0.0,
+            "holdout_max_difference": 0.0,
+            "anchor_perturbation_preloaded_change": 0.0,
+            "plant_anchor_perturbation_actual_residual_change": 0.005235950277446388
+          },
+          "6": {
+            "main_max_difference": 0.0,
+            "holdout_max_difference": 0.0,
+            "anchor_perturbation_preloaded_change": 0.0,
+            "plant_anchor_perturbation_actual_residual_change": 0.0027267453616039994
+          },
+          "8": {
+            "main_max_difference": 0.0,
+            "holdout_max_difference": 0.0,
+            "anchor_perturbation_preloaded_change": 0.0,
+            "plant_anchor_perturbation_actual_residual_change": 0.005491376512017254
+          },
+          "9": {
+            "main_max_difference": 0.0,
+            "holdout_max_difference": 0.0,
+            "anchor_perturbation_preloaded_change": 0.0,
+            "plant_anchor_perturbation_actual_residual_change": 0.0031985191093802934
+          }
         }
       }
     },
@@ -338,47 +307,1222 @@
           "observe",
           "settings"
         ],
-        "world_field_count": 0,
-        "cross_receiver_angle_input_count": 0,
-        "controller_imports_evaluator": false,
-        "evaluator_returned_to_controller": false
+        "q1_3_evaluator_imports": 0,
+        "fd_forbidden_name_references": [],
+        "exact_forbidden_name_references": [],
+        "fd_calls_exact_or_evaluator": 0,
+        "event_receiver_failures": 0,
+        "negative_illegal_field_detected": true,
+        "illegal_inputs": []
       }
     },
     "schedule": {
       "status": "PASS",
       "evidence": {
-        "rounds": [
+        "actual_events": [
           {
-            "round": "B",
+            "step": "BC_B:0",
+            "receiver": 4,
+            "transmitters": [
+              0,
+              1,
+              7
+            ],
             "has_FY00": true,
-            "outer_transmitters": 2,
+            "outer_transmitter_count": 2,
             "receiver_not_transmitter": true,
-            "transmitters_fixed_during_probe_and_motion": true
+            "transmitters_unchanged": true,
+            "only_receiver_changed": true,
+            "observation_receivers": [
+              4
+            ],
+            "observation_dimensions": [
+              2
+            ]
           },
           {
-            "round": "C",
+            "step": "BC_C:0",
+            "receiver": 7,
+            "transmitters": [
+              0,
+              1,
+              4
+            ],
             "has_FY00": true,
-            "outer_transmitters": 2,
+            "outer_transmitter_count": 2,
             "receiver_not_transmitter": true,
-            "transmitters_fixed_during_probe_and_motion": true
+            "transmitters_unchanged": true,
+            "only_receiver_changed": true,
+            "observation_receivers": [
+              7
+            ],
+            "observation_dimensions": [
+              2
+            ]
           },
           {
-            "round": "followers",
+            "step": "BC_B:1",
+            "receiver": 4,
+            "transmitters": [
+              0,
+              1,
+              7
+            ],
             "has_FY00": true,
-            "outer_transmitters": 3,
+            "outer_transmitter_count": 2,
             "receiver_not_transmitter": true,
-            "transmitters_fixed_during_probe_and_motion": true
+            "transmitters_unchanged": true,
+            "only_receiver_changed": true,
+            "observation_receivers": [
+              4
+            ],
+            "observation_dimensions": [
+              2
+            ]
+          },
+          {
+            "step": "BC_C:1",
+            "receiver": 7,
+            "transmitters": [
+              0,
+              1,
+              4
+            ],
+            "has_FY00": true,
+            "outer_transmitter_count": 2,
+            "receiver_not_transmitter": true,
+            "transmitters_unchanged": true,
+            "only_receiver_changed": true,
+            "observation_receivers": [
+              7
+            ],
+            "observation_dimensions": [
+              2
+            ]
+          },
+          {
+            "step": "BC_B:2",
+            "receiver": 4,
+            "transmitters": [
+              0,
+              1,
+              7
+            ],
+            "has_FY00": true,
+            "outer_transmitter_count": 2,
+            "receiver_not_transmitter": true,
+            "transmitters_unchanged": true,
+            "only_receiver_changed": true,
+            "observation_receivers": [
+              4
+            ],
+            "observation_dimensions": [
+              2
+            ]
+          },
+          {
+            "step": "BC_C:2",
+            "receiver": 7,
+            "transmitters": [
+              0,
+              1,
+              4
+            ],
+            "has_FY00": true,
+            "outer_transmitter_count": 2,
+            "receiver_not_transmitter": true,
+            "transmitters_unchanged": true,
+            "only_receiver_changed": true,
+            "observation_receivers": [
+              7
+            ],
+            "observation_dimensions": [
+              2
+            ]
+          },
+          {
+            "step": "BC_B:3",
+            "receiver": 4,
+            "transmitters": [
+              0,
+              1,
+              7
+            ],
+            "has_FY00": true,
+            "outer_transmitter_count": 2,
+            "receiver_not_transmitter": true,
+            "transmitters_unchanged": true,
+            "only_receiver_changed": true,
+            "observation_receivers": [
+              4
+            ],
+            "observation_dimensions": [
+              2
+            ]
+          },
+          {
+            "step": "BC_C:3",
+            "receiver": 7,
+            "transmitters": [
+              0,
+              1,
+              4
+            ],
+            "has_FY00": true,
+            "outer_transmitter_count": 2,
+            "receiver_not_transmitter": true,
+            "transmitters_unchanged": true,
+            "only_receiver_changed": true,
+            "observation_receivers": [
+              7
+            ],
+            "observation_dimensions": [
+              2
+            ]
+          },
+          {
+            "step": "BC_B:4",
+            "receiver": 4,
+            "transmitters": [
+              0,
+              1,
+              7
+            ],
+            "has_FY00": true,
+            "outer_transmitter_count": 2,
+            "receiver_not_transmitter": true,
+            "transmitters_unchanged": true,
+            "only_receiver_changed": true,
+            "observation_receivers": [
+              4
+            ],
+            "observation_dimensions": [
+              2
+            ]
+          },
+          {
+            "step": "BC_C:4",
+            "receiver": 7,
+            "transmitters": [
+              0,
+              1,
+              4
+            ],
+            "has_FY00": true,
+            "outer_transmitter_count": 2,
+            "receiver_not_transmitter": true,
+            "transmitters_unchanged": true,
+            "only_receiver_changed": true,
+            "observation_receivers": [
+              7
+            ],
+            "observation_dimensions": [
+              2
+            ]
+          },
+          {
+            "step": "FOUR_ANCHOR",
+            "receiver": 2,
+            "transmitters": [
+              0,
+              1,
+              4,
+              7
+            ],
+            "has_FY00": true,
+            "outer_transmitter_count": 3,
+            "receiver_not_transmitter": true,
+            "transmitters_unchanged": true,
+            "only_receiver_changed": true,
+            "observation_receivers": [
+              2
+            ],
+            "observation_dimensions": [
+              2
+            ]
+          },
+          {
+            "step": "FOUR_ANCHOR",
+            "receiver": 3,
+            "transmitters": [
+              0,
+              1,
+              4,
+              7
+            ],
+            "has_FY00": true,
+            "outer_transmitter_count": 3,
+            "receiver_not_transmitter": true,
+            "transmitters_unchanged": true,
+            "only_receiver_changed": true,
+            "observation_receivers": [
+              3
+            ],
+            "observation_dimensions": [
+              2
+            ]
+          },
+          {
+            "step": "FOUR_ANCHOR",
+            "receiver": 5,
+            "transmitters": [
+              0,
+              1,
+              4,
+              7
+            ],
+            "has_FY00": true,
+            "outer_transmitter_count": 3,
+            "receiver_not_transmitter": true,
+            "transmitters_unchanged": true,
+            "only_receiver_changed": true,
+            "observation_receivers": [
+              5
+            ],
+            "observation_dimensions": [
+              2
+            ]
+          },
+          {
+            "step": "FOUR_ANCHOR",
+            "receiver": 6,
+            "transmitters": [
+              0,
+              1,
+              4,
+              7
+            ],
+            "has_FY00": true,
+            "outer_transmitter_count": 3,
+            "receiver_not_transmitter": true,
+            "transmitters_unchanged": true,
+            "only_receiver_changed": true,
+            "observation_receivers": [
+              6
+            ],
+            "observation_dimensions": [
+              2
+            ]
+          },
+          {
+            "step": "FOUR_ANCHOR",
+            "receiver": 8,
+            "transmitters": [
+              0,
+              1,
+              4,
+              7
+            ],
+            "has_FY00": true,
+            "outer_transmitter_count": 3,
+            "receiver_not_transmitter": true,
+            "transmitters_unchanged": true,
+            "only_receiver_changed": true,
+            "observation_receivers": [
+              8
+            ],
+            "observation_dimensions": [
+              2
+            ]
+          },
+          {
+            "step": "FOUR_ANCHOR",
+            "receiver": 9,
+            "transmitters": [
+              0,
+              1,
+              4,
+              7
+            ],
+            "has_FY00": true,
+            "outer_transmitter_count": 3,
+            "receiver_not_transmitter": true,
+            "transmitters_unchanged": true,
+            "only_receiver_changed": true,
+            "observation_receivers": [
+              9
+            ],
+            "observation_dimensions": [
+              2
+            ]
           }
         ],
-        "FY00_FY01_fixed": true,
-        "FY04_FY07_fixed_in_four_anchor_stage": true
+        "FY00_fixed": true,
+        "FY01_fixed": true,
+        "FY04_FY07_fixed_in_four_anchor_stage": true,
+        "negative_illegal_event": {
+          "step": "BC_B:0",
+          "receiver": 4,
+          "transmitters": [
+            1,
+            7
+          ],
+          "before": {
+            "0": [
+              0.0,
+              0.0
+            ],
+            "1": [
+              100.0,
+              0.0
+            ],
+            "2": [
+              74.962297290006,
+              63.124115716616
+            ],
+            "3": [
+              19.04420117056,
+              110.369010151289
+            ],
+            "4": [
+              -52.102732885897,
+              91.16087552136
+            ],
+            "5": [
+              -92.007702146485,
+              33.742891780696
+            ],
+            "6": [
+              -105.272290689831,
+              -38.232771452193
+            ],
+            "7": [
+              -52.388865635167,
+              -90.996740367226
+            ],
+            "8": [
+              17.303800460439,
+              -96.460243051867
+            ],
+            "9": [
+              86.147772048295,
+              -71.572071166866
+            ]
+          },
+          "after": {
+            "0": [
+              0.0,
+              0.0
+            ],
+            "1": [
+              100.0,
+              0.0
+            ],
+            "2": [
+              74.962297290006,
+              63.124115716616
+            ],
+            "3": [
+              19.04420117056,
+              110.369010151289
+            ],
+            "4": [
+              -49.963821412026,
+              89.292228714768
+            ],
+            "5": [
+              -92.007702146485,
+              33.742891780696
+            ],
+            "6": [
+              -105.272290689831,
+              -38.232771452193
+            ],
+            "7": [
+              -52.388865635167,
+              -90.996740367226
+            ],
+            "8": [
+              17.303800460439,
+              -96.460243051867
+            ],
+            "9": [
+              86.147772048295,
+              -71.572071166866
+            ]
+          },
+          "observation_events": [
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "receiver": 4,
+              "dimension": 2,
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  7
+                ]
+              ]
+            }
+          ],
+          "exact": false
+        },
+        "negative_illegal_event_detected": true
       }
     },
     "full_metamorphic": {
       "status": "PASS",
       "evidence": {
         "rotation": {
-          "per_node_trajectory_difference_m": {
+          "per_node_final_difference_m": {
             "0": 0.0,
             "1": 6.376708072902659e-15,
             "2": 4.4938668397781776e-14,
@@ -390,7 +1534,45 @@
             "8": 1.5888218580782548e-14,
             "9": 1.4210854715202004e-14
           },
-          "max_node_difference_m": 4.4938668397781776e-14,
+          "max_final_node_difference_m": 4.4938668397781776e-14,
+          "local_displacement_trajectory_differences_m": [
+            3.9629208304927135e-14,
+            4.440892098500626e-14,
+            2.673425342293816e-14,
+            5.406751036302753e-14,
+            1.886469278068837e-14,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            4.668220486087868e-14,
+            2.2887833992611187e-14,
+            1.9688937520703697e-14,
+            1.96205025865255e-14,
+            2.3145946194106634e-14,
+            9.565974336450906e-15
+          ],
+          "max_local_displacement_trajectory_difference_m": 5.406751036302753e-14,
+          "final_residual_differences": [
+            2.1029195841688648e-16,
+            8.036115340887404e-17,
+            0.0,
+            1.1101991175544901e-16,
+            1.3524754567002338e-19,
+            1.1101904647282949e-16,
+            1.3524754567002338e-19,
+            1.1101904647282949e-16,
+            1.3524754567002338e-19,
+            1.1101904647282949e-16,
+            9.928405205065533e-17,
+            0.0,
+            0.0,
+            1.979846534970173e-16,
+            5.3454868943571697e-17,
+            4.553579910101363e-17
+          ],
+          "max_final_residual_difference": 2.1029195841688648e-16,
           "metric_differences": {
             "max_radius_error_m": 2.842170943040401e-14,
             "max_successive_central_angle_error_rad": 3.3306690738754696e-16,
@@ -399,7 +1581,7 @@
           "max_metric_difference": 4.488254385144692e-14
         },
         "reflection": {
-          "per_node_trajectory_difference_m": {
+          "per_node_final_difference_m": {
             "0": 0.0,
             "1": 0.0,
             "2": 0.0,
@@ -411,7 +1593,45 @@
             "8": 0.0,
             "9": 0.0
           },
-          "max_node_difference_m": 0.0,
+          "max_final_node_difference_m": 0.0,
+          "local_displacement_trajectory_differences_m": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_local_displacement_trajectory_difference_m": 0.0,
+          "final_residual_differences": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_final_residual_difference": 0.0,
           "metric_differences": {
             "max_radius_error_m": 0.0,
             "max_successive_central_angle_error_rad": 0.0,
@@ -1474,41 +2694,1216 @@
       "observe",
       "settings"
     ],
-    "world_field_count": 0,
-    "cross_receiver_angle_input_count": 0,
-    "controller_imports_evaluator": false,
-    "evaluator_returned_to_controller": false
+    "q1_3_evaluator_imports": 0,
+    "fd_forbidden_name_references": [],
+    "exact_forbidden_name_references": [],
+    "fd_calls_exact_or_evaluator": 0,
+    "event_receiver_failures": 0,
+    "negative_illegal_field_detected": true,
+    "illegal_inputs": []
   },
   "schedule_audit": {
-    "rounds": [
+    "actual_events": [
       {
-        "round": "B",
+        "step": "BC_B:0",
+        "receiver": 4,
+        "transmitters": [
+          0,
+          1,
+          7
+        ],
         "has_FY00": true,
-        "outer_transmitters": 2,
+        "outer_transmitter_count": 2,
         "receiver_not_transmitter": true,
-        "transmitters_fixed_during_probe_and_motion": true
+        "transmitters_unchanged": true,
+        "only_receiver_changed": true,
+        "observation_receivers": [
+          4
+        ],
+        "observation_dimensions": [
+          2
+        ]
       },
       {
-        "round": "C",
+        "step": "BC_C:0",
+        "receiver": 7,
+        "transmitters": [
+          0,
+          1,
+          4
+        ],
         "has_FY00": true,
-        "outer_transmitters": 2,
+        "outer_transmitter_count": 2,
         "receiver_not_transmitter": true,
-        "transmitters_fixed_during_probe_and_motion": true
+        "transmitters_unchanged": true,
+        "only_receiver_changed": true,
+        "observation_receivers": [
+          7
+        ],
+        "observation_dimensions": [
+          2
+        ]
       },
       {
-        "round": "followers",
+        "step": "BC_B:1",
+        "receiver": 4,
+        "transmitters": [
+          0,
+          1,
+          7
+        ],
         "has_FY00": true,
-        "outer_transmitters": 3,
+        "outer_transmitter_count": 2,
         "receiver_not_transmitter": true,
-        "transmitters_fixed_during_probe_and_motion": true
+        "transmitters_unchanged": true,
+        "only_receiver_changed": true,
+        "observation_receivers": [
+          4
+        ],
+        "observation_dimensions": [
+          2
+        ]
+      },
+      {
+        "step": "BC_C:1",
+        "receiver": 7,
+        "transmitters": [
+          0,
+          1,
+          4
+        ],
+        "has_FY00": true,
+        "outer_transmitter_count": 2,
+        "receiver_not_transmitter": true,
+        "transmitters_unchanged": true,
+        "only_receiver_changed": true,
+        "observation_receivers": [
+          7
+        ],
+        "observation_dimensions": [
+          2
+        ]
+      },
+      {
+        "step": "BC_B:2",
+        "receiver": 4,
+        "transmitters": [
+          0,
+          1,
+          7
+        ],
+        "has_FY00": true,
+        "outer_transmitter_count": 2,
+        "receiver_not_transmitter": true,
+        "transmitters_unchanged": true,
+        "only_receiver_changed": true,
+        "observation_receivers": [
+          4
+        ],
+        "observation_dimensions": [
+          2
+        ]
+      },
+      {
+        "step": "BC_C:2",
+        "receiver": 7,
+        "transmitters": [
+          0,
+          1,
+          4
+        ],
+        "has_FY00": true,
+        "outer_transmitter_count": 2,
+        "receiver_not_transmitter": true,
+        "transmitters_unchanged": true,
+        "only_receiver_changed": true,
+        "observation_receivers": [
+          7
+        ],
+        "observation_dimensions": [
+          2
+        ]
+      },
+      {
+        "step": "BC_B:3",
+        "receiver": 4,
+        "transmitters": [
+          0,
+          1,
+          7
+        ],
+        "has_FY00": true,
+        "outer_transmitter_count": 2,
+        "receiver_not_transmitter": true,
+        "transmitters_unchanged": true,
+        "only_receiver_changed": true,
+        "observation_receivers": [
+          4
+        ],
+        "observation_dimensions": [
+          2
+        ]
+      },
+      {
+        "step": "BC_C:3",
+        "receiver": 7,
+        "transmitters": [
+          0,
+          1,
+          4
+        ],
+        "has_FY00": true,
+        "outer_transmitter_count": 2,
+        "receiver_not_transmitter": true,
+        "transmitters_unchanged": true,
+        "only_receiver_changed": true,
+        "observation_receivers": [
+          7
+        ],
+        "observation_dimensions": [
+          2
+        ]
+      },
+      {
+        "step": "BC_B:4",
+        "receiver": 4,
+        "transmitters": [
+          0,
+          1,
+          7
+        ],
+        "has_FY00": true,
+        "outer_transmitter_count": 2,
+        "receiver_not_transmitter": true,
+        "transmitters_unchanged": true,
+        "only_receiver_changed": true,
+        "observation_receivers": [
+          4
+        ],
+        "observation_dimensions": [
+          2
+        ]
+      },
+      {
+        "step": "BC_C:4",
+        "receiver": 7,
+        "transmitters": [
+          0,
+          1,
+          4
+        ],
+        "has_FY00": true,
+        "outer_transmitter_count": 2,
+        "receiver_not_transmitter": true,
+        "transmitters_unchanged": true,
+        "only_receiver_changed": true,
+        "observation_receivers": [
+          7
+        ],
+        "observation_dimensions": [
+          2
+        ]
+      },
+      {
+        "step": "FOUR_ANCHOR",
+        "receiver": 2,
+        "transmitters": [
+          0,
+          1,
+          4,
+          7
+        ],
+        "has_FY00": true,
+        "outer_transmitter_count": 3,
+        "receiver_not_transmitter": true,
+        "transmitters_unchanged": true,
+        "only_receiver_changed": true,
+        "observation_receivers": [
+          2
+        ],
+        "observation_dimensions": [
+          2
+        ]
+      },
+      {
+        "step": "FOUR_ANCHOR",
+        "receiver": 3,
+        "transmitters": [
+          0,
+          1,
+          4,
+          7
+        ],
+        "has_FY00": true,
+        "outer_transmitter_count": 3,
+        "receiver_not_transmitter": true,
+        "transmitters_unchanged": true,
+        "only_receiver_changed": true,
+        "observation_receivers": [
+          3
+        ],
+        "observation_dimensions": [
+          2
+        ]
+      },
+      {
+        "step": "FOUR_ANCHOR",
+        "receiver": 5,
+        "transmitters": [
+          0,
+          1,
+          4,
+          7
+        ],
+        "has_FY00": true,
+        "outer_transmitter_count": 3,
+        "receiver_not_transmitter": true,
+        "transmitters_unchanged": true,
+        "only_receiver_changed": true,
+        "observation_receivers": [
+          5
+        ],
+        "observation_dimensions": [
+          2
+        ]
+      },
+      {
+        "step": "FOUR_ANCHOR",
+        "receiver": 6,
+        "transmitters": [
+          0,
+          1,
+          4,
+          7
+        ],
+        "has_FY00": true,
+        "outer_transmitter_count": 3,
+        "receiver_not_transmitter": true,
+        "transmitters_unchanged": true,
+        "only_receiver_changed": true,
+        "observation_receivers": [
+          6
+        ],
+        "observation_dimensions": [
+          2
+        ]
+      },
+      {
+        "step": "FOUR_ANCHOR",
+        "receiver": 8,
+        "transmitters": [
+          0,
+          1,
+          4,
+          7
+        ],
+        "has_FY00": true,
+        "outer_transmitter_count": 3,
+        "receiver_not_transmitter": true,
+        "transmitters_unchanged": true,
+        "only_receiver_changed": true,
+        "observation_receivers": [
+          8
+        ],
+        "observation_dimensions": [
+          2
+        ]
+      },
+      {
+        "step": "FOUR_ANCHOR",
+        "receiver": 9,
+        "transmitters": [
+          0,
+          1,
+          4,
+          7
+        ],
+        "has_FY00": true,
+        "outer_transmitter_count": 3,
+        "receiver_not_transmitter": true,
+        "transmitters_unchanged": true,
+        "only_receiver_changed": true,
+        "observation_receivers": [
+          9
+        ],
+        "observation_dimensions": [
+          2
+        ]
       }
     ],
-    "FY00_FY01_fixed": true,
-    "FY04_FY07_fixed_in_four_anchor_stage": true
+    "FY00_fixed": true,
+    "FY01_fixed": true,
+    "FY04_FY07_fixed_in_four_anchor_stage": true,
+    "negative_illegal_event": {
+      "step": "BC_B:0",
+      "receiver": 4,
+      "transmitters": [
+        1,
+        7
+      ],
+      "before": {
+        "0": [
+          0.0,
+          0.0
+        ],
+        "1": [
+          100.0,
+          0.0
+        ],
+        "2": [
+          74.962297290006,
+          63.124115716616
+        ],
+        "3": [
+          19.04420117056,
+          110.369010151289
+        ],
+        "4": [
+          -52.102732885897,
+          91.16087552136
+        ],
+        "5": [
+          -92.007702146485,
+          33.742891780696
+        ],
+        "6": [
+          -105.272290689831,
+          -38.232771452193
+        ],
+        "7": [
+          -52.388865635167,
+          -90.996740367226
+        ],
+        "8": [
+          17.303800460439,
+          -96.460243051867
+        ],
+        "9": [
+          86.147772048295,
+          -71.572071166866
+        ]
+      },
+      "after": {
+        "0": [
+          0.0,
+          0.0
+        ],
+        "1": [
+          100.0,
+          0.0
+        ],
+        "2": [
+          74.962297290006,
+          63.124115716616
+        ],
+        "3": [
+          19.04420117056,
+          110.369010151289
+        ],
+        "4": [
+          -49.963821412026,
+          89.292228714768
+        ],
+        "5": [
+          -92.007702146485,
+          33.742891780696
+        ],
+        "6": [
+          -105.272290689831,
+          -38.232771452193
+        ],
+        "7": [
+          -52.388865635167,
+          -90.996740367226
+        ],
+        "8": [
+          17.303800460439,
+          -96.460243051867
+        ],
+        "9": [
+          86.147772048295,
+          -71.572071166866
+        ]
+      },
+      "observation_events": [
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "dimension": 2,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ]
+        }
+      ],
+      "exact": false
+    },
+    "negative_illegal_event_detected": true
   },
   "metamorphic": {
     "rotation": {
-      "per_node_trajectory_difference_m": {
+      "per_node_final_difference_m": {
         "0": 0.0,
         "1": 6.376708072902659e-15,
         "2": 4.4938668397781776e-14,
@@ -1520,7 +3915,45 @@
         "8": 1.5888218580782548e-14,
         "9": 1.4210854715202004e-14
       },
-      "max_node_difference_m": 4.4938668397781776e-14,
+      "max_final_node_difference_m": 4.4938668397781776e-14,
+      "local_displacement_trajectory_differences_m": [
+        3.9629208304927135e-14,
+        4.440892098500626e-14,
+        2.673425342293816e-14,
+        5.406751036302753e-14,
+        1.886469278068837e-14,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        4.668220486087868e-14,
+        2.2887833992611187e-14,
+        1.9688937520703697e-14,
+        1.96205025865255e-14,
+        2.3145946194106634e-14,
+        9.565974336450906e-15
+      ],
+      "max_local_displacement_trajectory_difference_m": 5.406751036302753e-14,
+      "final_residual_differences": [
+        2.1029195841688648e-16,
+        8.036115340887404e-17,
+        0.0,
+        1.1101991175544901e-16,
+        1.3524754567002338e-19,
+        1.1101904647282949e-16,
+        1.3524754567002338e-19,
+        1.1101904647282949e-16,
+        1.3524754567002338e-19,
+        1.1101904647282949e-16,
+        9.928405205065533e-17,
+        0.0,
+        0.0,
+        1.979846534970173e-16,
+        5.3454868943571697e-17,
+        4.553579910101363e-17
+      ],
+      "max_final_residual_difference": 2.1029195841688648e-16,
       "metric_differences": {
         "max_radius_error_m": 2.842170943040401e-14,
         "max_successive_central_angle_error_rad": 3.3306690738754696e-16,
@@ -1529,7 +3962,7 @@
       "max_metric_difference": 4.488254385144692e-14
     },
     "reflection": {
-      "per_node_trajectory_difference_m": {
+      "per_node_final_difference_m": {
         "0": 0.0,
         "1": 0.0,
         "2": 0.0,
@@ -1541,7 +3974,45 @@
         "8": 0.0,
         "9": 0.0
       },
-      "max_node_difference_m": 0.0,
+      "max_final_node_difference_m": 0.0,
+      "local_displacement_trajectory_differences_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "max_local_displacement_trajectory_difference_m": 0.0,
+      "final_residual_differences": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "max_final_residual_difference": 0.0,
       "metric_differences": {
         "max_radius_error_m": 0.0,
         "max_successive_central_angle_error_rad": 0.0,
@@ -1562,6 +4033,44 @@
       "joint_rank": 4,
       "joint_condition": 6.1296075142617115,
       "joint_sigma_min": 0.002519774590374584
+    }
+  },
+  "preloaded_signature_provenance": {
+    "2": {
+      "main_max_difference": 0.0,
+      "holdout_max_difference": 0.0,
+      "anchor_perturbation_preloaded_change": 0.0,
+      "plant_anchor_perturbation_actual_residual_change": 0.0011297670558955142
+    },
+    "3": {
+      "main_max_difference": 0.0,
+      "holdout_max_difference": 0.0,
+      "anchor_perturbation_preloaded_change": 0.0,
+      "plant_anchor_perturbation_actual_residual_change": 0.003654869026696428
+    },
+    "5": {
+      "main_max_difference": 0.0,
+      "holdout_max_difference": 0.0,
+      "anchor_perturbation_preloaded_change": 0.0,
+      "plant_anchor_perturbation_actual_residual_change": 0.005235950277446388
+    },
+    "6": {
+      "main_max_difference": 0.0,
+      "holdout_max_difference": 0.0,
+      "anchor_perturbation_preloaded_change": 0.0,
+      "plant_anchor_perturbation_actual_residual_change": 0.0027267453616039994
+    },
+    "8": {
+      "main_max_difference": 0.0,
+      "holdout_max_difference": 0.0,
+      "anchor_perturbation_preloaded_change": 0.0,
+      "plant_anchor_perturbation_actual_residual_change": 0.005491376512017254
+    },
+    "9": {
+      "main_max_difference": 0.0,
+      "holdout_max_difference": 0.0,
+      "anchor_perturbation_preloaded_change": 0.0,
+      "plant_anchor_perturbation_actual_residual_change": 0.0031985191093802934
     }
   }
 }
