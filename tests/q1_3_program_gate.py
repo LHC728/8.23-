@@ -6,7 +6,7 @@ from math import cos, sin
 import numpy as np
 import src.q1_3_adjustment as adjustment
 from src.q1_3_adjustment import (
- A,B,C,O,ANCHORS,ControllerSettings,LocalControllerInput,ObservationPlant,
+ A,B,C,O,ANCHORS,FOLLOWER_PAIRS,ControllerSettings,LocalControllerInput,ObservationPlant,
  bc_spec,controller_firewall_schema,derivative_audit,exact_local_best_response,
  finite_difference_controller,follower_metrics,pair_cycle_metrics,preloaded_follower_spec,
  table1_coordinates,target_coordinates,transform_positions,pair_angle)
@@ -16,6 +16,16 @@ ROOT=Path(__file__).resolve().parents[1]; OUT=ROOT/"results"/"q1_3"/"q1_3_progra
 SETTINGS=ControllerSettings()
 
 def _input(receiver,spec,step): return LocalControllerInput(receiver,tuple(spec["main_angles"]),step)
+def _independent_ideal_signature(receiver,ideal):
+ """Test-side construction; intentionally does not call preloaded_follower_spec."""
+ anchors=(O,A,B,C)
+ all_pairs=tuple((anchors[i],anchors[j]) for i in range(4) for j in range(i+1,4))
+ main_pairs=FOLLOWER_PAIRS[receiver]
+ holdout_pairs=tuple(pair for pair in all_pairs if pair not in main_pairs)
+ return {"main_pairs":main_pairs,
+  "main_angles":tuple(pair_angle(ideal[receiver],ideal,pair) for pair in main_pairs),
+  "holdout_pairs":holdout_pairs,
+  "holdout_angles":tuple(pair_angle(ideal[receiver],ideal,pair) for pair in holdout_pairs)}
 def _run_action(world,receiver,spec,step,axes,exact=False):
  before={str(i):world[i].round(12).tolist() for i in world}
  plant=ObservationPlant(world,receiver,spec["main_pairs"],spec["main_angles"],axes)
@@ -116,7 +126,7 @@ def run_gate():
  ideal=target_coordinates(); provenance={}
  perturbed=transform_positions(target_coordinates(),np.eye(2)); perturbed[B]+=np.array((.3,-.2)); perturbed[C]+=np.array((-.1,.4))
  for receiver in (2,3,5,6,8,9):
-  spec=preloaded_follower_spec(receiver); independent=preloaded_follower_spec(receiver,target=ideal); changed=preloaded_follower_spec(receiver,target=ideal)
+  spec=preloaded_follower_spec(receiver); independent=_independent_ideal_signature(receiver,ideal); changed=preloaded_follower_spec(receiver,target=ideal)
   main_diff=float(np.max(abs(np.array(spec["main_angles"])-np.array(independent["main_angles"]))))
   holdout_diff=float(np.max(abs(np.array(spec["holdout_angles"])-np.array(independent["holdout_angles"]))))
   anchor_change=float(max(np.max(abs(np.array(spec["main_angles"])-np.array(changed["main_angles"]))),np.max(abs(np.array(spec["holdout_angles"])-np.array(changed["holdout_angles"])))))
@@ -129,7 +139,7 @@ def run_gate():
   "preloaded_signature":_status(all(x["main_max_difference"]<=1e-12 and x["holdout_max_difference"]<=1e-12 and x["anchor_perturbation_preloaded_change"]<=1e-12 and x["plant_anchor_perturbation_actual_residual_change"]>1e-8 for x in provenance.values()),{"signature_threshold":1e-12,"plant_change_lower_bound":1e-8,"per_receiver":provenance}),
   "finite_difference_table1":_status(numeric["metrics"]["max_target_position_error_m"]<1e-3,numeric["metrics"]),
   "holdout":_status(all(v["status"]=="PASS" for v in holdouts.values()),holdouts),
-  "information_firewall":_status(not firewall["forbidden_fields_present"] and not firewall["illegal_inputs"] and firewall["q1_3_evaluator_imports"]==0 and not firewall["fd_forbidden_name_references"] and not firewall["exact_forbidden_name_references"] and firewall["event_receiver_failures"]==0 and firewall["negative_illegal_field_detected"],firewall),
+  "information_firewall":_status(not firewall["forbidden_fields_present"] and not firewall["illegal_inputs"] and firewall["q1_3_evaluator_imports"]==0 and not firewall["fd_forbidden_name_references"] and not firewall["exact_forbidden_name_references"] and firewall["fd_calls_exact_or_evaluator"]==0 and firewall["event_receiver_failures"]==0 and firewall["negative_illegal_field_detected"],firewall),
   "schedule":_status(all(r["has_FY00"] and r["outer_transmitter_count"]<=3 and r["receiver_not_transmitter"] and r["transmitters_unchanged"] and r["only_receiver_changed"] and r["observation_receivers"]==[r["receiver"]] and r["observation_dimensions"]==[2] for r in schedule["actual_events"]) and schedule["FY00_fixed"] and schedule["FY01_fixed"] and schedule["FY04_FY07_fixed_in_four_anchor_stage"] and schedule["negative_illegal_event_detected"],schedule),
   "full_metamorphic":_status(max(x["max_final_node_difference_m"] for x in metamorphic.values())<2e-6 and max(x["max_local_displacement_trajectory_difference_m"] for x in metamorphic.values())<2e-6 and max(x["max_final_residual_difference"] for x in metamorphic.values())<2e-8 and max(x["max_metric_difference"] for x in metamorphic.values())<2e-6,metamorphic),
   "ablation_same_metric":_status(set(ablation["FY04_FY07"])==set(ablation["FY02_FY05"]) and ablation["FY04_FY07"]["joint_rank"]==4 and ablation["FY02_FY05"]["joint_rank"]==4 and ablation["FY04_FY07"]["spectral_radius"]<1e-10 and ablation["FY04_FY07"]["spectral_radius"]<ablation["FY02_FY05"]["spectral_radius"] and all(np.isfinite(v) and v>0 for x in ablation.values() for k,v in x.items() if k in {"joint_condition","joint_sigma_min"}),ablation)}

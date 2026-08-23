@@ -29,6 +29,8 @@ FY00 与 FY01 始终不动。执行 5 个 FY04/FY07 宏周期：FY00、FY01、FY
 
 本次验证器加固将防火墙、排程、预装签名、独立 oracle、蜕变和消融全部改为可失败的确定性检查：实际 replay 事件记录每个动作、观测接收机与坐标快照；AST 和故障注入检查非法字段、非法排程和 oracle 对有限差分控制器的错误调用。JSON 保存每项原始数值、阈值和负对照结果。
 
+预装签名的核验由测试端独立公式计算器完成，不调用正式签名生成函数；其逐机比较主角和 holdout。信息防火墙的 PASS 还要求控制器内 exact-or-evaluator 调用计数为 0。
+
 机器可读证据：results/q1_3/q1_3_program_gate.json，由 python -m tests.q1_3_program_gate 生成。
 
 ## 结论边界
