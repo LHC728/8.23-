@@ -59,16 +59,19 @@
 
 设接收机位于 $x$，两架发射机位于 $p_a,p_b$。定义
 
-$u=p_a-x,\qquad v=p_b-x.$
-
+```math
+u=p_a-x,\qquad v=p_b-x.
+```
 二维叉积记为
 
-$u\times v=u_xv_y-u_yv_x,$
-
+```math
+u\times v=u_xv_y-u_yv_x,
+```
 则本机无符号夹角为
 
-$h_{ab}(x) = \mathrm{atan2} \left( \left|u\times v\right|, u^{\mathsf T}v \right) \in[0,\pi].$
-
+```math
+h_{ab}(x) = \mathrm{atan2} \left( \left|u\times v\right|, u^{\mathsf T}v \right) \in[0,\pi].
+```
 解释如下：
 
 - 点积 $u^{\mathsf T}v$ 描述两个方向有多同向；
@@ -78,8 +81,9 @@ $h_{ab}(x) = \mathrm{atan2} \left( \left|u\times v\right|, u^{\mathsf T}v \right
 
 该式比只使用
 
-$\arccos\frac{u^{\mathsf T}v}{\|u\|\,\|v\|}$
-
+```math
+\arccos\frac{u^{\mathsf T}v}{\|u\|\,\|v\|}
+```
 更适合数值实现，但它不能消除 $0$、$\pi$、收发机重合和近共线本身的几何退化。
 
 **依据性质：** 点积、叉积和夹角关系属于解析几何基本关系；本题的具体观测式由题意独立建立。文献 [1] 只提供“角约束是否足以固定位置必须检查可辨识性”的理论背景。
@@ -88,18 +92,22 @@ $\arccos\frac{u^{\mathsf T}v}{\|u\|\,\|v\|}$
 
 对两个固定点 $A,B$，令
 
-$s=(A-x)\times(B-x),\qquad d=(A-x)^{\mathsf T}(B-x).$
-
+```math
+s=(A-x)\times(B-x),\qquad d=(A-x)^{\mathsf T}(B-x).
+```
 在 $s\ne0$ 且接收机不与发射机重合的区域，有
 
-$\nabla h_{AB}(x) = \mathrm{sign}(s) \frac{d\nabla s-s\nabla d}{d^2+s^2},$
-
+```math
+\nabla h_{AB}(x) = \mathrm{sign}(s) \frac{d\nabla s-s\nabla d}{d^2+s^2},
+```
 其中
 
-$\nabla s=(A_y-B_y,\ B_x-A_x),$
-
-$\nabla d=-\left[(A-x)+(B-x)\right].$
-
+```math
+\nabla s=(A_y-B_y,\ B_x-A_x),
+```
+```math
+\nabla d=-\left[(A-x)+(B-x)\right].
+```
 这个梯度回答的是：“接收机沿横向或纵向移动一点，所测夹角会怎样变化？”它是后续 Jacobian、局部可辨识性和本机试探控制的共同基础。
 
 **依据性质：** 对本题观测式直接求导；程序中另用有限差分或自动微分交叉复核。
@@ -121,32 +129,39 @@ FY00 与另外两架编号已知、位置无偏差的外围无人机发射信号
 
 两架发射机位于 $A,B$，接收机 $X$ 测得
 
-$\angle AXB=\theta, \qquad 0<\theta<\pi.$
-
+```math
+\angle AXB=\theta, \qquad 0<\theta<\pi.
+```
 记弦长
 
-$D=\|A-B\|.$
-
+```math
+D=\|A-B\|.
+```
 根据圆周角定理和弦长关系，候选圆半径为
 
-$\rho=\frac{D}{2\sin\theta}.$
-
+```math
+\rho=\frac{D}{2\sin\theta}.
+```
 令弦中点为
 
-$M=\frac{A+B}{2},$
-
+```math
+M=\frac{A+B}{2},
+```
 取与 $B-A$ 垂直的单位向量
 
-$e_{\perp} = \frac{1}{D} \begin{bmatrix} -(B_y-A_y)\\ B_x-A_x \end{bmatrix}.$
-
+```math
+e_{\perp} = \frac{1}{D} \begin{bmatrix} -(B_y-A_y)\\ B_x-A_x \end{bmatrix}.
+```
 圆心到弦中点的距离为
 
-$d_{\perp}=\rho|\cos\theta|.$
-
+```math
+d_{\perp}=\rho|\cos\theta|.
+```
 两个候选圆心为
 
-$O_{+}=M+d_{\perp}e_{\perp},\qquad O_{-}=M-d_{\perp}e_{\perp}.$
-
+```math
+O_{+}=M+d_{\perp}e_{\perp},\qquad O_{-}=M-d_{\perp}e_{\perp}.
+```
 因此，一个夹角约束首先给出弦两侧的圆分支，而不是一个点。由于同一圆上不同弧段可能对应 $\theta$ 或 $\pi-\theta$，圆交点还必须代回原始 $\mathrm{atan2}$ 观测式过滤。
 
 **依据性质：** 圆周角定理和弦长公式；无需外部算法假设。
@@ -155,12 +170,14 @@ $O_{+}=M+d_{\perp}e_{\perp},\qquad O_{-}=M-d_{\perp}e_{\perp}.$
 
 设三架已知发射机为 $A,B,C$，接收机观测为
 
-$y= \begin{bmatrix} y_{AB}\\ y_{AC}\\ y_{BC} \end{bmatrix}.$
-
+```math
+y= \begin{bmatrix} y_{AB}\\ y_{AC}\\ y_{BC} \end{bmatrix}.
+```
 理论方程为
 
-$h_{AB}(x)=y_{AB},\qquad h_{AC}(x)=y_{AC},\qquad h_{BC}(x)=y_{BC}.$
-
+```math
+h_{AB}(x)=y_{AB},\qquad h_{AC}(x)=y_{AC},\qquad h_{BC}(x)=y_{BC}.
+```
 不能只选前两个角、只取某一侧圆、再接受求解器返回的第一个根。冻结实现执行以下完整流程：
 
 1. 对 $AB$、$AC$、$BC$ 三条角约束分别生成双侧定夹角圆分支；
@@ -173,8 +190,9 @@ $h_{AB}(x)=y_{AB},\qquad h_{AC}(x)=y_{AC},\qquad h_{BC}(x)=y_{BC}.$
 
 因此输出是集合
 
-$\mathcal C(y) = \{x:\ h_{AB}(x)=y_{AB},\ h_{AC}(x)=y_{AC},\ h_{BC}(x)=y_{BC}\},$
-
+```math
+\mathcal C(y) = \{x:\ h_{AB}(x)=y_{AB},\ h_{AC}(x)=y_{AC},\ h_{BC}(x)=y_{BC}\},
+```
 而不是被强制选择的单点。
 
 第三条角的作用是同一接收机内部的分支筛选。它不是来自外部实验的独立验证。
@@ -183,16 +201,19 @@ $\mathcal C(y) = \{x:\ h_{AB}(x)=y_{AB},\ h_{AC}(x)=y_{AC},\ h_{BC}(x)=y_{BC}\},
 
 从三个角中选择在目标点附近局部独立的两个分量，例如
 
-$G(x)= \begin{bmatrix} h_{AB}(x)-y_{AB}\\ h_{AC}(x)-y_{AC} \end{bmatrix}.$
-
+```math
+G(x)= \begin{bmatrix} h_{AB}(x)-y_{AB}\\ h_{AC}(x)-y_{AC} \end{bmatrix}.
+```
 其 Jacobian 为
 
-$J(x)=DG(x).$
-
+```math
+J(x)=DG(x).
+```
 若在编号 $r$ 的理想槽位 $q_r$ 满足
 
-$\mathrm{rank}\,J(q_r)=2,$
-
+```math
+\mathrm{rank}\,J(q_r)=2,
+```
 并且局部槽位域 $U_r$ 中恰有一个完整候选，则可依据反函数定理作出局部唯一性判定。
 
 通俗解释：位置有横、纵两个自由度。秩为 2 表示两个角对这两个移动方向都有独立反应；秩不足则至少有一个方向无法从这些角中识别。
@@ -243,42 +264,50 @@ FY00、FY01 的身份已知，额外发射信号的编号未知。此时未知�
 
 若只有 FY00、FY01 发射，接收机只有一个标量观测
 
-$h_{01}(x)=y_{01}.$
-
+```math
+h_{01}(x)=y_{01}.
+```
 它的等值集是一条定夹角圆弧，二维位置仍有一个连续自由度。因此
 
-$m_{\min}>0.$
-
+```math
+m_{\min}>0.
+```
 正式反例中，FY02 目标点
 
-$(76.6044,64.2788)$
-
+```math
+(76.6044,64.2788)
+```
 与另一点
 
-$(74.2681,65.5508)$
-
+```math
+(74.2681,65.5508)
+```
 产生完全相同的
 
-$h_{01}=1.22173048\ \mathrm{rad}.$
-
+```math
+h_{01}=1.22173048\ \mathrm{rad}.
+```
 这不是算法失败，而是观测信息本身不足。
 
 ### 4.3 增加一架匿名发射机后的联合模型
 
 接收机编号为 $r\in\{2,\ldots,9\}$。匿名发射机不能是接收机自己，因此合法编号集合为
 
-$\mathcal B_r = \{2,\ldots,9\}\setminus\{r\}.$
-
+```math
+\mathcal B_r = \{2,\ldots,9\}\setminus\{r\}.
+```
 对每个编号假设 $b\in\mathcal B_r$，定义三维纯方位观测向量
 
-$\Phi_b(x) = \begin{bmatrix} h_{01}(x)\\ h_{0b}(x)\\ h_{1b}(x) \end{bmatrix}.$
-
+```math
+\Phi_b(x) = \begin{bmatrix} h_{01}(x)\\ h_{0b}(x)\\ h_{1b}(x) \end{bmatrix}.
+```
 观测顺序由匿名令牌固定，而不是先知道编号后重排。
 
 所有局部身份—位置联合解为
 
-$\mathcal S_1(y) = \bigcup_{b\in\mathcal B_r} \{(b,x):\Phi_b(x)=y,\ x\in U_r\}.$
-
+```math
+\mathcal S_1(y) = \bigcup_{b\in\mathcal B_r} \{(b,x):\Phi_b(x)=y,\ x\in U_r\}.
+```
 求解步骤为：
 
 1. 枚举全部合法编号 $b$；
@@ -294,22 +323,26 @@ $\mathcal S_1(y) = \bigcup_{b\in\mathcal B_r} \{(b,x):\Phi_b(x)=y,\ x\in U_r\}.$
 
 正确编号下，$\Phi_b$ 的 Jacobian 是 $3\times2$ 矩阵：
 
-$D\Phi_b(x) = \begin{bmatrix} \nabla h_{01}(x)\\ \nabla h_{0b}(x)\\ \nabla h_{1b}(x) \end{bmatrix}.$
-
+```math
+D\Phi_b(x) = \begin{bmatrix} \nabla h_{01}(x)\\ \nabla h_{0b}(x)\\ \nabla h_{1b}(x) \end{bmatrix}.
+```
 若
 
-$\mathrm{rank}\,D\Phi_b(q_r)=2,$
-
+```math
+\mathrm{rank}\,D\Phi_b(q_r)=2,
+```
 则正确编号下的位置映射在目标点附近能感知二维位移。三行中至少存在两行组成非奇异的二维主观测分量组合。
 
 正式有限枚举得到：
 
-$\min\sigma_{\min} =0.002159555653\ \mathrm{m}^{-1} =\frac{0.2159555653}{R},$
-
+```math
+\min\sigma_{\min} =0.002159555653\ \mathrm{m}^{-1} =\frac{0.2159555653}{R},
+```
 以及最佳 $2\times2$ 子式的最小绝对行列式
 
-$8.816349035\times10^{-6}\ \mathrm{m}^{-2} =\frac{0.08816349035}{R^2}.$
-
+```math
+8.816349035\times10^{-6}\ \mathrm{m}^{-2} =\frac{0.08816349035}{R^2}.
+```
 这些正数说明理想槽位处所有合法组合均局部满列秩，但仍不能证明全平面没有远根。
 
 ### 4.5 编号局部可辨识性判据
@@ -318,28 +351,33 @@ $8.816349035\times10^{-6}\ \mathrm{m}^{-2} =\frac{0.08816349035}{R^2}.$
 
 定义局部编号观测分离度
 
-$\Delta_{\mathrm{id}}(U_r) = \min_{b\ne b'} \mathrm{dist} \left( \Phi_b(U_r), \Phi_{b'}(U_r) \right).$
-
+```math
+\Delta_{\mathrm{id}}(U_r) = \min_{b\ne b'} \mathrm{dist} \left( \Phi_b(U_r), \Phi_{b'}(U_r) \right).
+```
 如果
 
-$\Delta_{\mathrm{id}}(U_r)>0,$
-
+```math
+\Delta_{\mathrm{id}}(U_r)>0,
+```
 则在该局部域内，不同编号假设的可产生观测之间留有正间隔。
 
 实际计算采用保守 Lipschitz 下界。若局部域半径为 $\rho_U$，则
 
-$\mathrm{dist} \left( \Phi_b(U_r), \Phi_{b'}(U_r) \right) \ge \left\| \Phi_b(q_r)-\Phi_{b'}(q_r) \right\| -\rho_U(L_b+L_{b'}),$
-
+```math
+\mathrm{dist} \left( \Phi_b(U_r), \Phi_{b'}(U_r) \right) \ge \left\| \Phi_b(q_r)-\Phi_{b'}(q_r) \right\| -\rho_U(L_b+L_{b'}),
+```
 其中 $L_b,L_{b'}$ 是相应角映射在局部域内的梯度上界。
 
 本题理想槽位的最小编号观测分离度为
 
-$20^\circ=0.3490658504\ \mathrm{rad}.$
-
+```math
+20^\circ=0.3490658504\ \mathrm{rad}.
+```
 取 $1\ \mathrm m$ 的确定性示例局部域时，保守下界为
 
-$0.2783389151\ \mathrm{rad}>0.$
-
+```math
+0.2783389151\ \mathrm{rad}>0.
+```
 这里的 $1\ \mathrm m$ 只是用于展示正分离证书的确定性示例，不是题目给出的偏差上限，也不是全局定理。
 
 ### 4.6 完整枚举证据
@@ -365,16 +403,18 @@ $0.2783389151\ \mathrm{rad}>0.$
 
 所以允许的结论是
 
-$\boxed{m_{\min}=1}$
-
+```math
+\boxed{m_{\min}=1}
+```
 但必须紧接着写明“局部、非退化、自身编号已知且角扰动足够小”。
 
 ### 4.8 第二匿名发射机的角色
 
 如果 $m=1$ 的分离裕度不足或观测落在边界，操作层可以增加第二个匿名令牌。此时对两个令牌的全部有序编号排列进行枚举：
 
-$7\times6=42.$
-
+```math
+7\times6=42.
+```
 每个排列都要回代六个原始两两夹角。正式样例找回正确有序编号 $(3,4)$。
 
 第二架的角色是“证据不足时的冗余发射备用方案”，不是理论最少数量。
@@ -397,34 +437,40 @@ $7\times6=42.$
 
 以 FY00 为圆心
 
-$O=q_0=(0,0),$
-
+```math
+O=q_0=(0,0),
+```
 令 FY01 固定目标相位，半径为
 
-$R=100\ \mathrm m.$
-
+```math
+R=100\ \mathrm m.
+```
 九架外围机的理想槽位可在内部坐标中写为
 
-$q_k = R \begin{bmatrix} \cos\dfrac{2\pi(k-1)}9\\ \sin\dfrac{2\pi(k-1)}9 \end{bmatrix}, \qquad k=1,\ldots,9.$
-
+```math
+q_k = R \begin{bmatrix} \cos\dfrac{2\pi(k-1)}9\\ \sin\dfrac{2\pi(k-1)}9 \end{bmatrix}, \qquad k=1,\ldots,9.
+```
 这只是内部建模坐标。在线控制器不会读取自己的世界坐标。
 
 FY00 和 FY01 是题给可信种子：
 
-$O=(0,0),\qquad A=q_1=(100,0).$
-
+```math
+O=(0,0),\qquad A=q_1=(100,0).
+```
 只有 $O,A$ 发射时，任一接收机仍只有一个夹角约束，位置落在一条圆弧上，无法直接二维归槽。因此要先建立更多可信锚点。
 
 ### 5.2 第一阶段：FY04 与 FY07 双节点交替校正建锚
 
 选取
 
-$B=\mathrm{FY04},\qquad C=\mathrm{FY07}.$
-
+```math
+B=\mathrm{FY04},\qquad C=\mathrm{FY07}.
+```
 理想位置为
 
-$B^\star=(-50,50\sqrt3),\qquad C^\star=(-50,-50\sqrt3).$
-
+```math
+B^\star=(-50,50\sqrt3),\qquad C^\star=(-50,-50\sqrt3).
+```
 一个宏周期有两个子轮：
 
 | 子轮 | 固定发射机 | 唯一接收并移动者 | 本机主约束角 |
@@ -436,44 +482,53 @@ $B^\star=(-50,50\sqrt3),\qquad C^\star=(-50,-50\sqrt3).$
 
 FY04 的本机残差为
 
-$f_B(B;C) = \begin{bmatrix} \angle OBA-\pi/6\\ \angle OBC-\pi/6 \end{bmatrix}.$
-
+```math
+f_B(B;C) = \begin{bmatrix} \angle OBA-\pi/6\\ \angle OBC-\pi/6 \end{bmatrix}.
+```
 FY07 的本机残差为
 
-$f_C(C;B) = \begin{bmatrix} \angle OCA-\pi/6\\ \angle OCB-\pi/6 \end{bmatrix}.$
-
+```math
+f_C(C;B) = \begin{bmatrix} \angle OCA-\pi/6\\ \angle OCB-\pi/6 \end{bmatrix}.
+```
 两个残差向量中的角都由对应接收机自己测量。FY04 不读取 FY07 的角，FY07 也不读取 FY04 的角。
 
 ### 5.3 目标点附近为什么适合交替调整
 
 令
 
-$a=\frac{1}{100\sqrt3}.$
-
+```math
+a=\frac{1}{100\sqrt3}.
+```
 在理想位置处，对本题夹角式独立求导得到
 
-$D_Bf_B = \begin{bmatrix} a&0\\ -a/2&-1/200 \end{bmatrix}, \qquad D_Cf_B = \begin{bmatrix} 0&0\\ -a&0 \end{bmatrix},$
-
-$D_Cf_C = \begin{bmatrix} a&0\\ -a/2&1/200 \end{bmatrix}, \qquad D_Bf_C = \begin{bmatrix} 0&0\\ -a&0 \end{bmatrix}.$
-
+```math
+D_Bf_B = \begin{bmatrix} a&0\\ -a/2&-1/200 \end{bmatrix}, \qquad D_Cf_B = \begin{bmatrix} 0&0\\ -a&0 \end{bmatrix},
+```
+```math
+D_Cf_C = \begin{bmatrix} a&0\\ -a/2&1/200 \end{bmatrix}, \qquad D_Bf_C = \begin{bmatrix} 0&0\\ -a&0 \end{bmatrix}.
+```
 $D_Bf_B$ 和 $D_Cf_C$ 均可逆，表示另一节点暂时固定时，两条本机角在目标附近足以确定本机的二维修正。
 
 将 $B$ 对固定 $C$ 的精确局部根记为 $B^+(C)$。由隐函数定理，
 
-$\frac{\partial B^+}{\partial C} = -\left(D_Bf_B\right)^{-1}D_Cf_B = \begin{bmatrix} 0&0\\ -2/\sqrt3&0 \end{bmatrix}.$
-
+```math
+\frac{\partial B^+}{\partial C} = -\left(D_Bf_B\right)^{-1}D_Cf_B = \begin{bmatrix} 0&0\\ -2/\sqrt3&0 \end{bmatrix}.
+```
 同理，
 
-$\frac{\partial C^+}{\partial B} = -\left(D_Cf_C\right)^{-1}D_Bf_C = \begin{bmatrix} 0&0\\ 2/\sqrt3&0 \end{bmatrix}.$
-
+```math
+\frac{\partial C^+}{\partial B} = -\left(D_Cf_C\right)^{-1}D_Bf_C = \begin{bmatrix} 0&0\\ 2/\sqrt3&0 \end{bmatrix}.
+```
 一个完整宏周期的一阶误差传播矩阵为
 
-$M = \frac{\partial C^+}{\partial B} \frac{\partial B^+}{\partial C} =0_{2\times2}.$
-
+```math
+M = \frac{\partial C^+}{\partial B} \frac{\partial B^+}{\partial C} =0_{2\times2}.
+```
 因此
 
-$\rho(M)=0<1.$
-
+```math
+\rho(M)=0<1.
+```
 这里 $\rho(M)$ 是谱半径。小于 1 表示目标附近的一阶误差收缩；等于 0 表示精确最佳响应宏周期的一阶误差项被消去。
 
 这个结论的范围非常重要：
@@ -486,18 +541,21 @@ $\rho(M)=0<1.$
 
 联合 Jacobian 的正式指标为
 
-$|\det J|=8.3333333333\times10^{-10},$
-
-$\sigma_{\min}(J)=0.0025640096\ \mathrm m^{-1}, \qquad \kappa(J)=4.3910671.$
-
+```math
+|\det J|=8.3333333333\times10^{-10},
+```
+```math
+\sigma_{\min}(J)=0.0025640096\ \mathrm m^{-1}, \qquad \kappa(J)=4.3910671.
+```
 解析导数、自动微分与中心有限差分三路最大差小于 $2\times10^{-6}$。
 
 ### 5.4 在线控制器怎样在不知道坐标时移动
 
 每架移动接收机拥有两条本机正交执行轴 $e_1,e_2$。它先沿每条轴进行正、负小幅试探，并用本机角残差估计 Jacobian：
 
-$\widehat J_i[:,\ell] = \frac{ F_i(u_i+\delta e_\ell) -F_i(u_i-\delta e_\ell) }{2\delta}, \qquad \ell=1,2.$
-
+```math
+\widehat J_i[:,\ell] = \frac{ F_i(u_i+\delta e_\ell) -F_i(u_i-\delta e_\ell) }{2\delta}, \qquad \ell=1,2.
+```
 这里：
 
 - $u_i$ 是无人机自己的局部动作坐标；
@@ -507,8 +565,9 @@ $\widehat J_i[:,\ell] = \frac{ F_i(u_i+\delta e_\ell) -F_i(u_i-\delta e_\ell) }{
 
 随后计算阻尼最小二乘步：
 
-$\Delta u_i = -\eta \left( \widehat J_i^{\mathsf T}\widehat J_i+\lambda I \right)^{-1} \widehat J_i^{\mathsf T}F_i.$
-
+```math
+\Delta u_i = -\eta \left( \widehat J_i^{\mathsf T}\widehat J_i+\lambda I \right)^{-1} \widehat J_i^{\mathsf T}F_i.
+```
 其中：
 
 - $\eta$ 是步长系数；
@@ -522,8 +581,9 @@ $\Delta u_i = -\eta \left( \widehat J_i^{\mathsf T}\widehat J_i+\lambda I \right
 
 完成五个 FY04/FY07 宏周期后，固定
 
-$T=\{\mathrm{FY00},\mathrm{FY01},\mathrm{FY04},\mathrm{FY07}\}.$
-
+```math
+T=\{\mathrm{FY00},\mathrm{FY01},\mathrm{FY04},\mathrm{FY07}\}.
+```
 这正好是 FY00 加三架外围发射机，满足题目上限。
 
 六架其余无人机的两条主约束如下：
@@ -540,10 +600,12 @@ $T=\{\mathrm{FY00},\mathrm{FY01},\mathrm{FY04},\mathrm{FY07}\}.$
 
 六机局部映射的最坏指标为
 
-$\min\sigma_{\min}=0.0064584730\ \mathrm m^{-1},$
-
-$\max\kappa=2.3609770.$
-
+```math
+\min\sigma_{\min}=0.0064584730\ \mathrm m^{-1},
+```
+```math
+\max\kappa=2.3609770.
+```
 每机两条主角用于移动，另外四条同机角只作留出角约束检验。留出角仍来自同一接收机，所以它是同源检查，不是独立外部实验。
 
 ### 5.6 最终验收
@@ -559,12 +621,14 @@ $\max\kappa=2.3609770.$
 
 定义最大半径误差
 
-$E_R = \max_{k=1,\ldots,9} \left| \|p_k-p_0\|-100 \right|.$
-
+```math
+E_R = \max_{k=1,\ldots,9} \left| \|p_k-p_0\|-100 \right|.
+```
 定义最大相邻圆心角误差
 
-$E_\theta = \max_{k=1,\ldots,9} \left| \angle p_kp_0p_{k+1}-\frac{2\pi}{9} \right|,$
-
+```math
+E_\theta = \max_{k=1,\ldots,9} \left| \angle p_kp_0p_{k+1}-\frac{2\pi}{9} \right|,
+```
 其中编号按圆周顺序循环。
 
 表 1 确定性回放得到：
