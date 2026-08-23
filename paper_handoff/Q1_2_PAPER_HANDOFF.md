@@ -59,3 +59,4 @@
 - 正式结果：`results/q1_2/Q1_2_OFFICIAL_RESULT.md`；原始数据：`results/q1_2/q1_2_minimum_gate.json`。
 - 模型与代码：`model_contract/Q1_2_MODEL_CONTRACT.md`、`src/q1_2_identity.py`、`tests/q1_2_minimum_gate.py`。
 - 剩余风险：局部域半径目前是确定性 1 m 证书示例，不是题给偏差上界；远端或边界观测应拒绝或转入 `m=2`，不得伪装成 `m=1` 全局成功。
+回顾性证据表述应准确写为：392 个 m=1 身份假设、42 个 m=2 有序排列和 294 条远端或错误候选均来自完整事件日志；高精度复算仅是局部分离证书的独立数值互证；多初值 checker 仅覆盖代表性几何根集。

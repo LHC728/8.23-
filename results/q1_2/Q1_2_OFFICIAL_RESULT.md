@@ -50,3 +50,7 @@ PRIMARY ENUMERATOR = src/q1_2_identity.py
 DETERMINISTIC GATE = tests/q1_2_minimum_gate.py
 RAW RESULT = results/q1_2/q1_2_minimum_gate.json
 ```
+
+## 回顾性验证器加固
+
+392 次 m=1 身份假设、294 条远端或错误候选和 42 个 m=2 有序排列现均由实际事件日志计数并完整保存于 JSON，而非由理论乘积或示例列表代替。80 位 mpmath 测试端独立复算得到最小签名间隔 20°、1 m 域保守下界约 0.2783389151 rad；它只互证局部身份分离证书。独立多初值 checker 仍仅覆盖代表性 receiver 2、identity 3 的 Q1(1) 几何根集第二实现互证，不证明所有 392 次枚举或全局身份唯一。
