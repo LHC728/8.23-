@@ -1,8 +1,10 @@
 # Q1(3) 人工核查卡
 
-    Q1_3_PROGRAM_GATE = PASS（仅程序结果，不代表用户批准）
-    HUMAN_VERDICT = PENDING
-    Q1_3_FINAL_FREEZE = PENDING
+    Q1_3_PROGRAM_GATE = PASS（程序结果）
+    HUMAN_VERDICT = PASS（由用户本人明确给出）
+    Q1_3_FINAL_FREEZE = PASS
+
+用户本人已接受表 1、目标邻域、非退化、确定性回放的结论范围。本 PASS 不代表全局收敛、全局唯一、任意初态成功或现实飞行达到微米精度；不改变既有数学结论及失败边界。
 
 ### 核查 1：方案有没有越过信息边界？
 
@@ -46,6 +48,6 @@
 
 ## 用户最终裁决
 
-    HUMAN_VERDICT = PENDING
+    HUMAN_VERDICT = PASS（由用户本人明确给出）
 
 允许值：PASS、NEEDS_CLARIFICATION、FAIL。只有用户明确裁决后才能修改。
