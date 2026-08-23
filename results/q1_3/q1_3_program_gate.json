@@ -1,0 +1,359 @@
+{
+  "gate": "Q1_3_PROGRAM_GATE",
+  "status": "PASS",
+  "scope": "deterministic target-neighborhood/Table-1 core replay; not a global convergence claim",
+  "checks": {
+    "analytic_automatic_finite_derivative_agreement": true,
+    "zero_cycle_spectral_radius": true,
+    "joint_rank_and_follower_rank": true,
+    "exact_blind_bootstrap": true,
+    "finite_difference_table1_replay": true,
+    "raw_angle_holdouts": true,
+    "information_firewall": true,
+    "schedule_legality": true,
+    "rotation_reflection_metamorphic": true,
+    "FY00_FY01_negative_control": true
+  },
+  "derivative_audit": {
+    "blocks": {
+      "D_B_f_B": [
+        [
+          0.005773502691896259,
+          -1.734723475976807e-18
+        ],
+        [
+          -0.002886751345948131,
+          -0.004999999999999999
+        ]
+      ],
+      "D_C_f_B": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -0.005773502691896257,
+          2.1316282072803004e-18
+        ]
+      ],
+      "D_C_f_C": [
+        [
+          0.005773502691896256,
+          -4.336808689942018e-18
+        ],
+        [
+          -0.002886751345948126,
+          0.005000000000000002
+        ]
+      ],
+      "D_B_f_C": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -0.005773502691896257,
+          2.1316282072803004e-18
+        ]
+      ]
+    },
+    "errors": {
+      "D_B_f_B": {
+        "expected": 2.168404344971009e-18,
+        "automatic": 1.734723475976807e-18,
+        "finite_difference": 7.002072532902304e-13
+      },
+      "D_C_f_B": {
+        "expected": 2.1316282072803004e-18,
+        "automatic": 1.9667822925839597e-19,
+        "finite_difference": 1.4509747570112808e-13
+      },
+      "D_C_f_C": {
+        "expected": 4.336808689942018e-18,
+        "automatic": 8.673617379884035e-19,
+        "finite_difference": 4.100131692497122e-13
+      },
+      "D_B_f_C": {
+        "expected": 2.1316282072803004e-18,
+        "automatic": 8.673617379884035e-19,
+        "finite_difference": 1.4509747570112808e-13
+      }
+    },
+    "response_B_wrt_C": [
+      [
+        -3.469446951953613e-16,
+        1.2809504699508458e-31
+      ],
+      [
+        -1.1547005383792515,
+        4.263256414560601e-16
+      ]
+    ],
+    "response_C_wrt_B": [
+      [
+        8.673617379884037e-16,
+        -3.202376174877116e-31
+      ],
+      [
+        1.1547005383792515,
+        -4.263256414560601e-16
+      ]
+    ],
+    "cycle_product": [
+      [
+        6.885199551184377e-32,
+        -2.542076510444624e-47
+      ],
+      [
+        9.166122138428333e-17,
+        -3.384213283398141e-32
+      ]
+    ],
+    "spectral_radius": 3.500986267786228e-32,
+    "joint_abs_det": 8.333333333333337e-10,
+    "joint_sigma_min": 0.0025640096351093366,
+    "joint_condition": 4.391067076224635,
+    "pass": true
+  },
+  "follower_metrics": {
+    "per_receiver": {
+      "2": {
+        "sigma_min": 0.006458473037826148,
+        "condition": 2.360977004957092
+      },
+      "3": {
+        "sigma_min": 0.006458473037826151,
+        "condition": 2.360977004957091
+      },
+      "5": {
+        "sigma_min": 0.0064584730378261495,
+        "condition": 2.3609770049570904
+      },
+      "6": {
+        "sigma_min": 0.006458473037826147,
+        "condition": 2.360977004957092
+      },
+      "8": {
+        "sigma_min": 0.006458473037826149,
+        "condition": 2.3609770049570913
+      },
+      "9": {
+        "sigma_min": 0.00645847303782615,
+        "condition": 2.3609770049570895
+      }
+    },
+    "worst_sigma_min": 0.006458473037826147,
+    "max_condition": 2.360977004957092,
+    "pass": true
+  },
+  "exact_replay": {
+    "bootstrap": {
+      "max_target_error_m": 3.1088010845561446e-12,
+      "traces": {
+        "B": {
+          "status": "CONVERGED",
+          "final_residual_norm": 6.391259950000119e-15,
+          "probes": 0,
+          "backtracks": 0
+        },
+        "C": {
+          "status": "CONVERGED",
+          "final_residual_norm": 2.0959705211347678e-14,
+          "probes": 0,
+          "backtracks": 0
+        }
+      }
+    },
+    "followers": {
+      "max_target_error_m": 8.409017471928952e-08,
+      "traces": {
+        "2": {
+          "status": "CONVERGED",
+          "final_residual_norm": 1.1951548011651776e-09,
+          "probes": 36,
+          "backtracks": 0
+        },
+        "3": {
+          "status": "CONVERGED",
+          "final_residual_norm": 5.998324623270282e-10,
+          "probes": 40,
+          "backtracks": 0
+        },
+        "5": {
+          "status": "CONVERGED",
+          "final_residual_norm": 1.2807070730655936e-09,
+          "probes": 36,
+          "backtracks": 0
+        },
+        "6": {
+          "status": "CONVERGED",
+          "final_residual_norm": 5.714156203380563e-10,
+          "probes": 40,
+          "backtracks": 0
+        },
+        "8": {
+          "status": "CONVERGED",
+          "final_residual_norm": 1.1728992590959046e-09,
+          "probes": 36,
+          "backtracks": 0
+        },
+        "9": {
+          "status": "CONVERGED",
+          "final_residual_norm": 6.083248900350083e-10,
+          "probes": 40,
+          "backtracks": 0
+        }
+      }
+    },
+    "metrics": {
+      "max_radius_error_m": 8.306773224830977e-08,
+      "max_successive_central_angle_error_rad": 1.83321025026828e-10,
+      "max_target_position_error_m": 8.409017471928952e-08,
+      "radii_m": [
+        100.0,
+        99.9999999185882,
+        100.00000004041267,
+        100.00000000000044,
+        99.99999991693227,
+        100.00000003900259,
+        99.99999999999805,
+        99.99999991913536,
+        100.00000004083577
+      ],
+      "central_gaps_rad": [
+        0.6981317007451184,
+        0.6981317009635006,
+        0.6981317006443344,
+        0.6981317007853851,
+        0.698131700896607,
+        0.6981317007199148,
+        0.6981317007766747,
+        0.6981317006669978,
+        0.6981317009810528
+      ]
+    }
+  },
+  "finite_difference_replay": {
+    "bootstrap": {
+      "max_target_error_m": 2.1729623910278653e-07,
+      "traces": {
+        "B": {
+          "status": "CONVERGED",
+          "final_residual_norm": 1.0834731157469955e-09,
+          "probes": 0,
+          "backtracks": 0
+        },
+        "C": {
+          "status": "CONVERGED",
+          "final_residual_norm": 3.066451539086942e-10,
+          "probes": 0,
+          "backtracks": 0
+        }
+      }
+    },
+    "followers": {
+      "max_target_error_m": 8.409018594117661e-08,
+      "traces": {
+        "2": {
+          "status": "CONVERGED",
+          "final_residual_norm": 1.1951548011651776e-09,
+          "probes": 36,
+          "backtracks": 0
+        },
+        "3": {
+          "status": "CONVERGED",
+          "final_residual_norm": 5.998327104589463e-10,
+          "probes": 40,
+          "backtracks": 0
+        },
+        "5": {
+          "status": "CONVERGED",
+          "final_residual_norm": 1.280707282244396e-09,
+          "probes": 36,
+          "backtracks": 0
+        },
+        "6": {
+          "status": "CONVERGED",
+          "final_residual_norm": 5.714158183227272e-10,
+          "probes": 40,
+          "backtracks": 0
+        },
+        "8": {
+          "status": "CONVERGED",
+          "final_residual_norm": 1.1728990644831656e-09,
+          "probes": 36,
+          "backtracks": 0
+        },
+        "9": {
+          "status": "CONVERGED",
+          "final_residual_norm": 6.083249355708074e-10,
+          "probes": 40,
+          "backtracks": 0
+        }
+      }
+    },
+    "metrics": {
+      "max_radius_error_m": 1.8829824455224298e-07,
+      "max_successive_central_angle_error_rad": 1.2152340245208393e-09,
+      "max_target_position_error_m": 2.1729623910278653e-07,
+      "radii_m": [
+        100.0,
+        99.9999999185882,
+        100.00000004041267,
+        99.99999981170176,
+        99.99999991693227,
+        100.00000003900259,
+        99.99999994625372,
+        99.99999991913536,
+        100.00000004083577
+      ],
+      "central_gaps_rad": [
+        0.6981317004395358,
+        0.6981317012690837,
+        0.6981317006443346,
+        0.6981317007853849,
+        0.6981317008966075,
+        0.6981317007199144,
+        0.6981317018611743,
+        0.6981316995824978,
+        0.6981317009810528
+      ]
+    }
+  },
+  "controller_summary": {
+    "controller_statuses": [
+      "CONVERGED",
+      "CONVERGED",
+      "CONVERGED",
+      "CONVERGED",
+      "CONVERGED",
+      "CONVERGED",
+      "CONVERGED",
+      "CONVERGED",
+      "CONVERGED",
+      "CONVERGED",
+      "CONVERGED",
+      "CONVERGED",
+      "CONVERGED",
+      "CONVERGED",
+      "CONVERGED",
+      "CONVERGED"
+    ],
+    "probe_count": 372,
+    "backtracks": 0
+  },
+  "metamorphic": {
+    "rotation_core_trajectory_difference_m": 2.0097183471152322e-14,
+    "reflection_core_trajectory_difference_m": 0.0
+  },
+  "ablation": {
+    "FY04_FY07_joint_condition": 4.391067076224635,
+    "general_legal_pair_proxy_condition": 2.585383987327299,
+    "FY00_FY01_only_rank": 1
+  },
+  "failure_semantics": {
+    "exact_bootstrap_failure": "FATAL_MODEL_MISMATCH / REOPEN_REQUEST",
+    "finite_difference_failure": "tune controller or use exact local-root fallback; no route replacement",
+    "outside_local_domain": "reject rather than claim global convergence"
+  }
+}
