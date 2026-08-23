@@ -1,35 +1,97 @@
-# Q1(1) Human Check Card
+# Q1(1) 人工核查卡
 
-## Decision
+## 当前状态：程序通过，用户已裁决
 
 ```text
+Q1_1_PROGRAM_GATE = PASS
 Q1_1_MINIMUM_GATE = PASS
+HUMAN_VERDICT = PASS
+Q1_1_FINAL_FREEZE = PASS
 SOL_DELEGATION = NO
 ```
 
-## What was checked
+本卡中的“程序检查结果 = PASS”只表示确定性程序测试通过；本次 `HUMAN_VERDICT = PASS` 由用户明确给出。
 
-| Check | Human-readable evidence | Verdict |
-| --- | --- | --- |
-| No first-root shortcut | Primary routine returns a set and preserves two reflected roots in the collinear example. | PASS |
-| Two-sided constant-angle geometry | Each nonboundary transmitter pair supplies both circle-center branches; all three pairs of constraints are attempted. | PASS |
-| Raw-angle consistency | Candidate is retained only when three original `atan2(abs(cross), dot)` values match. | PASS |
-| Independent path | A multi-start, finite-difference Gauss-Newton checker does not use circle construction and returns the same roots in normal/mirror cases. | PASS |
-| Tangency and coincidences | Tangency and merged/coincident branch states are status records; transmitter coincidence is rejected. | PASS |
-| 0/pi singularity | Exact boundary inputs are safely rejected from ordinary finite-circle and smooth-Jacobian certification. | PASS |
-| Local condition | Ideal target has rank 2 with `sigma_min = 0.53988258`; mirror roots each have rank 2 but remain globally ambiguous. | PASS |
+## 核查 1：有镜像双解时，程序会不会偷偷只留下一个？
 
-## Interpretation guardrails
+【程序在检查什么】三架发射机放在同一条直线上，接收机放在直线上方。镜像到直线下方后，三个无符号夹角不变，因此这个例子事先明确应有两个解。
 
-1. The mirror example demonstrates why rank two at an individual root does **not** imply global uniqueness.
-2. A third local angle is a same-receiver branch/order holdout. It is not independent external evidence and is never sent to another UAV.
-3. Near-boundary angles are flagged; exact `0/pi` values are rejected by the finite-candidate interface rather than silently treated as regular constraints.
-4. The deterministic Gate verifies the code path and its declared failure semantics only. It does not certify a numerical local domain radius for every Q1 receiver; that is a Q1(2) task.
+【预期应该发生什么】程序必须同时保留上、下两个候选，不能因为数值求解器先找到其中一个，就把它误称为唯一位置。
 
-## Reproduce before relying on this result
+【程序实际得到什么】主实现保留约 `(0, 1)` 与 `(0, -1)` 两个候选，并标记 `multiple_candidates_retained`。
+
+【独立检查得到什么】不使用圆构造的多初值、有限差分 Gauss-Newton checker 也找到约 `(0, 1)` 与 `(0, -1)` 两个根，并标记 `checker_multiple_roots`。
+
+【我需要判断】你是否认可：在一个事先知道有镜像双解的简单例子中，程序确实保留了两个解，而没有把它们强行说成唯一解？（是 / 否 / 不理解）
+
+## 核查 2：候选位置有没有回代到原始夹角？
+
+【程序在检查什么】圆交点只是初步候选，可能落在错误圆弧或错误分支。程序对每个候选重新计算三条原始夹角 `atan2(abs(cross), dot)`；三条均匹配才保留。
+
+【预期应该发生什么】错误弧、错误分支、重复点和接收机与发射机重合的伪点都应被剔除，不能只满足两条主约束就直接接受。
+
+【程序实际得到什么】理想、镜像与近退化测试中，保留候选均通过全部三条原始角回代；错误圆交点记录为 `atan2_holdout_or_arc_rejected:*`，重合点被拒绝。
+
+【独立检查得到什么】checker 先用两条角求根，再以剩余第三角核验；理想和镜像样例的根集均与主实现一致。
+
+【我需要判断】你是否认可：程序不是“圆一相交就算答案”，而是将每个候选回代到全部原始夹角后才保留？（是 / 否 / 不理解）
+
+## 核查 3：主实现与独立 checker 是否走了不同路径？
+
+【程序在检查什么】主实现为“构造双侧圆分支并枚举圆交点”；checker 不构造圆，而是从多个固定初值出发，以有限差分 Jacobian 的阻尼 Gauss-Newton 求两条角约束，再用第三角验证。
+
+【预期应该发生什么】两条不同计算路径在简单可核验样例中应给出相同有限根集；若不同，应暂停而不是任选一方。
+
+【程序实际得到什么】理想样例中主实现与 checker 都得到约 `(1.5, 1.0)`；镜像样例中两者都得到两个镜像根。
+
+【独立检查得到什么】checker 的理想根约为 `(1.49999999998, 1.00000000000)`；Gate 记录 `independent_checker_agrees = true`。
+
+【我需要判断】你是否认可：这里已有不依赖圆交构造的第二条路径，对主实现进行了实现交叉检查？（是 / 否 / 不理解）
+
+## 核查 4：程序有没有把“局部可分”夸大成“全局唯一”？
+
+【程序在检查什么】程序计算两条主角约束的局部 Jacobian；秩为 2 只说明该点附近有两个独立约束方向，并不说明全平面只剩一个点。
+
+【预期应该发生什么】理想样例应局部秩 2；镜像样例即使每个根附近也秩 2，程序仍必须保留两个分支。
+
+【程序实际得到什么】理想目标的秩为 `2`，最小奇异值 `0.53988258`，条件数 `1.95283669`。镜像两个根各自也秩为 2，但仍输出两个候选。
+
+【独立检查得到什么】镜像双根就是反例：单个根局部满秩仍可能存在另一分支。正式结果只允许“局部、非退化、槽位域内”的认证表述。
+
+【我需要判断】你是否认可：程序和结果文件明确承认“局部 rank = 2 不等于全局唯一”，没有把结论写强？（是 / 否 / 不理解）
+
+## 核查 5：0/pi、相切和近退化时会不会静默给普通答案？
+
+【程序在检查什么】`0` 或 `pi` 的夹角对应共线等奇异情形；圆相切、圆心合并和近边界小夹角也可能使分支判断不可靠。
+
+【预期应该发生什么】精确 `0/pi` 应明确拒绝；相切应记录；近边界至少应被标记，不能假装与普通情形相同。
+
+【程序实际得到什么】相切测试记录 `tangent_circle_intersection`；近退化小角记录 `angle_near_0_or_pi` 并保留两个对称候选；精确 `0` 与 `pi` 均记录 `boundary_input_safely_rejected` 和 `no_certified_finite_candidate`。
+
+【独立检查得到什么】checker 对精确 `0/pi` 也返回 `checker_boundary_angle_safely_rejected`，不将边界数据交给常规数值求根。
+
+【我需要判断】你是否认可：这些容易误导的特殊情形被明确标记或拒绝，而不是静默输出一个看似正常的位置？（是 / 否 / 不理解）
+
+## 用户最终裁决
 
 ```text
-python -m tests.q1_1_minimum_gate
+HUMAN_VERDICT = PASS
 ```
 
-Inspect `results/q1_1/q1_1_minimum_gate.json`: all seven case entries and every boolean in `requirements_checked` must be `true`.
+允许值：
+
+```text
+PASS
+NEEDS_CLARIFICATION
+FAIL
+```
+
+用户已明确给出 `HUMAN_VERDICT = PASS`；因此 `Q1_1_FINAL_FREEZE = PASS`。该裁决不改变原有技术证据或结论边界。
+
+## 证据定位（可选）
+
+不需要阅读源码即可完成上述判断。如需查看原始程序输出，可查阅：
+
+- `results/q1_1/q1_1_minimum_gate.json`：七个确定性样例及布尔检查项；
+- `results/q1_1/Q1_1_OFFICIAL_RESULT.md`：正式结果和结论边界；
+- `model_contract/Q1_1_MODEL_CONTRACT.md`：模型接口和退化语义。

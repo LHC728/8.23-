@@ -7,10 +7,18 @@ STRATEGY_STATUS = FROZEN
 NEXT_EXECUTOR = CODEX
 SOURCE_OF_TRUTH = opening/07_STRATEGY_FREEZE.md
 Q1_1_MINIMUM_GATE = PASS
+Q1_1_PROGRAM_GATE = PASS
 Q1_1_OFFICIAL_RESULT = results/q1_1/Q1_1_OFFICIAL_RESULT.md
 Q1_1_HUMAN_CHECK_CARD = human_check/Q1_1_HUMAN_CHECK_CARD.md
 Q1_1_PAPER_HANDOFF = paper_handoff/Q1_1_PAPER_HANDOFF.md
-CODEX_NEXT_ACTION = 按 Checkpoint & Backup Policy 创建并成功 push Q1(1) milestone checkpoint；确认远程恢复点后，执行 Q1(2) 的冻结 Gate。
+Q1_1_HUMAN_VERDICT = PASS
+Q1_1_REMOTE_CHECKPOINT = SUCCESS
+Q1_1_FINAL_FREEZE = PASS
+Q1_1_LOCAL_COMMIT = 63bc9b1 (Q1.1: pass minimum gate and freeze official result)
+REMOTE_CHECKPOINT = SUCCESS
+REMOTE_COMMIT = 63bc9b11bab7355782378a7ece00c6c0dcc68cb2
+REMOTE_VERIFICATION = origin/main HEAD matches local HEAD; required Q1(1) package and governance/reference files confirmed present
+CODEX_NEXT_ACTION = 完成 Q1(1) final-freeze commit 与远程核查后，执行 Q1(2) 的最少数量 Gate。
 ```
 
 ## Frozen winner
