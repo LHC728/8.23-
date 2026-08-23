@@ -81,6 +81,12 @@ HUMAN_VERDICT = PASS
 历史 HUMAN_VERDICT = PASS 和 Q1_2_FINAL_FREEZE = PASS 不被删除；更新后的证据说明仍需 Work 复审及用户回顾性复确认。
 
 ```text
+Q1_2_RETROSPECTIVE_HUMAN_RECONFIRMATION = PASS
+```
+
+该回顾性复确认裁决由用户本人明确给出；它确认的是已加固的证据链，不改变原有 `HUMAN_VERDICT = PASS`、`Q1_2_FINAL_FREEZE = PASS` 或任何数学结论边界。
+
+```text
 PASS
 NEEDS_CLARIFICATION
 FAIL
