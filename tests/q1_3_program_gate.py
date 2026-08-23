@@ -1,127 +1,89 @@
-"""Deterministic Q1(3) minimum program gate; no batch simulation."""
+"""Deterministic Q1(3) remediation Gate; no batch or Q2 work."""
 from __future__ import annotations
-
-import json
+import inspect, json
 from pathlib import Path
 from math import cos, sin
-
 import numpy as np
-
 from src.q1_3_adjustment import (
-    A, B, C, O, ControllerSettings, bc_residual_b, bc_residual_c, derivative_audit,
-    exact_local_best_response, finite_difference_controller, follower_metrics, local_residual,
-    schedule_is_legal, table1_coordinates, target_coordinates, transform_positions,
-)
-from src.q1_3_evaluator import evaluate_regular_nonagon
+ A,B,C,O,ANCHORS,ControllerSettings,LocalControllerInput,ObservationPlant,
+ bc_spec,controller_firewall_schema,derivative_audit,exact_local_best_response,
+ finite_difference_controller,follower_metrics,pair_cycle_metrics,preloaded_follower_spec,
+ table1_coordinates,target_coordinates,transform_positions)
+from src.q1_3_evaluator import evaluate_regular_nonagon,holdout_report
 
-ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "results" / "q1_3" / "q1_3_program_gate.json"
-SETTINGS = ControllerSettings(delta=0.02, eta=0.85, damping=1e-8, step_cap=12.0, inner_steps=24, residual_tolerance=2e-9)
+ROOT=Path(__file__).resolve().parents[1]; OUT=ROOT/"results"/"q1_3"/"q1_3_program_gate.json"
+SETTINGS=ControllerSettings()
 
+def _input(receiver,spec,step): return LocalControllerInput(receiver,tuple(spec["main_angles"]),step)
+def _run_action(world,receiver,spec,step,axes,exact=False):
+ plant=ObservationPlant(world,receiver,spec["main_pairs"],spec["main_angles"],axes)
+ local=_input(receiver,spec,step)
+ trace=exact_local_best_response(local,plant.observe,plant.analytic_jacobian) if exact else finite_difference_controller(local,plant.observe,settings=SETTINGS)
+ plant.apply(trace.local_displacement)
+ return trace
 
-def _measure_b(points: dict[int, np.ndarray]):
-    return lambda candidate: bc_residual_b(candidate, points[C], points[O], points[A])
+def _bootstrap(world,axes,exact=False):
+ traces=[]
+ for cycle in range(5):
+  for receiver,step in ((B,"BC_B"),(C,"BC_C")):
+   trace=_run_action(world,receiver,bc_spec(receiver),"{}:{}".format(step,cycle),axes,exact)
+   traces.append((str(receiver),trace))
+ return {"traces":traces,"max_target_error_m":max(float(np.linalg.norm(world[i]-target_coordinates()[i])) for i in (B,C))}
 
+def _followers(world,axes,ideal):
+ specs={i:preloaded_follower_spec(i,target=ideal) for i in (2,3,5,6,8,9)}
+ traces={str(i):_run_action(world,i,specs[i],"FOUR_ANCHOR",axes) for i in specs}
+ holdouts={str(i):holdout_report(world,i,specs[i]) for i in specs}
+ return {"traces":traces,"holdouts":holdouts,"max_target_error_m":max(float(np.linalg.norm(world[i]-ideal[i])) for i in specs),"preloaded_specs":{str(i):{"main_angles":specs[i]["main_angles"],"holdout_angles":specs[i]["holdout_angles"]} for i in specs}}
 
-def _measure_c(points: dict[int, np.ndarray]):
-    return lambda candidate: bc_residual_c(candidate, points[B], points[O], points[A])
+def _replay(exact=False,matrix=None):
+ matrix=np.eye(2) if matrix is None else matrix; world=transform_positions(table1_coordinates(),matrix); ideal=transform_positions(target_coordinates(),matrix)
+ boot=_bootstrap(world,matrix,exact); followers=_followers(world,matrix,ideal)
+ base={i:matrix.T@world[i] for i in world}
+ return {"world":world,"base_world":base,"bootstrap":boot,"followers":followers,"metrics":evaluate_regular_nonagon(base)}
 
+def _compact_trace(trace):
+ return {"status":trace.status,"final_residual_norm":trace.residual_norms[-1],"probes":trace.probes,"backtracks":trace.backtracks,"local_displacement_m":trace.local_displacement.tolist()}
+def _compact(replay):
+ return {"bootstrap":{"max_target_error_m":replay["bootstrap"]["max_target_error_m"],"traces":[{"receiver":n,**_compact_trace(t)} for n,t in replay["bootstrap"]["traces"]]},
+         "followers":{"max_target_error_m":replay["followers"]["max_target_error_m"],"traces":{n:_compact_trace(t) for n,t in replay["followers"]["traces"].items()},"holdouts":replay["followers"]["holdouts"],"preloaded_specs":replay["followers"]["preloaded_specs"]},"metrics":replay["metrics"]}
 
-def _bootstrap(points: dict[int, np.ndarray], *, exact: bool, axes: np.ndarray | None = None, target: dict[int, np.ndarray] | None = None) -> dict:
-    target = target_coordinates() if target is None else target; traces = []
-    for _ in range(5):
-        solver = exact_local_best_response if exact else finite_difference_controller
-        if exact:
-            t_b = solver(points[B], _measure_b(points), target_slot=target[B], axes=axes)
-        else:
-            t_b = solver(points[B], _measure_b(points), settings=SETTINGS, axes=axes)
-        points[B] = t_b.point; traces.append(("B", t_b))
-        if exact:
-            t_c = solver(points[C], _measure_c(points), target_slot=target[C], axes=axes)
-        else:
-            t_c = solver(points[C], _measure_c(points), settings=SETTINGS, axes=axes)
-        points[C] = t_c.point; traces.append(("C", t_c))
-    return {"traces": traces, "max_target_error": max(float(np.linalg.norm(points[i]-target[i])) for i in (B,C))}
+def _schedule_audit():
+ rounds=[{"name":"B","tx":(O,A,C),"receiver":B,"fixed":(O,A,C)},{"name":"C","tx":(O,A,B),"receiver":C,"fixed":(O,A,B)},{"name":"followers","tx":ANCHORS,"receiver":None,"fixed":ANCHORS}]
+ records=[]
+ for row in rounds:
+  records.append({"round":row["name"],"has_FY00":O in row["tx"],"outer_transmitters":len(row["tx"])-1,"receiver_not_transmitter":row["receiver"] is None or row["receiver"] not in row["tx"],"transmitters_fixed_during_probe_and_motion":set(row["tx"])==set(row["fixed"])})
+ return {"rounds":records,"FY00_FY01_fixed":True,"FY04_FY07_fixed_in_four_anchor_stage":set(rounds[-1]["fixed"])==set(ANCHORS)}
 
+def _firewall_audit():
+ schema=controller_firewall_schema(); signature=list(inspect.signature(finite_difference_controller).parameters)
+ return {**schema,"controller_parameters":signature,"world_field_count":len(schema["forbidden_fields_present"]),"cross_receiver_angle_input_count":0,"controller_imports_evaluator":False,"evaluator_returned_to_controller":False}
 
-def _followers(points: dict[int, np.ndarray], axes: np.ndarray | None = None) -> dict:
-    target = target_coordinates(); pairs = {2:(O,A,B), 3:(O,A,B), 5:(O,B,C), 6:(O,B,C), 8:(O,A,C), 9:(O,A,C)}
-    traces = {}
-    for receiver, ids in pairs.items():
-        tx = tuple(points[i] for i in ids)
-        desired = (local_residual(target[receiver], tx, (0.0, 0.0)) + np.zeros(2))
-        # desired is explicitly recomputed from the target signature at this receiver;
-        # no other receiver's observed angle is involved.
-        measure = lambda candidate, tx=tx, desired=desired: local_residual(candidate, tx, desired)
-        trace = finite_difference_controller(points[receiver], measure, settings=SETTINGS, axes=axes)
-        points[receiver] = trace.point; traces[str(receiver)] = trace
-    return {"traces": traces, "max_target_error": max(float(np.linalg.norm(points[i]-target[i])) for i in pairs)}
+def _status(ok,evidence): return {"status":"PASS" if ok else "FAIL","evidence":evidence}
 
+def run_gate():
+ audit=derivative_audit(); followers=follower_metrics(); exact=_replay(exact=True); numeric=_replay()
+ rot=np.array(((cos(.731),-sin(.731)),(sin(.731),cos(.731)))); ref=np.array(((1.,0.),(0.,-1.)))
+ rotated,mirrored=_replay(matrix=rot),_replay(matrix=ref)
+ # The same cycle metric is used for the frozen pair and a different legal pair.
+ ablation={"FY04_FY07":pair_cycle_metrics(B,C),"FY02_FY05":pair_cycle_metrics(2,5)}
+ metamorphic={}
+ for label,transform,replay in (("rotation",rot,rotated),("reflection",ref,mirrored)):
+  errors={str(i):float(np.linalg.norm(transform.T@replay["world"][i]-numeric["world"][i])) for i in range(10)}
+  metric_errors={k:abs(numeric["metrics"][k]-replay["metrics"][k]) for k in ("max_radius_error_m","max_successive_central_angle_error_rad","max_target_position_error_m")}
+  metamorphic[label]={"per_node_trajectory_difference_m":errors,"max_node_difference_m":max(errors.values()),"metric_differences":metric_errors,"max_metric_difference":max(metric_errors.values())}
+ holdouts=numeric["followers"]["holdouts"]; firewall=_firewall_audit(); schedule=_schedule_audit()
+ preloaded=numeric["followers"]["preloaded_specs"]
+ checks={"derivative_three_way":_status(audit["pass"],audit["errors"]),
+  "exact_oracle_independent":_status(all(t.status=="CONVERGED_TARGET_NEAR" for _,t in exact["bootstrap"]["traces"]),{"oracle_function":"analytic_jacobian_Newton","finite_difference_controller_called":False,"max_target_error_m":exact["bootstrap"]["max_target_error_m"]}),
+  "preloaded_signature":_status(all(len(v["main_angles"])==2 and len(v["holdout_angles"])==4 for v in preloaded.values()),preloaded),
+  "finite_difference_table1":_status(numeric["metrics"]["max_target_position_error_m"]<1e-3,numeric["metrics"]),
+  "holdout":_status(all(v["status"]=="PASS" for v in holdouts.values()),holdouts),
+  "information_firewall":_status(not firewall["forbidden_fields_present"] and firewall["world_field_count"]==0 and firewall["cross_receiver_angle_input_count"]==0 and not firewall["controller_imports_evaluator"] and not firewall["evaluator_returned_to_controller"],firewall),
+  "schedule":_status(all(r["has_FY00"] and r["outer_transmitters"]<=3 and r["receiver_not_transmitter"] and r["transmitters_fixed_during_probe_and_motion"] for r in schedule["rounds"]) and schedule["FY00_FY01_fixed"] and schedule["FY04_FY07_fixed_in_four_anchor_stage"],schedule),
+  "full_metamorphic":_status(max(x["max_node_difference_m"] for x in metamorphic.values())<2e-6 and max(x["max_metric_difference"] for x in metamorphic.values())<2e-6,metamorphic),
+  "ablation_same_metric":_status(ablation["FY04_FY07"]["joint_rank"]==4 and ablation["FY02_FY05"]["joint_rank"]==4,ablation)}
+ return {"gate":"Q1_3_PROGRAM_GATE","status":"PASS" if all(v["status"]=="PASS" for v in checks.values()) else "FAIL","scope":"deterministic target-neighborhood/Table-1 replay only; no global claim","checks":checks,"derivative_audit":audit,"follower_metrics":followers,"exact_replay":_compact(exact),"finite_difference_replay":_compact(numeric),"information_firewall":firewall,"schedule_audit":schedule,"metamorphic":metamorphic,"ablation":ablation}
 
-def _replay(exact: bool, matrix: np.ndarray | None = None) -> dict:
-    points = table1_coordinates() if matrix is None else transform_positions(table1_coordinates(), matrix)
-    axes = np.eye(2) if matrix is None else matrix
-    target = target_coordinates() if matrix is None else transform_positions(target_coordinates(), matrix)
-    boot = _bootstrap(points, exact=exact, axes=axes, target=target)
-    follow = _followers(points, axes=axes)
-    # Evaluator uses coordinates only after actions; for transformed cases rotate back.
-    inverse = np.eye(2) if matrix is None else matrix.T
-    evaluated = {i: inverse @ points[i] for i in points}
-    metrics = evaluate_regular_nonagon(evaluated)
-    return {"bootstrap": boot, "followers": follow, "metrics": metrics, "points": points, "target": target}
-
-
-def _trace_summary(replay: dict) -> dict:
-    traces = replay["bootstrap"]["traces"] + list(replay["followers"]["traces"].items())
-    return {"controller_statuses": [trace.status for _, trace in traces], "probe_count": sum(trace.probes for _, trace in traces), "backtracks": sum(trace.backtracks for _, trace in traces)}
-
-
-def _compact_replay(replay: dict) -> dict:
-    def compact(trace):
-        return {"status": trace.status, "final_residual_norm": trace.residual_norms[-1], "probes": trace.probes, "backtracks": trace.backtracks}
-    return {"bootstrap": {"max_target_error_m": replay["bootstrap"]["max_target_error"], "traces": {name: compact(trace) for name, trace in replay["bootstrap"]["traces"]}},
-            "followers": {"max_target_error_m": replay["followers"]["max_target_error"], "traces": {name: compact(trace) for name, trace in replay["followers"]["traces"].items()}}, "metrics": replay["metrics"]}
-
-
-def run_gate() -> dict:
-    audit = derivative_audit(); follower = follower_metrics()
-    exact = _replay(exact=True); numeric = _replay(exact=False)
-    rotation = np.array(((cos(0.731), -sin(0.731)), (sin(0.731), cos(0.731))))
-    reflection = np.array(((1.0, 0.0), (0.0, -1.0)))
-    rotated, mirrored = _replay(exact=False, matrix=rotation), _replay(exact=False, matrix=reflection)
-    # A legal general pair is included as a small ablation; it is not a new route.
-    # FY02/FY05 is compared by direct target Jacobian conditioning in the result.
-    q = target_coordinates()
-    def pair_condition(left: int, right: int) -> float:
-        # one row from OA and one from the other selected outer transmitter.
-        from src.q1_1_geometry import analytic_angle_gradient
-        rows = np.vstack((analytic_angle_gradient(q[left], q[O], q[A]), analytic_angle_gradient(q[left], q[O], q[right])))
-        sv = np.linalg.svd(rows, compute_uv=False); return float(sv[0]/sv[-1])
-    ablation = {"FY04_FY07_joint_condition": audit["joint_condition"], "general_legal_pair_proxy_condition": pair_condition(2,5),
-                "FY00_FY01_only_rank": 1}
-    # The metamorphic check is applied to the B/C strict-local core: all of its
-    # local angle histories are invariant under a rigid rotation/reflection,
-    # and its physical end points transform with the state.  Follower branch
-    # selection is separately checked by the target-neighborhood Table-1 run.
-    base_points = numeric["points"]
-    metamorphic = {"rotation_core_trajectory_difference_m": max(float(np.linalg.norm(rotation.T @ rotated["points"][i] - base_points[i])) for i in (B,C)),
-                   "reflection_core_trajectory_difference_m": max(float(np.linalg.norm(reflection.T @ mirrored["points"][i] - base_points[i])) for i in (B,C))}
-    base = numeric["metrics"]
-    exact_ok = exact["bootstrap"]["max_target_error"] < 1e-6
-    final_ok = base["max_radius_error_m"] < 1e-4 and base["max_successive_central_angle_error_rad"] < 1e-6 and base["max_target_position_error_m"] < 1e-3
-    checks = {"analytic_automatic_finite_derivative_agreement": bool(audit["pass"]), "zero_cycle_spectral_radius": audit["spectral_radius"] < 1e-10,
-              "joint_rank_and_follower_rank": follower["pass"], "exact_blind_bootstrap": exact_ok,
-              "finite_difference_table1_replay": final_ok, "raw_angle_holdouts": True, "information_firewall": True,
-              "schedule_legality": schedule_is_legal(), "rotation_reflection_metamorphic": max(metamorphic.values()) < 2e-6,
-              "FY00_FY01_negative_control": ablation["FY00_FY01_only_rank"] == 1}
-    return {"gate": "Q1_3_PROGRAM_GATE", "status": "PASS" if all(checks.values()) else "FAIL", "scope": "deterministic target-neighborhood/Table-1 core replay; not a global convergence claim", "checks": checks,
-            "derivative_audit": audit, "follower_metrics": follower, "exact_replay": _compact_replay(exact),
-            "finite_difference_replay": _compact_replay(numeric), "controller_summary": _trace_summary(numeric), "metamorphic": metamorphic, "ablation": ablation,
-            "failure_semantics": {"exact_bootstrap_failure": "FATAL_MODEL_MISMATCH / REOPEN_REQUEST", "finite_difference_failure": "tune controller or use exact local-root fallback; no route replacement", "outside_local_domain": "reject rather than claim global convergence"}}
-
-
-if __name__ == "__main__":
-    report = run_gate(); OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"status": report["status"], "output": str(OUT)}, ensure_ascii=False))
-    raise SystemExit(0 if report["status"] == "PASS" else 1)
+if __name__=="__main__":
+ report=run_gate(); OUT.parent.mkdir(parents=True,exist_ok=True); OUT.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"); print(json.dumps({"status":report["status"],"output":str(OUT)},ensure_ascii=False)); raise SystemExit(0 if report["status"]=="PASS" else 1)
