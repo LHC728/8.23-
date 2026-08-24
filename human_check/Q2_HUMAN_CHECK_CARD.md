@@ -4,11 +4,11 @@
 
 ```text
 Q2_PROGRAM_GATE = PASS
-HUMAN_VERDICT = PENDING
-Q2_FINAL_FREEZE = PENDING
+HUMAN_VERDICT = PASS
+Q2_FINAL_FREEZE = PASS
 ```
 
-程序通过不等于你已经批准。请只根据下列高价值问题给出 `PASS`、`NEEDS_CLARIFICATION` 或 `FAIL`；不需要阅读源码或重推公式。
+本次 `PASS` 由用户本人明确给出，并非 Codex 自动判定。该裁决仅接受本卡既有的适用范围：目标邻域、非退化、可信基线与确定性回放；不扩展为全局唯一、全局收敛、任意初态成功或现实飞行精度结论。
 
 ### 核查 1：尺度是不是被诚实地说明了？
 
@@ -85,7 +85,7 @@ FY04 和 FY03 轮流移动。移动者只看自己测得的两个主角和同机
 ## 用户最终裁决
 
 ```text
-HUMAN_VERDICT = PENDING
+HUMAN_VERDICT = PASS
 ```
 
-允许值：`PASS`、`NEEDS_CLARIFICATION`、`FAIL`。该字段只有用户明确给出裁决后才能修改。
+本次裁决由用户本人明确给出。原有技术证据、数值与结论边界保持不变。
