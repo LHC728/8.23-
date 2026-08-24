@@ -8,7 +8,7 @@ RESULT_SCOPE = TARGET_NEIGHBORHOOD / NONDEGENERATE / TRUSTED_BASELINE / DETERMIN
 Q2_HUMAN_VERDICT = PASS
 Q2_FINAL_FREEZE = PASS
 Q2_END_TO_END_VALIDATION_REMEDIATION = PASS
-Q2_END_TO_END_HUMAN_RECONFIRMATION = PENDING
+Q2_END_TO_END_HUMAN_RECONFIRMATION = PASS
 ```
 
 上述人工通过由用户本人明确给出，并非 Codex 自动判定。结果范围保持为 `TARGET_NEIGHBORHOOD / NONDEGENERATE / TRUSTED_BASELINE / DETERMINISTIC_REPLAY`；不声明全局唯一、全局收敛或现实飞行精度，FY11/FY15 的可信基线仍是用户批准的附加条件，而非原题明示条件。
@@ -47,7 +47,7 @@ Q2_END_TO_END_HUMAN_RECONFIRMATION = PENDING
 
 完整可追溯数据见 `results/q2/q2_program_gate.json`；运行入口为 `python -m tests.q2_program_gate`。
 
-本次端到端补强只改变验证证据链：实际有限步建锚末态被传入后续本机控制和离线终态评估；不改变冻结公式、参数、控制器、可信基线条件或结论范围。既有 `HUMAN_VERDICT = PASS` 是此前用户裁决；针对新增端到端证据，仍须等待 `Q2_END_TO_END_HUMAN_RECONFIRMATION = PENDING`。
+本次端到端补强只改变验证证据链：实际有限步建锚末态被传入后续本机控制和离线终态评估；不改变冻结公式、参数、控制器、可信基线条件或结论范围。既有 `HUMAN_VERDICT = PASS` 与新增 `Q2_END_TO_END_HUMAN_RECONFIRMATION = PASS` 均由用户本人明确给出，不是 Codex 或程序自动判定；该复确认不扩大既有结论边界。
 
 ## 明确的结论边界
 

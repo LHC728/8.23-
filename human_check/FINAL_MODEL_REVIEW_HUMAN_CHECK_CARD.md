@@ -4,8 +4,8 @@
 
 ```text
 FINAL_MODEL_REVIEW_PROGRAM_VERDICT = PASS_WITH_MINOR_FIX
-FINAL_MODEL_REVIEW_HUMAN_VERDICT = PENDING
-FINAL_MODEL_FREEZE = PENDING
+FINAL_MODEL_REVIEW_HUMAN_VERDICT = PASS
+FINAL_MODEL_FREEZE = PASS
 ```
 
 本卡不要求你替程序补证，也不要求阅读源码。Q2 的端到端证据链缺口已由 Work 复审关闭；当前只等待你确认结论边界、端到端证据和最终人工裁决。
@@ -123,7 +123,7 @@ Q1 三问的既有局部结论、Q2 的 Jacobian、完整候选、独立根集�
 ## 用户最终裁决
 
 ```text
-FINAL_MODEL_REVIEW_HUMAN_VERDICT = PENDING
+FINAL_MODEL_REVIEW_HUMAN_VERDICT = PASS
 ```
 
-`FINAL-MAJOR-01` 已由 Work 复审关闭。只有用户本人可以给出 `PASS`、`NEEDS_CLARIFICATION` 或 `FAIL`；本卡不自动改变任何已有 Q1/Q2 人工裁决。
+`FINAL-MAJOR-01` 已由 Work 复审关闭。`FINAL_MODEL_REVIEW_HUMAN_VERDICT = PASS` 由用户本人明确给出，不是 Codex 自动判定。用户接受 Q1(1) 至 Q2 的适用条件和结论边界，接受 Q2 的可信 FY11/FY15 基线是额外建模条件，并确认该模型不得外推为全局唯一、任意初态成功或现实飞行精度；用户据此允许模型阶段结束并进入最终冻结。本卡不自动改变任何已有 Q1/Q2 人工裁决。

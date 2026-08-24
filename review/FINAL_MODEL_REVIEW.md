@@ -9,8 +9,8 @@ Q2_END_TO_END_WORK_REAUDIT = PASS
 Q2_END_TO_END_GATE = PASS
 FATAL_MODEL_MISMATCH = NO
 REOPEN_REQUIRED = NO
-FINAL_MODEL_REVIEW_HUMAN_VERDICT = PENDING
-FINAL_MODEL_FREEZE = PENDING
+FINAL_MODEL_REVIEW_HUMAN_VERDICT = PASS
+FINAL_MODEL_FREEZE = PASS
 ```
 
 Work 已复审 Q2 端到端验证器修复：实际有限步 FY04/FY03 建锚终点已传入 11 架跟随者控制，实际 15 节点终态已验收 30 条边与 12 条最大直线，锚点重置与终态几何扰动负对照均可失败。因此 `FINAL-MAJOR-01` 已关闭；当前仅余 Q2 新增端到端证据的用户人工复确认及 FINAL MODEL REVIEW 人工裁决。本报告其余章节保留原始发现和裁决过程，作为可追溯历史记录。
@@ -150,7 +150,7 @@ RETURN_TO_TERRA = YES
 
 `FINAL-MAJOR-01` 的实现性修复在当时已完成待复审：Q2 Gate 现从 33 个完整案例的实际有限试探 FY04/FY03 建锚末态出发，再运行 11 架跟随者的本机控制，并以实际 15 节点末态评估 30 条边和 12 条最大直线。理想锚点重置与最终几何扰动负对照均可机械失败。
 
-## 18. Remediation Closure / Work Reaudit
+## 18. Remediation Closure / Work Reaudit（人工裁决前的历史记录）
 
 ```text
 FINAL_MAJOR_01_STATUS = REMEDIATED_AND_CLOSED
@@ -163,4 +163,16 @@ REOPEN_REQUIRED = NO
 
 Work 复审确认：33 个完整端到端案例（其中 32 个非零扰动）均通过；跟随者实际使用 FY03/FY04 建锚终点；理想锚点重置和终态几何扰动负对照均被检出；在线信息隔离仍通过。唯一修正为 Q2 人工核查卡中的历史文字澄清：理想目标格点的舍入级 30 边/12 线检查不得再描述为实际端到端终态。该 MINOR 文字修正不改变模型、公式、数值、信息边界或结论强度。
 
-据此，程序审查已通过，但 `FINAL_MODEL_REVIEW_HUMAN_VERDICT` 与 `FINAL_MODEL_FREEZE` 均必须保持 `PENDING`，等待用户人工裁决。
+据此，程序审查当时已通过；在用户随后给出人工裁决前，`FINAL_MODEL_REVIEW_HUMAN_VERDICT` 与 `FINAL_MODEL_FREEZE` 保持 `PENDING`。
+
+## 19. 最终人工裁决与冻结登记
+
+```text
+Q2_END_TO_END_HUMAN_RECONFIRMATION = PASS
+FINAL_MODEL_REVIEW_HUMAN_VERDICT = PASS
+FINAL_MODEL_FREEZE = PASS
+FATAL_MODEL_MISMATCH = NO
+REOPEN_REQUIRED = NO
+```
+
+上述两项 `PASS` 均由用户本人明确给出，不是 Codex 或程序自动判定。用户接受 Q1(1) 至 Q2 的适用条件与结论边界，接受 FY11/FY15 可信无偏差基线是 Q2 的额外建模条件，接受 `FINAL-MAJOR-01` 已通过端到端修复关闭，并接受模型不得外推为全局唯一、任意初态成功、现实飞行精度或有偏差参考机仍可靠。冻结仅标志模型阶段在这些边界内结束，不改变既有冻结数学路线、正式数值或信息边界。

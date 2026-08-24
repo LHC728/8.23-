@@ -6,7 +6,7 @@
 Q2_PROGRAM_GATE = PASS
 HUMAN_VERDICT = PASS
 Q2_FINAL_FREEZE = PASS
-Q2_END_TO_END_HUMAN_RECONFIRMATION = PENDING
+Q2_END_TO_END_HUMAN_RECONFIRMATION = PASS
 ```
 
 本次 `PASS` 由用户本人明确给出，并非 Codex 自动判定。该裁决仅接受本卡既有的适用范围：目标邻域、非退化、可信基线与确定性回放；不扩展为全局唯一、全局收敛、任意初态成功或现实飞行精度结论。
@@ -105,7 +105,7 @@ FY04 和 FY03 轮流移动。移动者只看自己测得的两个主角和同机
 
 ```text
 HUMAN_VERDICT = PASS
-Q2_END_TO_END_HUMAN_RECONFIRMATION = PENDING
+Q2_END_TO_END_HUMAN_RECONFIRMATION = PASS
 ```
 
-`HUMAN_VERDICT = PASS` 是用户此前对原有 Q2 包的明确裁决。新增端到端证据尚未由用户复确认，因此 `Q2_END_TO_END_HUMAN_RECONFIRMATION` 必须保持 `PENDING`；Codex 不得替用户填写该字段。原有技术证据、数值与结论边界保持不变。
+`HUMAN_VERDICT = PASS` 是用户此前对原有 Q2 包的明确裁决。`Q2_END_TO_END_HUMAN_RECONFIRMATION = PASS` 同样由用户本人明确给出，不是 Codex 或程序自动判定。用户接受 33 个端到端案例已补齐验证链，并接受其结论仍严格限于可信 FY11/FY15 基线、目标邻域、非退化和确定性回放；用户知晓可信参考误差会传播，且不将结果解释为全局收敛、现实飞行精度或有偏差参考机仍可靠。原有技术证据、数值与结论边界保持不变。
