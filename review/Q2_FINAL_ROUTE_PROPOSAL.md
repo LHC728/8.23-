@@ -1,5 +1,11 @@
 # Q2 最终路线设计与验证报告
 
+> **文件状态：HISTORICAL / 获批前路线提案，禁止直接执行**
+>
+> 本文件记录 Q2 参考框架与尺度层获批前的提案、证据和用户裁决入口。文件中的 `Q2_REOPEN_REQUIRED = YES`、`STRATEGY_FREEZE_UPDATED = NO`、`HUMAN_APPROVAL_REQUIRED = YES` 等状态是当时的历史事实，现已完成批准、实施、端到端补强和最终冻结，不代表当前项目状态。
+>
+> 当前执行只能读取 `opening/07_STRATEGY_FREEZE.md` 与 `model_contract/Q2_MODEL_CONTRACT.md`；正式数字只能读取 `results/q2/Q2_OFFICIAL_RESULT.md`。本文件保留为路线演变和审计证据，不得用它覆盖现行参数、结论边界或 Gate 结果。
+
 ## 0. 裁决摘要
 
 ```text

@@ -1,5 +1,11 @@
 # Stage 5：创新设计与整题候选路线
 
+> **文件状态：HISTORICAL / 历史决策记录，禁止执行**
+>
+> 本文件保存 Stage 5 时的候选路线、比较过程、被否决假设和创新筛选，目的是保留审计轨迹。它不是当前施工蓝图；其中的 Route A/B、允许跨接收机汇总夹角的路线、三角点自由尺度路线及其他旧 Q2 候选均不得作为当前方案执行或恢复。
+>
+> 当前数学路线只由 `opening/07_STRATEGY_FREEZE.md` 决定；Q2 的执行契约和正式结果分别见 `model_contract/Q2_MODEL_CONTRACT.md` 与 `results/q2/Q2_OFFICIAL_RESULT.md`。只有 Strategy Freeze 明示保留的 **Formal fallback only** 才是正式备用路线，其余旧方案仅供追溯。
+
 ## 0. 阶段裁决
 
 - **阶段状态：** STRICT_LOCAL_ROUTE_CANDIDATE_READY

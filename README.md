@@ -91,9 +91,11 @@ review/ 和 human_check/ 的审查裁决
 早期 opening 候选、旧说明或聊天记录
 ```
 
-`opening/06_INNOVATION_AND_ROUTES.md` 中的候选路线是历史记录，不得覆盖最终冻结路线。
+`opening/06_INNOVATION_AND_ROUTES.md`、`review/TEAMMATE_METHOD_COMPARISON.md` 和 `review/Q2_FINAL_ROUTE_PROPOSAL.md` 是历史决策与审计记录，不得作为当前执行指令。它们保留旧候选，是为了说明路线如何被比较、否决和修正，而不是让后续 AI 恢复旧方案。
 
-`SOLUTION_GUIDE.md` 是早期通俗说明。若其中内容与 Q1/Q2 的最新详细解法、模型契约或正式结果冲突，必须以后者为准。
+`SOLUTION_GUIDE.md` 已同步当前 Q1/Q2 路线，用于通俗理解；它不承担数学真源职责。若其中内容与 Strategy Freeze、模型契约、正式结果或最终审查冲突，仍必须以后四者为准。
+
+`opening/07_STRATEGY_FREEZE.md` 中明确标为 **Formal fallback only** 的自由相似尺度路线仍然保留，但只有可信尺度基线条件被撤回时才能按治理规则启用；它不是当前 Q2 主路线。
 
 ## 4. 四问最终方案
 
