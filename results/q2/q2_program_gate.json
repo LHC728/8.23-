@@ -501,19 +501,216 @@
     "information_firewall": {
       "status": "PASS",
       "evidence": {
-        "controller_parameters": [
-          "local_input",
-          "observe_offset",
-          "probe",
-          "gain",
-          "damping",
-          "max_step"
+        "production_audit": {
+          "accepted": true,
+          "parameters": [
+            "local_input",
+            "observe_offset",
+            "probe",
+            "gain",
+            "damping",
+            "max_step"
+          ],
+          "forbidden_parameters": [],
+          "forbidden_names": [],
+          "evaluator_imports": [],
+          "observe_offset_call_count": 4
+        },
+        "illegal_truth_source_audit": {
+          "accepted": false,
+          "parameters": [
+            "local_input",
+            "observe_offset",
+            "truth_coordinates",
+            "probe",
+            "gain",
+            "damping",
+            "max_step"
+          ],
+          "forbidden_parameters": [
+            "truth_coordinates"
+          ],
+          "forbidden_names": [],
+          "evaluator_imports": [],
+          "observe_offset_call_count": 1
+        },
+        "illegal_cross_receiver_source_audit": {
+          "accepted": false,
+          "parameters": [
+            "local_input",
+            "observe_offset",
+            "other_receiver_angles",
+            "probe",
+            "gain",
+            "damping",
+            "max_step"
+          ],
+          "forbidden_parameters": [
+            "other_receiver_angles"
+          ],
+          "forbidden_names": [],
+          "evaluator_imports": [],
+          "observe_offset_call_count": 1
+        },
+        "rejected_constructor_fields": [
+          "truth_coordinates",
+          "world_coordinates",
+          "other_receiver_angles",
+          "cross_receiver_angles"
         ],
-        "forbidden_parameters": [],
-        "forbidden_ast_names": [],
-        "event_count": 11,
+        "negative_control_illegal_field_rejected": true,
         "cross_receiver_angle_exchange": false,
-        "negative_control_illegal_field_rejected": true
+        "actual_event_counts": {
+          "4": 15564,
+          "3": 15564,
+          "1": 4272,
+          "2": 4362,
+          "5": 4296,
+          "6": 4290,
+          "7": 5549,
+          "8": 4254,
+          "9": 4260,
+          "10": 4332,
+          "12": 4278,
+          "13": 4260,
+          "14": 4278
+        },
+        "actual_event_samples": [
+          {
+            "receiver_id": 4,
+            "observation_receiver_id": 4,
+            "observation_dimension": 2,
+            "other_receiver_angles_present": false,
+            "evaluator_called": false,
+            "forbidden_fields_present": false
+          },
+          {
+            "receiver_id": 3,
+            "observation_receiver_id": 3,
+            "observation_dimension": 2,
+            "other_receiver_angles_present": false,
+            "evaluator_called": false,
+            "forbidden_fields_present": false
+          },
+          {
+            "receiver_id": 1,
+            "observation_receiver_id": 1,
+            "observation_dimension": 2,
+            "other_receiver_angles_present": false,
+            "evaluator_called": false,
+            "forbidden_fields_present": false
+          },
+          {
+            "receiver_id": 2,
+            "observation_receiver_id": 2,
+            "observation_dimension": 2,
+            "other_receiver_angles_present": false,
+            "evaluator_called": false,
+            "forbidden_fields_present": false
+          },
+          {
+            "receiver_id": 5,
+            "observation_receiver_id": 5,
+            "observation_dimension": 2,
+            "other_receiver_angles_present": false,
+            "evaluator_called": false,
+            "forbidden_fields_present": false
+          },
+          {
+            "receiver_id": 6,
+            "observation_receiver_id": 6,
+            "observation_dimension": 2,
+            "other_receiver_angles_present": false,
+            "evaluator_called": false,
+            "forbidden_fields_present": false
+          },
+          {
+            "receiver_id": 7,
+            "observation_receiver_id": 7,
+            "observation_dimension": 2,
+            "other_receiver_angles_present": false,
+            "evaluator_called": false,
+            "forbidden_fields_present": false
+          },
+          {
+            "receiver_id": 8,
+            "observation_receiver_id": 8,
+            "observation_dimension": 2,
+            "other_receiver_angles_present": false,
+            "evaluator_called": false,
+            "forbidden_fields_present": false
+          },
+          {
+            "receiver_id": 9,
+            "observation_receiver_id": 9,
+            "observation_dimension": 2,
+            "other_receiver_angles_present": false,
+            "evaluator_called": false,
+            "forbidden_fields_present": false
+          },
+          {
+            "receiver_id": 10,
+            "observation_receiver_id": 10,
+            "observation_dimension": 2,
+            "other_receiver_angles_present": false,
+            "evaluator_called": false,
+            "forbidden_fields_present": false
+          },
+          {
+            "receiver_id": 12,
+            "observation_receiver_id": 12,
+            "observation_dimension": 2,
+            "other_receiver_angles_present": false,
+            "evaluator_called": false,
+            "forbidden_fields_present": false
+          },
+          {
+            "receiver_id": 13,
+            "observation_receiver_id": 13,
+            "observation_dimension": 2,
+            "other_receiver_angles_present": false,
+            "evaluator_called": false,
+            "forbidden_fields_present": false
+          },
+          {
+            "receiver_id": 14,
+            "observation_receiver_id": 14,
+            "observation_dimension": 2,
+            "other_receiver_angles_present": false,
+            "evaluator_called": false,
+            "forbidden_fields_present": false
+          }
+        ],
+        "event_coverage_receivers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          12,
+          13,
+          14
+        ],
+        "required_event_coverage_receivers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          12,
+          13,
+          14
+        ]
       }
     },
     "metamorphic_and_geometry": {

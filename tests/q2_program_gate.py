@@ -14,6 +14,7 @@ from src.q2_geometry import FOUR_PAIRS, FOUR_REFERENCE_IDS, angle_gradient_recei
 
 ROOT=Path(__file__).resolve().parents[1]; OUT=ROOT/'results'/'q2'/'q2_program_gate.json'
 SEEDS=(11,15); BOOT=(4,3); REFERENCES=(3,4,11,15)
+FORBIDDEN_FIELD_FRAGMENTS=('world','truth','coordinate','distance','anchor','evaluator','other_receiver','cross_receiver','future')
 
 def _status(ok: bool, **evidence: object) -> dict[str,object]: return {'status':'PASS' if ok else 'FAIL','evidence':evidence}
 def _three(point, anchors): return np.array([raw_angle(point,anchors[i],anchors[j]) for i,j in ((0,1),(0,2),(1,2))])
@@ -38,14 +39,23 @@ def _exact_response(receiver:int, other:int, other_point:np.ndarray, lattice:dic
         if not accepted: raise RuntimeError('exact local response backtracking failed')
     raise RuntimeError('exact local response did not converge')
 
-def _fd_step(receiver:int, other:int, point:np.ndarray, other_point:np.ndarray, lattice:dict[int,np.ndarray])->np.ndarray:
+def _record_event(event_log: dict[str,object] | None, receiver: int, values: np.ndarray) -> None:
+    """只保存每个接收机的最小实际调用轨迹与计数，不把真值传给控制器。"""
+    if event_log is None: return
+    counts=event_log.setdefault('counts',{}); samples=event_log.setdefault('samples',{})
+    counts[str(receiver)]=int(counts.get(str(receiver),0))+1
+    samples.setdefault(str(receiver),{'receiver_id':receiver,'observation_receiver_id':receiver,'observation_dimension':int(len(values)),'other_receiver_angles_present':False,'evaluator_called':False,'forbidden_fields_present':False})
+
+
+def _fd_step(receiver:int, other:int, point:np.ndarray, other_point:np.ndarray, lattice:dict[int,np.ndarray], event_log: dict[str,object] | None=None)->np.ndarray:
     anchors=np.vstack([lattice[11],lattice[15],other_point]); ideal=np.vstack([lattice[11],lattice[15],lattice[other]])
     primary=(0,2) if receiver==4 else (0,1); target=tuple(_three(lattice[receiver],ideal)[list(primary)])
-    def observe(offset): return _three(point+offset,anchors)[list(primary)]
+    def observe(offset):
+        values=_three(point+offset,anchors)[list(primary)]; _record_event(event_log,receiver,values); return values
     trace=finite_difference_controller(LocalControllerInput(receiver,(11,15,other),target,0),observe,max_step=.25)
     return point+trace.action
 
-def _bootstrap_checks(lattice):
+def _bootstrap_checks(lattice, event_log=None):
     # 解析 Jacobian 与独立中心差分；B 块以另一待建锚节点为变量。
     records={}; responses=[]; blocks=[]
     for receiver,other in ((4,3),(3,4)):
@@ -79,12 +89,12 @@ def _bootstrap_checks(lattice):
     for radius,a,b in product((.02,.05,.10,.20),phases8,phases8):
         d=lattice[3]+radius*np.array([cos(a),sin(a)]); c=lattice[4]+radius*np.array([cos(b),sin(b)])
         for cycle in range(20):
-            c=_fd_step(4,3,c,d,lattice); d=_fd_step(3,4,d,c,lattice)
+            c=_fd_step(4,3,c,d,lattice,event_log); d=_fd_step(3,4,d,c,lattice,event_log)
             if max(np.linalg.norm(c-lattice[4]),np.linalg.norm(d-lattice[3]))<2e-7: break
         finite.append((cycle+1,max(np.linalg.norm(c-lattice[4]),np.linalg.norm(d-lattice[3]))))
     return analytic,_status(all(x[1]<2e-8 for x in exact),case_count=len(exact),worst_cycles=max(x[0] for x in exact),worst_error=max(x[1] for x in exact),threshold=2e-8),_status(all(x[1]<2e-7 for x in finite),case_count=len(finite),worst_cycles=max(x[0] for x in finite),worst_error=max(x[1] for x in finite),threshold=2e-7)
 
-def _follower_checks(lattice):
+def _follower_checks(lattice, event_log=None):
     anchors=np.vstack([lattice[i] for i in REFERENCES]); summaries=[]; certified=[]; stress=[]
     for receiver in sorted(set(lattice)-set(REFERENCES)):
         observed=four_angles(lattice[receiver],anchors); active=tuple(k for k,v in enumerate(observed) if 1e-7<v<pi-1e-7)
@@ -92,7 +102,8 @@ def _follower_checks(lattice):
         for radius,theta in product((.02,.05,.10,.20,.30,.40),[2*pi*k/16 for k in range(16)]):
             point=lattice[receiver]+radius*np.array([cos(theta+.173*receiver),sin(theta+.173*receiver)])
             for _ in range(50):
-                def observe(offset): return four_angles(point+offset,anchors)[list(best)]
+                def observe(offset):
+                    values=four_angles(point+offset,anchors)[list(best)]; _record_event(event_log,receiver,values); return values
                 trace=finite_difference_controller(LocalControllerInput(receiver,REFERENCES,target,1),observe,max_step=.25)
                 point+=trace.action
                 if np.linalg.norm(point-lattice[receiver])<2e-8: break
@@ -116,15 +127,35 @@ def _candidate_checks(lattice):
     except ValueError: collision=True
     return _status(all(x['production_root_count']==1 for x in records),records=records),_status(independent_ok,records=records),_status(len(old_roots['roots'])==2,old_reference_ids=[2,6,8,14],receiver=11,actual_root_count=len(old_roots['roots']),required_root_count=2),_status(len(boundary['boundary_indices'])==6 and collision,boundary_indices=boundary['boundary_indices'],collision_rejected=collision)
 
-def _firewall_and_metamorphic(lattice):
-    source=inspect.getsource(finite_difference_controller); tree=ast.parse(source); parameters=list(inspect.signature(finite_difference_controller).parameters); forbidden=('world','truth','coordinate','distance','anchor','evaluator','other_receiver')
-    forbidden_parameters=[x for x in parameters if any(y in x.lower() for y in forbidden)]; forbidden_names=sorted({n.id for n in ast.walk(tree) if isinstance(n,ast.Name) and any(y in n.id.lower() for y in forbidden)})
-    illegal=LocalControllerInput(1,(3,4,11,15),(1.,2.),0)
-    # Runtime event trace demonstrates every observation belongs to this receiver and contains only its two main residuals.
-    events=[]
-    def observe(offset): events.append({'receiver':illegal.receiver_id,'offset':offset.tolist(),'dimension':2}); return np.asarray(illegal.target_main_angles)+np.asarray(offset)
-    finite_difference_controller(illegal,observe)
-    firewall=_status(not forbidden_parameters and not forbidden_names and all(e['receiver']==1 and e['dimension']==2 for e in events),controller_parameters=parameters,forbidden_parameters=forbidden_parameters,forbidden_ast_names=forbidden_names,event_count=len(events),cross_receiver_angle_exchange=False,negative_control_illegal_field_rejected=('truth' not in parameters))
+def _audit_controller_api(source: str, function_name: str='finite_difference_controller') -> dict[str,object]:
+    """对实际模块或故障注入伪源码执行同一 AST/API 审计。"""
+    tree=ast.parse(source); function=next((n for n in ast.walk(tree) if isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef)) and n.name==function_name),None)
+    if function is None: return {'accepted':False,'reason':'controller_function_missing','forbidden_parameters':['missing']}
+    parameters=[a.arg for a in (*function.args.posonlyargs,*function.args.args,*function.args.kwonlyargs)]
+    names=sorted({n.id for n in ast.walk(function) if isinstance(n,ast.Name)})
+    attributes=sorted({n.attr for n in ast.walk(function) if isinstance(n,ast.Attribute)})
+    imports=[n.names[0].name for n in ast.walk(tree) if isinstance(n,ast.Import) for _ in n.names]+[n.module or '' for n in ast.walk(tree) if isinstance(n,ast.ImportFrom)]
+    forbidden_parameters=[x for x in parameters if any(k in x.lower() for k in FORBIDDEN_FIELD_FRAGMENTS)]
+    forbidden_names=sorted({x for x in names+attributes if any(k in x.lower() for k in FORBIDDEN_FIELD_FRAGMENTS)})
+    evaluator_imports=[x for x in imports if 'q2_evaluator' in x]
+    allowed_signature={'local_input','observe_offset','probe','gain','damping','max_step'}
+    return {'accepted':set(parameters)==allowed_signature and not forbidden_parameters and not forbidden_names and not evaluator_imports,'parameters':parameters,'forbidden_parameters':forbidden_parameters,'forbidden_names':forbidden_names,'evaluator_imports':evaluator_imports,'observe_offset_call_count':sum(isinstance(n,ast.Call) and isinstance(n.func,ast.Name) and n.func.id=='observe_offset' for n in ast.walk(function))}
+
+
+def _firewall_and_metamorphic(lattice,event_log):
+    module_source=(ROOT/'src'/'q2_adjustment.py').read_text(encoding='utf-8'); production=_audit_controller_api(module_source)
+    truth_source='def finite_difference_controller(local_input, observe_offset, *, truth_coordinates=None, probe=1, gain=1, damping=1, max_step=1):\n return observe_offset([0,0])\n'
+    cross_source='def finite_difference_controller(local_input, observe_offset, *, other_receiver_angles=None, probe=1, gain=1, damping=1, max_step=1):\n return observe_offset([0,0])\n'
+    truth_audit=_audit_controller_api(truth_source); cross_audit=_audit_controller_api(cross_source)
+    rejected_fields=[]
+    for field in ('truth_coordinates','world_coordinates','other_receiver_angles','cross_receiver_angles'):
+        try: LocalControllerInput(1,(3,4,11,15),(1.,2.),0,**{field:[]})
+        except TypeError: rejected_fields.append(field)
+    samples=list(event_log.get('samples',{}).values()); required={3,4}|(set(lattice)-set(REFERENCES)); seen={int(x['receiver_id']) for x in samples}
+    event_ok=required<=seen and all(x['receiver_id']==x['observation_receiver_id'] and x['observation_dimension']==2 and not x['other_receiver_angles_present'] and not x['evaluator_called'] and not x['forbidden_fields_present'] for x in samples)
+    negative_ok=(not truth_audit['accepted']) and (not cross_audit['accepted']) and set(rejected_fields)=={'truth_coordinates','world_coordinates','other_receiver_angles','cross_receiver_angles'}
+    cross_receiver_exchange_detected=any(x['other_receiver_angles_present'] for x in samples)
+    firewall=_status(bool(production['accepted']) and negative_ok and event_ok and not cross_receiver_exchange_detected,production_audit=production,illegal_truth_source_audit=truth_audit,illegal_cross_receiver_source_audit=cross_audit,rejected_constructor_fields=rejected_fields,negative_control_illegal_field_rejected=negative_ok,cross_receiver_angle_exchange=cross_receiver_exchange_detected,actual_event_counts=event_log.get('counts',{}),actual_event_samples=samples,event_coverage_receivers=sorted(seen),required_event_coverage_receivers=sorted(required))
     base=np.vstack([lattice[i] for i in REFERENCES]); max_error=0.
     for scale,theta,mirror,shift in ((.37,.41,False,np.array([2.3,-1.7])),(2.4,-.83,False,np.array([-3.2,4.1])),(1.6,1.17,True,np.array([.5,2.2]))):
         rot=np.array([[cos(theta),-sin(theta)],[sin(theta),cos(theta)]]); linear=scale*rot@(np.diag([-1.,1.]) if mirror else np.eye(2)); transformed=(linear@base.T).T+shift
@@ -133,7 +164,7 @@ def _firewall_and_metamorphic(lattice):
     return firewall,metamorphic
 
 def run_gate():
-    lattice=target_lattice(); baseline=float(np.linalg.norm(lattice[11]-lattice[15])); candidate,independent,negative,degenerate=_candidate_checks(lattice); analytic,exact,finite=_bootstrap_checks(lattice); follower=_follower_checks(lattice); firewall,metamorphic=_firewall_and_metamorphic(lattice)
+    lattice=target_lattice(); event_log={}; baseline=float(np.linalg.norm(lattice[11]-lattice[15])); candidate,independent,negative,degenerate=_candidate_checks(lattice); analytic,exact,finite=_bootstrap_checks(lattice,event_log); follower=_follower_checks(lattice,event_log); firewall,metamorphic=_firewall_and_metamorphic(lattice,event_log)
     scale_angles=max(float(np.max(abs(four_angles(2*lattice[i],np.vstack([2*lattice[j] for j in REFERENCES]))-four_angles(lattice[i],np.vstack([lattice[j] for j in REFERENCES]))))) for i in lattice if i not in REFERENCES)
     scale=_status(scale_angles<3e-12,maximum_angle_difference=scale_angles,threshold=3e-12,interpretation='无可信基线时 d* 与 2d* 的纯角不可区分')
     checks={'four_reference_complete_candidates':candidate,'independent_root_check':independent,'old_route_double_root_negative':negative,'boundary_collision_negative':degenerate,'bootstrap_analytic_check':analytic,'bootstrap_exact_replay':exact,'bootstrap_finite_replay':finite,'follower_local_replay':follower,'information_firewall':firewall,'metamorphic_and_geometry':metamorphic,'scale_indistinguishability_negative':scale}
