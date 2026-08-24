@@ -141,3 +141,7 @@ RETURN_TO_TERRA = YES
 ## 16. Final Reviewer Decision
 
 在完成 `FINAL-MAJOR-01` 的有界 Q2 验证器修复、重新生成 Q2 Gate JSON 与正式证据、并由用户重新确认受影响的 Q2 人工核查内容之前，不得将本项目写为 FINAL MODEL REVIEW 通过，不得开始正式论文写作或后续阶段。
+
+## 17. 后续修复状态（待 Work 复审）
+
+`FINAL-MAJOR-01` 的实现性修复已完成待复审：Q2 Gate 现从 33 个完整案例的实际有限试探 FY04/FY03 建锚末态出发，再运行 11 架跟随者的本机控制，并以实际 15 节点末态评估 30 条边和 12 条最大直线。理想锚点重置与最终几何扰动负对照均可机械失败。该记录不改变本报告的正式状态：在 Work 复审和用户对新增人工核查内容复确认前，`FINAL_MODEL_REVIEW_PROGRAM_VERDICT` 仍为 `REMEDIATION_REQUIRED`。

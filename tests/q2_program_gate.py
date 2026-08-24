@@ -15,6 +15,21 @@ from src.q2_geometry import FOUR_PAIRS, FOUR_REFERENCE_IDS, angle_gradient_recei
 ROOT=Path(__file__).resolve().parents[1]; OUT=ROOT/'results'/'q2'/'q2_program_gate.json'
 SEEDS=(11,15); BOOT=(4,3); REFERENCES=(3,4,11,15)
 FORBIDDEN_FIELD_FRAGMENTS=('world','truth','coordinate','distance','anchor','evaluator','other_receiver','cross_receiver','future')
+# 这些阈值在正式完整回放运行前冻结。建锚终止精度继承既有有限试探
+# Gate；端到端节点阈值保守取其十倍，以容纳两次建锚和本机控制的误差传播。
+BOOTSTRAP_FINITE_POSITION_TOL=2e-7
+END_TO_END_NODE_TOL=10*BOOTSTRAP_FINITE_POSITION_TOL
+END_TO_END_EDGE_TOL=2*END_TO_END_NODE_TOL
+END_TO_END_COLLINEARITY_TOL=END_TO_END_NODE_TOL
+END_TO_END_MAIN_RESIDUAL_TOL=2e-6
+END_TO_END_HOLDOUT_TOL=2e-6
+# This is an internal action-termination tolerance, deliberately much tighter
+# than the frozen acceptance limits above.  It prevents a follower from
+# stopping after merely entering the acceptance band while the finite
+# bootstrap-terminal perturbation still consumes the formation-error budget.
+END_TO_END_ACTION_RESIDUAL_TOL=2e-10
+END_TO_END_MAX_BOOTSTRAP_CYCLES=20
+END_TO_END_MAX_FOLLOWER_STEPS=50
 
 def _status(ok: bool, **evidence: object) -> dict[str,object]: return {'status':'PASS' if ok else 'FAIL','evidence':evidence}
 def _three(point, anchors): return np.array([raw_angle(point,anchors[i],anchors[j]) for i,j in ((0,1),(0,2),(1,2))])
@@ -143,6 +158,146 @@ def _audit_controller_api(source: str, function_name: str='finite_difference_con
     return {'accepted':set(parameters)==allowed_signature and not forbidden_parameters and not forbidden_names and not evaluator_imports,'parameters':parameters,'forbidden_parameters':forbidden_parameters,'forbidden_names':forbidden_names,'evaluator_imports':evaluator_imports,'observe_offset_call_count':sum(isinstance(n,ast.Call) and isinstance(n.func,ast.Name) and n.func.id=='observe_offset' for n in ast.walk(function))}
 
 
+def _end_to_end_geometry_pass(metrics: dict[str, float|int], *, node_error: float) -> dict[str, object]:
+    """实际终态几何判据；边长阈值由节点误差三角不等式导出。"""
+    return _status(
+        node_error <= END_TO_END_NODE_TOL
+        and metrics['edge_max_abs_error_from_d'] <= END_TO_END_EDGE_TOL
+        and metrics['maximum_line_distance'] <= END_TO_END_COLLINEARITY_TOL,
+        node_error=node_error,
+        node_error_threshold=END_TO_END_NODE_TOL,
+        edge_error=metrics['edge_max_abs_error_from_d'],
+        edge_error_threshold=END_TO_END_EDGE_TOL,
+        edge_threshold_source='| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold',
+        edge_relative_std=metrics['edge_relative_std'],
+        collinearity_error=metrics['maximum_line_distance'],
+        collinearity_threshold=END_TO_END_COLLINEARITY_TOL,
+        collinearity_threshold_source='ideal line distance is bounded conservatively by maximum node position error',
+    )
+
+
+def _deterministic_full_formation_initial_state(lattice, radius: float, direction_index: int) -> dict[int, np.ndarray]:
+    """构造 15 机离线真值初态；13 架移动机均按编号错开方向非零扰动。"""
+    points={node:np.asarray(point,dtype=float).copy() for node,point in lattice.items()}
+    for node in sorted(set(lattice)-set(SEEDS)):
+        angle=2*pi*direction_index/8 + .173*node
+        points[node]=points[node]+radius*np.array([cos(angle),sin(angle)])
+    return points
+
+
+def _run_actual_bootstrap(points: dict[int,np.ndarray], lattice: dict[int,np.ndarray], event_log=None) -> dict[str,object]:
+    """冻结的 FY04/FY03 有限试探建锚；绝不以精确 oracle 或理想重置替代。"""
+    world={node:np.asarray(point,dtype=float).copy() for node,point in points.items()}
+    traces=[]
+    for cycle in range(END_TO_END_MAX_BOOTSTRAP_CYCLES):
+        before4=world[4].copy(); world[4]=_fd_step(4,3,world[4],world[3],lattice,event_log)
+        before3=world[3].copy(); world[3]=_fd_step(3,4,world[3],world[4],lattice,event_log)
+        traces.append({'cycle':cycle+1,'FY04_displacement':float(np.linalg.norm(world[4]-before4)),'FY03_displacement':float(np.linalg.norm(world[3]-before3))})
+        error=max(float(np.linalg.norm(world[4]-lattice[4])),float(np.linalg.norm(world[3]-lattice[3])))
+        if error <= BOOTSTRAP_FINITE_POSITION_TOL: break
+    errors={str(node):float(np.linalg.norm(world[node]-lattice[node])) for node in BOOT}
+    return {'world':world,'cycles':len(traces),'terminal_errors':errors,'max_terminal_error':max(errors.values()),'terminal_error_threshold':BOOTSTRAP_FINITE_POSITION_TOL,'pass':max(errors.values())<=BOOTSTRAP_FINITE_POSITION_TOL,'traces':traces}
+
+
+def _audit_follower_anchor_source(anchors: np.ndarray, bootstrap: dict[str,object], lattice: dict[int,np.ndarray], declared_source: str) -> dict[str,object]:
+    """比较实际传入的四锚数组与建锚终点，非一致来源必须被机械标记。"""
+    world=bootstrap['world']
+    expected=np.vstack([world[3],world[4],world[11],world[15]])
+    arrays_match=bool(np.array_equal(anchors,expected))
+    audit={'follower_anchor_source':declared_source,'actual_reference_ids':list(REFERENCES),'actual_anchor_arrays':anchors.tolist(),'bootstrap_terminal_arrays':expected.tolist(),'arrays_match_bootstrap_terminal':arrays_match,'fy03_fy04_nonideal_difference':max(float(np.linalg.norm(world[node]-lattice[node])) for node in BOOT)}
+    audit['status']='PASS' if declared_source=='BOOTSTRAP_TERMINAL_STATE' and arrays_match else 'ANCHOR_SOURCE_VIOLATION'
+    return audit
+
+
+def _actual_reference_terminals(bootstrap: dict[str,object], lattice: dict[int,np.ndarray]) -> tuple[np.ndarray,dict[str,object]]:
+    """只从实际建锚终点取 FY03/FY04；审计值会暴露任何理想锚重置。"""
+    world=bootstrap['world']
+    anchors=np.vstack([world[node] for node in REFERENCES])
+    audit=_audit_follower_anchor_source(anchors,bootstrap,lattice,'BOOTSTRAP_TERMINAL_STATE')
+    return anchors,audit
+
+
+def _run_actual_followers(initial: dict[int,np.ndarray], bootstrap: dict[str,object], lattice: dict[int,np.ndarray], event_log=None) -> dict[str,object]:
+    """11 架跟随者从实际初态出发，只对实际四参考机作本机观测。"""
+    anchors,audit=_actual_reference_terminals(bootstrap,lattice)
+    ideal_anchors=np.vstack([lattice[node] for node in REFERENCES])
+    final={node:np.asarray(point,dtype=float).copy() for node,point in bootstrap['world'].items()}
+    records=[]
+    for receiver in sorted(set(lattice)-set(REFERENCES)):
+        ideal_observed=four_angles(lattice[receiver],ideal_anchors)
+        active=tuple(index for index,value in enumerate(ideal_observed) if 1e-7<value<pi-1e-7)
+        pairs=list(combinations(active,2))
+        best=max(pairs,key=lambda pair:float(np.linalg.svd(angle_jacobian(lattice[receiver],ideal_anchors,pair),compute_uv=False)[-1]))
+        target=tuple(ideal_observed[list(best)])
+        point=initial[receiver].copy(); trace_count=0; last_trace=None
+        for _ in range(END_TO_END_MAX_FOLLOWER_STEPS):
+            def observe(offset):
+                values=four_angles(point+offset,anchors)[list(best)]; _record_event(event_log,receiver,values); return values
+            last_trace=finite_difference_controller(LocalControllerInput(receiver,REFERENCES,target,1),observe,max_step=.25)
+            point=point+last_trace.action; trace_count+=1
+            if last_trace.residual_after_norm <= END_TO_END_ACTION_RESIDUAL_TOL: break
+        final[receiver]=point
+        holdout=tuple(index for index in active if index not in best)
+        main_residual=float(np.max(abs(four_angles(point,anchors)[list(best)]-ideal_observed[list(best)])))
+        holdout_residual=float(np.max(abs(four_angles(point,anchors)[list(holdout)]-ideal_observed[list(holdout)]))) if holdout else 0.
+        singular_values=np.linalg.svd(angle_jacobian(lattice[receiver],anchors,best),compute_uv=False)
+        status='PASS' if main_residual<=END_TO_END_MAIN_RESIDUAL_TOL and holdout_residual<=END_TO_END_HOLDOUT_TOL else 'REJECTED'
+        records.append({'receiver':receiver,'initial_position':initial[receiver].tolist(),'terminal_position':point.tolist(),'cycles':trace_count,'primary_indices':list(best),'main_residual_inf':main_residual,'main_residual_threshold':END_TO_END_MAIN_RESIDUAL_TOL,'holdout_residual_inf':holdout_residual,'holdout_threshold':END_TO_END_HOLDOUT_TOL,'local_rank':int(np.sum(singular_values>1e-9)),'local_sigma_min':float(singular_values[-1]),'status':status,'last_controller_accepted':None if last_trace is None else last_trace.accepted})
+    return {'final':final,'records':records,'anchor_audit':audit}
+
+
+def run_q2_end_to_end_case(lattice: dict[int,np.ndarray], *, radius: float, direction_index: int, case_id: str, event_log=None, seed_offset: float=0.) -> dict[str,object]:
+    """实际 15 机固定排程回放；仿真世界只封装在测试/观测回调中。"""
+    initial=_deterministic_full_formation_initial_state(lattice,radius,direction_index)
+    if seed_offset:
+        initial[11]=initial[11]+seed_offset*np.array([1.,0.])
+        initial[15]=initial[15]+seed_offset*np.array([0.,1.])
+    bootstrap=_run_actual_bootstrap(initial,lattice,event_log)
+    followers=_run_actual_followers(initial,bootstrap,lattice,event_log)
+    actual_final=followers['final']
+    geometry=evaluate_formation(actual_final)
+    node_errors={str(node):float(np.linalg.norm(actual_final[node]-lattice[node])) for node in lattice}
+    geometry_status=_end_to_end_geometry_pass(geometry,node_error=max(node_errors.values()))
+    rejected=[record['receiver'] for record in followers['records'] if record['status']!='PASS']
+    terminal_nonideal=followers['anchor_audit']['fy03_fy04_nonideal_difference']>0.
+    passed=bool(bootstrap['pass'] and followers['anchor_audit']['arrays_match_bootstrap_terminal'] and not rejected and geometry_status['status']=='PASS')
+    return {'case_id':case_id,'radius_d':radius,'direction_rule':'2*pi*direction_index/8 + 0.173*node_id','direction_index':direction_index,'seed_offset_d':seed_offset,'bootstrap_terminal':{'FY03':actual_final[3].tolist(),'FY04':actual_final[4].tolist(),'errors':bootstrap['terminal_errors'],'max_error':bootstrap['max_terminal_error'],'threshold':bootstrap['terminal_error_threshold'],'cycles':bootstrap['cycles']},'follower_anchor_source':followers['anchor_audit']['follower_anchor_source'],'anchor_data_flow':followers['anchor_audit'],'follower_records':followers['records'],'actual_final_formation':{str(node):actual_final[node].tolist() for node in sorted(actual_final)},'geometry':geometry_status['evidence'],'max_main_residual':max(record['main_residual_inf'] for record in followers['records']),'max_holdout_residual':max(record['holdout_residual_inf'] for record in followers['records']),'slowest_follower_cycles':max(record['cycles'] for record in followers['records']),'rejected_nodes':rejected,'failed_reason':None if passed else 'bootstrap_or_anchor_data_flow_or_follower_or_geometry_threshold','nonideal_bootstrap_terminal':terminal_nonideal,'status':'PASS' if passed else 'FAIL'}
+
+
+def _end_to_end_checks(lattice, event_log=None):
+    cases=[run_q2_end_to_end_case(lattice,radius=0.,direction_index=0,case_id='ideal_zero',event_log=event_log)]
+    cases.extend(run_q2_end_to_end_case(lattice,radius=radius,direction_index=direction,case_id=f'r{radius:.2f}_d{direction}',event_log=event_log) for radius in (.02,.05,.10,.20) for direction in range(8))
+    nominal=cases[1:]
+    actual_anchor_ok=all(case['follower_anchor_source']=='BOOTSTRAP_TERMINAL_STATE' and case['anchor_data_flow']['arrays_match_bootstrap_terminal'] for case in cases)
+    nonideal_seen=any(case['nonideal_bootstrap_terminal'] for case in nominal)
+    passed=all(case['status']=='PASS' for case in cases) and actual_anchor_ok and nonideal_seen
+    compact=[]
+    for case in cases:
+        compact.append({key:case[key] for key in ('case_id','radius_d','direction_index','bootstrap_terminal','follower_anchor_source','anchor_data_flow','geometry','max_main_residual','max_holdout_residual','slowest_follower_cycles','rejected_nodes','failed_reason','nonideal_bootstrap_terminal','status')})
+    # 负对照 1：故意把实际建锚末态替换为理想 FY03/FY04；审计器必须拒绝。
+    probe=next(case for case in nominal if case['nonideal_bootstrap_terminal'])
+    bootstrap_probe={'world':{3:np.asarray(probe['bootstrap_terminal']['FY03'],dtype=float),4:np.asarray(probe['bootstrap_terminal']['FY04'],dtype=float),11:np.asarray(lattice[11],dtype=float),15:np.asarray(lattice[15],dtype=float)}}
+    # 以记录的实际建锚终点重建审计输入；FY03/FY04 在建锚完成后固定。
+    ideal_reset_anchors=np.vstack([lattice[node] for node in REFERENCES])
+    ideal_reset_audit=_audit_follower_anchor_source(ideal_reset_anchors,bootstrap_probe,lattice,'IDEAL_LATTICE_RESET')
+    ideal_reset_audit['trigger_case']=probe['case_id']
+    ideal_reset_negative=_status(ideal_reset_audit['status']=='ANCHOR_SOURCE_VIOLATION' and not ideal_reset_audit['arrays_match_bootstrap_terminal'],audit=ideal_reset_audit)
+    # 负对照 2：对已通过实际终态副本注入明确位移，最终几何验收必须拒绝。
+    valid=next(case for case in cases if case['status']=='PASS')
+    altered={int(node):np.asarray(point,dtype=float).copy() for node,point in valid['actual_final_formation'].items()}; altered[1]=altered[1]+np.array([.02,-.015])
+    altered_metrics=evaluate_formation(altered); altered_node=max(float(np.linalg.norm(altered[node]-lattice[node])) for node in altered)
+    altered_status=_end_to_end_geometry_pass(altered_metrics,node_error=altered_node)
+    geometry_negative=_status(altered_status['status']=='FAIL',actual_geometry_check=altered_status,perturbed_node=1,perturbation=[.02,-.015])
+    # 可信参考误差仅作离线敏感性诊断；PASS 仅表示传播被记录。
+    sensitivity=[]
+    for magnitude in (.001,.01):
+        diagnostic=run_q2_end_to_end_case(lattice,radius=.05,direction_index=3,case_id=f'trusted_seed_offset_{magnitude:.3f}',seed_offset=magnitude)
+        sensitivity.append({'seed_offset_d':magnitude,'status':diagnostic['status'],'worst_node_error':max(diagnostic['geometry']['node_error'],diagnostic['bootstrap_terminal']['max_error']),'edge_error':diagnostic['geometry']['edge_error'],'collinearity_error':diagnostic['geometry']['collinearity_error'],'holdout_residual':diagnostic['max_holdout_residual']})
+    sensitivity_status=_status(all(np.isfinite(value) for entry in sensitivity for value in (entry['worst_node_error'],entry['edge_error'],entry['collinearity_error'],entry['holdout_residual'])) and all(entry['worst_node_error']>0 for entry in sensitivity),scenarios=sensitivity,interpretation='离线诊断记录可信参考误差的传播；不构成有偏差参考下的成功保证')
+    evidence={'full_formation_case_count':len(cases),'nonzero_case_count':len(nominal),'radius_levels':[.02,.05,.10,.20],'directions_per_radius':8,'all_moving_nodes_perturbed':True,'actual_bootstrap_terminal_used':actual_anchor_ok,'nonideal_bootstrap_terminal_seen':nonideal_seen,'cases':compact}
+    return _status(passed,**evidence),ideal_reset_negative,geometry_negative,sensitivity_status
+
+
 def _firewall_and_metamorphic(lattice,event_log):
     module_source=(ROOT/'src'/'q2_adjustment.py').read_text(encoding='utf-8'); production=_audit_controller_api(module_source)
     truth_source='def finite_difference_controller(local_input, observe_offset, *, truth_coordinates=None, probe=1, gain=1, damping=1, max_step=1):\n return observe_offset([0,0])\n'
@@ -166,14 +321,14 @@ def _firewall_and_metamorphic(lattice,event_log):
     for scale,theta,mirror,shift in ((.37,.41,False,np.array([2.3,-1.7])),(2.4,-.83,False,np.array([-3.2,4.1])),(1.6,1.17,True,np.array([.5,2.2]))):
         rot=np.array([[cos(theta),-sin(theta)],[sin(theta),cos(theta)]]); linear=scale*rot@(np.diag([-1.,1.]) if mirror else np.eye(2)); transformed=(linear@base.T).T+shift
         for i in set(lattice)-set(REFERENCES): max_error=max(max_error,float(np.max(abs(four_angles(linear@lattice[i]+shift,transformed)-four_angles(lattice[i],base)))))
-    geometry=evaluate_formation(lattice); metamorphic=_status(max_error<3e-12 and geometry['nearest_neighbor_edge_count']==30 and geometry['line_group_count']==12,max_angle_error=max_error,angle_threshold=3e-12,geometry=geometry)
+    geometry=evaluate_formation(lattice); metamorphic=_status(max_error<3e-12 and geometry['nearest_neighbor_edge_count']==30 and geometry['line_group_count']==12,max_angle_error=max_error,angle_threshold=3e-12,ideal_target_geometry_only=geometry)
     return firewall,metamorphic
 
 def run_gate():
-    lattice=target_lattice(); event_log={}; baseline=float(np.linalg.norm(lattice[11]-lattice[15])); candidate,independent,negative,degenerate=_candidate_checks(lattice); analytic,exact,finite=_bootstrap_checks(lattice,event_log); follower=_follower_checks(lattice,event_log); firewall,metamorphic=_firewall_and_metamorphic(lattice,event_log)
+    lattice=target_lattice(); event_log={}; baseline=float(np.linalg.norm(lattice[11]-lattice[15])); candidate,independent,negative,degenerate=_candidate_checks(lattice); analytic,exact,finite=_bootstrap_checks(lattice,event_log); follower=_follower_checks(lattice,event_log); firewall,metamorphic=_firewall_and_metamorphic(lattice,event_log); end_to_end,ideal_reset,geometry_negative,sensitivity=_end_to_end_checks(lattice,event_log)
     scale_angles=max(float(np.max(abs(four_angles(2*lattice[i],np.vstack([2*lattice[j] for j in REFERENCES]))-four_angles(lattice[i],np.vstack([lattice[j] for j in REFERENCES]))))) for i in lattice if i not in REFERENCES)
     scale=_status(scale_angles<3e-12,maximum_angle_difference=scale_angles,threshold=3e-12,interpretation='无可信基线时 d* 与 2d* 的纯角不可区分')
-    checks={'four_reference_complete_candidates':candidate,'independent_root_check':independent,'old_route_double_root_negative':negative,'boundary_collision_negative':degenerate,'bootstrap_analytic_check':analytic,'bootstrap_exact_replay':exact,'bootstrap_finite_replay':finite,'follower_local_replay':follower,'information_firewall':firewall,'metamorphic_and_geometry':metamorphic,'scale_indistinguishability_negative':scale}
+    checks={'four_reference_complete_candidates':candidate,'independent_root_check':independent,'old_route_double_root_negative':negative,'boundary_collision_negative':degenerate,'bootstrap_analytic_check':analytic,'bootstrap_exact_replay':exact,'bootstrap_finite_replay':finite,'follower_local_replay':follower,'information_firewall':firewall,'metamorphic_and_ideal_target_geometry':metamorphic,'scale_indistinguishability_negative':scale,'actual_end_to_end_formation':end_to_end,'ideal_anchor_reset_negative':ideal_reset,'actual_geometry_negative':geometry_negative,'trusted_reference_sensitivity':sensitivity}
     return {'gate':'Q2_PROGRAM_GATE','status':'PASS' if all(v['status']=='PASS' for v in checks.values()) else 'FAIL','scope':'目标邻域、非退化、FY11/FY15 可信基线、确定性回放；不声明全局收敛。','trusted_baseline_length_in_d_star':baseline,'checks':checks}
 
 if __name__=='__main__':

@@ -7,6 +7,8 @@ Q2_PROGRAM_GATE = PASS
 RESULT_SCOPE = TARGET_NEIGHBORHOOD / NONDEGENERATE / TRUSTED_BASELINE / DETERMINISTIC_REPLAY
 Q2_HUMAN_VERDICT = PASS
 Q2_FINAL_FREEZE = PASS
+Q2_END_TO_END_VALIDATION_REMEDIATION = PASS
+Q2_END_TO_END_HUMAN_RECONFIRMATION = PENDING
 ```
 
 上述人工通过由用户本人明确给出，并非 Codex 自动判定。结果范围保持为 `TARGET_NEIGHBORHOOD / NONDEGENERATE / TRUSTED_BASELINE / DETERMINISTIC_REPLAY`；不声明全局唯一、全局收敛或现实飞行精度，FY11/FY15 的可信基线仍是用户批准的附加条件，而非原题明示条件。
@@ -36,10 +38,16 @@ Q2_FINAL_FREEZE = PASS
 | 压力域 | 2 个失败 | \(0.30d^\ast,0.40d^\ast\) 的 352 次试验仅作压力测试，不纳入认证 |
 | 最大留出角约束残差 | \(3.31\times10^{-8}\) rad | 认证阈值 \(5\times10^{-8}\) rad；同源本机检查 |
 | 平移/旋转/镜像/缩放角差 | \(8.88\times10^{-16}\) rad | 小于 \(3\times10^{-12}\) rad |
-| 最终几何验收 | 30 条边、12 条最大直线 | 边长最大误差 \(2.22\times10^{-16}d^\ast\)，最大共线距离 \(3.03\times10^{-16}d^\ast\) |
+| 实际端到端回放 | 33/33 通过（其中 32 个非零扰动） | 每个非零情形均从 13 架移动机的确定性非零初值开始，实际执行 FY04/FY03 有限试探建锚，再执行 11 机本机归槽 |
+| 实际建锚末态数据流 | 33/33 使用 FY03/FY04 实际终点 | 跟随者四参考机含实际 FY03/FY04 终点；“重置为理想锚点”负对照被检出为 `ANCHOR_SOURCE_VIOLATION` |
+| 实际最终几何验收 | 30 条边、12 条最大直线 | 最坏节点误差 \(2.27\times10^{-7}d^\ast\)（阈值 \(2.00\times10^{-6}d^\ast\)）；边长最大误差 \(2.70\times10^{-7}d^\ast\)（阈值由节点误差三角不等式导出为 \(4.00\times10^{-6}d^\ast\)）；最大共线距离 \(7.43\times10^{-8}d^\ast\) |
+| 实际跟随者留出角约束 | 最大残差 \(1.17\times10^{-7}\) rad | 阈值 \(2.00\times10^{-6}\) rad；来自同一接收机，仅作本机分支/异常检查 |
+| 实际端到端最慢情形 | \(r=0.20d^\ast\)，方向模式 7 | 建锚 14 个宏周期，单架跟随者最多 10 次控制动作 |
 | 在线信息隔离机械审计 | 13 架实际移动接收机均被覆盖 | 生产源码无禁用字段或 evaluator 导入；真值/跨机角伪源码与 4 个非法字段均被拒绝；无跨接收机角交换 |
 
 完整可追溯数据见 `results/q2/q2_program_gate.json`；运行入口为 `python -m tests.q2_program_gate`。
+
+本次端到端补强只改变验证证据链：实际有限步建锚末态被传入后续本机控制和离线终态评估；不改变冻结公式、参数、控制器、可信基线条件或结论范围。既有 `HUMAN_VERDICT = PASS` 是此前用户裁决；针对新增端到端证据，仍须等待 `Q2_END_TO_END_HUMAN_RECONFIRMATION = PENDING`。
 
 ## 明确的结论边界
 
