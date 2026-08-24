@@ -31,6 +31,10 @@ REOPEN_REQUIRED = NO
 
 ## 2. 五分钟阅读路线
 
+> **第一次接触这个仓库，不知道该从哪里开始？**
+>
+> 请先打开 [当前仓库阅读与使用指南](writing_reference/REPOSITORY_READING_GUIDE_FOR_HUMAN_AND_AI.md)。它专门说明文件权威性、Q1/Q2 的正式文件包、证据链、历史文件禁用规则、GitHub/本地查看方法，以及把仓库交给辅助 AI 时应使用的约束。README 是快速入口，该指南是详细操作手册。
+
 ### 2.1 队友只想快速理解最终解法
 
 1. 阅读本 README 的“四问最终方案”；
@@ -52,10 +56,11 @@ REOPEN_REQUIRED = NO
 
 1. [AGENTS.md](AGENTS.md)：clean-room、信息边界、模型路由和 Git 检查点规则；
 2. [CURRENT_STATE.md](CURRENT_STATE.md)：当前真实状态；
-3. [最终策略冻结文件](opening/07_STRATEGY_FREEZE.md)：数学路线真源；
-4. 对应的 `model_contract/`：每问正式模型契约；
-5. 对应的 `results/`：正式结果与 Gate JSON；
-6. 对应的 `paper_handoff/` 和 `writing_reference/`。
+3. [当前仓库阅读与使用指南](writing_reference/REPOSITORY_READING_GUIDE_FOR_HUMAN_AND_AI.md)：确认阅读顺序、历史文件边界和证据追踪方法；
+4. [最终策略冻结文件](opening/07_STRATEGY_FREEZE.md)：数学路线真源；
+5. 对应的 `model_contract/`：每问正式模型契约；
+6. 对应的 `results/`：正式结果与 Gate JSON；
+7. 对应的 `paper_handoff/` 和其他 `writing_reference/`。
 
 不得仅凭聊天记忆或早期候选路线回答项目状态。
 
@@ -284,10 +289,10 @@ py -m venv .venv
 - [Q2 完整解法、公式与证据](writing_reference/Q2_DETAILED_SOLUTION_AND_EVIDENCE.md)
 - [Q2 问题分析与模型建立求解指南](writing_reference/Q2_PROBLEM_ANALYSIS_AND_MODEL_WRITING_GUIDE.md)
 
-### 9.3 全文
+### 9.3 全文与仓库交接
 
 - [安全写作总指南](writing_reference/SAFE_WRITING_GUIDE.md)
-- [人和 AI 的仓库阅读指南](writing_reference/REPOSITORY_READING_GUIDE_FOR_HUMAN_AND_AI.md)
+- [当前仓库阅读与使用指南](writing_reference/REPOSITORY_READING_GUIDE_FOR_HUMAN_AND_AI.md)：供队友、论文作者、复核者和辅助 AI 判断真源、追踪证据、避开历史旧路线并正确接手仓库。
 
 论文写作阶段必须从 Official Result 和 Gate JSON 读取正式数字，不得凭记忆或手工改数。写作只能组织已有证据，不能擅自增强结论。
 
