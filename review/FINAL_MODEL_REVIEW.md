@@ -1,15 +1,19 @@
 # FINAL MODEL REVIEW
 
-## 1. Executive Verdict
+## 1. 当前程序审查结论
 
 ```text
-FINAL_MODEL_REVIEW_PROGRAM_VERDICT = REMEDIATION_REQUIRED
+FINAL_MODEL_REVIEW_PROGRAM_VERDICT = PASS_WITH_MINOR_FIX
+FINAL_MAJOR_01_STATUS = REMEDIATED_AND_CLOSED
+Q2_END_TO_END_WORK_REAUDIT = PASS
+Q2_END_TO_END_GATE = PASS
 FATAL_MODEL_MISMATCH = NO
-MAJOR_FINDING = YES
 REOPEN_REQUIRED = NO
+FINAL_MODEL_REVIEW_HUMAN_VERDICT = PENDING
+FINAL_MODEL_FREEZE = PENDING
 ```
 
-Q1(1)、Q1(2)、Q1(3) 的冻结证据链可保持现有结论。Q2 的局部数学结构、完整候选、独立多初值复核和在线信息隔离均未发现致命冲突；但 Q2 正式 Gate 尚未把“实际有限步建锚输出”接入 11 架跟随者控制与最终几何验收。因此，当前 Q2 不能被表述为已经完成端到端的“建锚—并行归槽—30 边/12 线验收”确定性回放。
+Work 已复审 Q2 端到端验证器修复：实际有限步 FY04/FY03 建锚终点已传入 11 架跟随者控制，实际 15 节点终态已验收 30 条边与 12 条最大直线，锚点重置与终态几何扰动负对照均可失败。因此 `FINAL-MAJOR-01` 已关闭；当前仅余 Q2 新增端到端证据的用户人工复确认及 FINAL MODEL REVIEW 人工裁决。本报告其余章节保留原始发现和裁决过程，作为可追溯历史记录。
 
 ## 2. Repo Snapshot
 
@@ -142,6 +146,21 @@ RETURN_TO_TERRA = YES
 
 在完成 `FINAL-MAJOR-01` 的有界 Q2 验证器修复、重新生成 Q2 Gate JSON 与正式证据、并由用户重新确认受影响的 Q2 人工核查内容之前，不得将本项目写为 FINAL MODEL REVIEW 通过，不得开始正式论文写作或后续阶段。
 
-## 17. 后续修复状态（待 Work 复审）
+## 17. 端到端修复实施状态（Work 复审前的历史记录）
 
-`FINAL-MAJOR-01` 的实现性修复已完成待复审：Q2 Gate 现从 33 个完整案例的实际有限试探 FY04/FY03 建锚末态出发，再运行 11 架跟随者的本机控制，并以实际 15 节点末态评估 30 条边和 12 条最大直线。理想锚点重置与最终几何扰动负对照均可机械失败。该记录不改变本报告的正式状态：在 Work 复审和用户对新增人工核查内容复确认前，`FINAL_MODEL_REVIEW_PROGRAM_VERDICT` 仍为 `REMEDIATION_REQUIRED`。
+`FINAL-MAJOR-01` 的实现性修复在当时已完成待复审：Q2 Gate 现从 33 个完整案例的实际有限试探 FY04/FY03 建锚末态出发，再运行 11 架跟随者的本机控制，并以实际 15 节点末态评估 30 条边和 12 条最大直线。理想锚点重置与最终几何扰动负对照均可机械失败。
+
+## 18. Remediation Closure / Work Reaudit
+
+```text
+FINAL_MAJOR_01_STATUS = REMEDIATED_AND_CLOSED
+Q2_END_TO_END_WORK_REAUDIT = PASS
+Q2_END_TO_END_GATE = PASS
+FINAL_MODEL_REVIEW_PROGRAM_VERDICT = PASS_WITH_MINOR_FIX
+FATAL_MODEL_MISMATCH = NO
+REOPEN_REQUIRED = NO
+```
+
+Work 复审确认：33 个完整端到端案例（其中 32 个非零扰动）均通过；跟随者实际使用 FY03/FY04 建锚终点；理想锚点重置和终态几何扰动负对照均被检出；在线信息隔离仍通过。唯一修正为 Q2 人工核查卡中的历史文字澄清：理想目标格点的舍入级 30 边/12 线检查不得再描述为实际端到端终态。该 MINOR 文字修正不改变模型、公式、数值、信息边界或结论强度。
+
+据此，程序审查已通过，但 `FINAL_MODEL_REVIEW_HUMAN_VERDICT` 与 `FINAL_MODEL_FREEZE` 均必须保持 `PENDING`，等待用户人工裁决。
