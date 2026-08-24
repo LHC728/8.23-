@@ -43,8 +43,9 @@ def _record_event(event_log: dict[str,object] | None, receiver: int, values: np.
     """只保存每个接收机的最小实际调用轨迹与计数，不把真值传给控制器。"""
     if event_log is None: return
     counts=event_log.setdefault('counts',{}); samples=event_log.setdefault('samples',{})
+    observed=np.asarray(values); dimension=int(observed.size)
     counts[str(receiver)]=int(counts.get(str(receiver),0))+1
-    samples.setdefault(str(receiver),{'receiver_id':receiver,'observation_receiver_id':receiver,'observation_dimension':int(len(values)),'other_receiver_angles_present':False,'evaluator_called':False,'forbidden_fields_present':False})
+    samples.setdefault(str(receiver),{'receiver_id':receiver,'observation_receiver_id':receiver,'observation_dimension':dimension,'observation_shape':list(observed.shape),'other_receiver_angles_present':bool(observed.ndim!=1 or dimension!=2)})
 
 
 def _fd_step(receiver:int, other:int, point:np.ndarray, other_point:np.ndarray, lattice:dict[int,np.ndarray], event_log: dict[str,object] | None=None)->np.ndarray:
@@ -152,6 +153,11 @@ def _firewall_and_metamorphic(lattice,event_log):
         try: LocalControllerInput(1,(3,4,11,15),(1.,2.),0,**{field:[]})
         except TypeError: rejected_fields.append(field)
     samples=list(event_log.get('samples',{}).values()); required={3,4}|(set(lattice)-set(REFERENCES)); seen={int(x['receiver_id']) for x in samples}
+    evaluator_called=bool(production['evaluator_imports'])
+    forbidden_fields_present=bool(production['forbidden_parameters'] or production['forbidden_names'])
+    for sample in samples:
+        sample['evaluator_called']=evaluator_called
+        sample['forbidden_fields_present']=forbidden_fields_present
     event_ok=required<=seen and all(x['receiver_id']==x['observation_receiver_id'] and x['observation_dimension']==2 and not x['other_receiver_angles_present'] and not x['evaluator_called'] and not x['forbidden_fields_present'] for x in samples)
     negative_ok=(not truth_audit['accepted']) and (not cross_audit['accepted']) and set(rejected_fields)=={'truth_coordinates','world_coordinates','other_receiver_angles','cross_receiver_angles'}
     cross_receiver_exchange_detected=any(x['other_receiver_angles_present'] for x in samples)

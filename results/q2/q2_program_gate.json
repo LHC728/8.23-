@@ -580,6 +580,9 @@
             "receiver_id": 4,
             "observation_receiver_id": 4,
             "observation_dimension": 2,
+            "observation_shape": [
+              2
+            ],
             "other_receiver_angles_present": false,
             "evaluator_called": false,
             "forbidden_fields_present": false
@@ -588,6 +591,9 @@
             "receiver_id": 3,
             "observation_receiver_id": 3,
             "observation_dimension": 2,
+            "observation_shape": [
+              2
+            ],
             "other_receiver_angles_present": false,
             "evaluator_called": false,
             "forbidden_fields_present": false
@@ -596,6 +602,9 @@
             "receiver_id": 1,
             "observation_receiver_id": 1,
             "observation_dimension": 2,
+            "observation_shape": [
+              2
+            ],
             "other_receiver_angles_present": false,
             "evaluator_called": false,
             "forbidden_fields_present": false
@@ -604,6 +613,9 @@
             "receiver_id": 2,
             "observation_receiver_id": 2,
             "observation_dimension": 2,
+            "observation_shape": [
+              2
+            ],
             "other_receiver_angles_present": false,
             "evaluator_called": false,
             "forbidden_fields_present": false
@@ -612,6 +624,9 @@
             "receiver_id": 5,
             "observation_receiver_id": 5,
             "observation_dimension": 2,
+            "observation_shape": [
+              2
+            ],
             "other_receiver_angles_present": false,
             "evaluator_called": false,
             "forbidden_fields_present": false
@@ -620,6 +635,9 @@
             "receiver_id": 6,
             "observation_receiver_id": 6,
             "observation_dimension": 2,
+            "observation_shape": [
+              2
+            ],
             "other_receiver_angles_present": false,
             "evaluator_called": false,
             "forbidden_fields_present": false
@@ -628,6 +646,9 @@
             "receiver_id": 7,
             "observation_receiver_id": 7,
             "observation_dimension": 2,
+            "observation_shape": [
+              2
+            ],
             "other_receiver_angles_present": false,
             "evaluator_called": false,
             "forbidden_fields_present": false
@@ -636,6 +657,9 @@
             "receiver_id": 8,
             "observation_receiver_id": 8,
             "observation_dimension": 2,
+            "observation_shape": [
+              2
+            ],
             "other_receiver_angles_present": false,
             "evaluator_called": false,
             "forbidden_fields_present": false
@@ -644,6 +668,9 @@
             "receiver_id": 9,
             "observation_receiver_id": 9,
             "observation_dimension": 2,
+            "observation_shape": [
+              2
+            ],
             "other_receiver_angles_present": false,
             "evaluator_called": false,
             "forbidden_fields_present": false
@@ -652,6 +679,9 @@
             "receiver_id": 10,
             "observation_receiver_id": 10,
             "observation_dimension": 2,
+            "observation_shape": [
+              2
+            ],
             "other_receiver_angles_present": false,
             "evaluator_called": false,
             "forbidden_fields_present": false
@@ -660,6 +690,9 @@
             "receiver_id": 12,
             "observation_receiver_id": 12,
             "observation_dimension": 2,
+            "observation_shape": [
+              2
+            ],
             "other_receiver_angles_present": false,
             "evaluator_called": false,
             "forbidden_fields_present": false
@@ -668,6 +701,9 @@
             "receiver_id": 13,
             "observation_receiver_id": 13,
             "observation_dimension": 2,
+            "observation_shape": [
+              2
+            ],
             "other_receiver_angles_present": false,
             "evaluator_called": false,
             "forbidden_fields_present": false
@@ -676,6 +712,9 @@
             "receiver_id": 14,
             "observation_receiver_id": 14,
             "observation_dimension": 2,
+            "observation_shape": [
+              2
+            ],
             "other_receiver_angles_present": false,
             "evaluator_called": false,
             "forbidden_fields_present": false
