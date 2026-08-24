@@ -6,16 +6,27 @@
 Q2_ROUTE_DESIGN_GATE = PASS
 STRATEGY_FREEZE_UPDATED = NO
 Q2_FORMAL_IMPLEMENTATION_STARTED = NO
-HUMAN_VERDICT = PENDING
+HUMAN_VERDICT = PASS
+APPROVE_Q2_REFERENCE_FRAME_AND_SCALE_REOPEN = YES
 ```
 
-## 请先确认你接受的题意条件
+## 用户裁决记录
+
+```text
+Q2_ROUTE_PROPOSAL_HUMAN_VERDICT = PASS
+APPROVE_Q2_REFERENCE_FRAME_AND_SCALE_REOPEN = YES
+DECISION_SOURCE = USER_EXPLICIT_STATEMENT
+```
+
+用户已批准只重开 Q2 的参考框架与尺度层。该批准不授权修改 Q1，不授权跨接收机夹角汇总，也不把局部收敛提升为全局收敛。
+
+## 用户已确认的题意条件
 
 推荐路线要把相邻间距固定为参数 $d^\ast$，因此必须有一个现实长度来源。项目采用：
 
 > FY11 与 FY15 是已知编号、位置无偏差并保持不动的可信种子；它们的实际相对距离是 $4d^\ast$。其他无人机不知道其绝对坐标，只接收信号并测自己位置处的夹角。
 
-请判断这条条件是否可接受。
+用户已判断这条条件可以接受。
 
 - 若接受：可以固定指定间距 $d^\ast$。
 - 若不接受：必须退回自由尺度方案；纯夹角本身不能知道 50 m 或其他指定长度。
@@ -77,9 +88,9 @@ HUMAN_VERDICT = PENDING
 
 人工判断：`PASS / FAIL / NEEDS_CLARIFICATION`
 
-## 建议人工裁决
+## 人工裁决格式记录
 
-若你接受 FY11/FY15 可信基线条件，并认可结论只限局部、非退化范围，建议填写：
+本次已按以下格式完成裁决：
 
 ```text
 Q2_ROUTE_PROPOSAL_HUMAN_VERDICT = PASS
