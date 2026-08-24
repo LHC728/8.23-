@@ -1,0 +1,1891 @@
+{
+  "gate": "Q2_TWO_SEED_SCHEDULE_COMPLETE_ENUMERATION",
+  "status": "PASS",
+  "theoretical_ordered_schedule_count": 16380,
+  "geometrically_valid_schedule_count": 8820,
+  "locally_contracting_schedule_count": 3690,
+  "fully_usable_schedule_count": 2880,
+  "unique_four_reference_sets_evaluated": 1365,
+  "ranking_rule": [
+    "交替周期局部收缩",
+    "最终四参考组几何可用",
+    "最终全局单候选接收机数最多",
+    "周期谱半径最小",
+    "最终最坏 sigma_min 最大",
+    "建锚本机最坏 sigma_min 最大",
+    "建锚最大条件数最小",
+    "建锚最小角边界裕度最大"
+  ],
+  "winner": {
+    "seed_ids": [
+      11,
+      15
+    ],
+    "bootstrap_order": [
+      4,
+      3
+    ],
+    "reference_ids": [
+      3,
+      4,
+      11,
+      15
+    ],
+    "seed_distance_d": 4.0,
+    "spectral_radius": 1.2129129157942428e-16,
+    "locally_contracting": true,
+    "bootstrap_worst_self_sigma_min": 0.1252169037564626,
+    "bootstrap_worst_condition_number": 3.7766682343058133,
+    "bootstrap_minimum_angle_margin_rad": 0.2810349015028136,
+    "bootstrap_nodes": [
+      {
+        "receiver": 4,
+        "other": 3,
+        "transmitter_ids": [
+          11,
+          15,
+          3
+        ],
+        "primary_angle_names": [
+          "ab",
+          "bc"
+        ],
+        "candidate_count": 1,
+        "nearest_wrong_root_distance_d": null,
+        "angle_boundary_margin_rad": 0.5235987755982987,
+        "self_sigma_min": 0.19549482833118856,
+        "self_condition_number": 3.7766682343058116,
+        "best_response_derivative": [
+          [
+            -0.9999999999999998,
+            0.5773502691896256
+          ],
+          [
+            -1.732050807568877,
+            0.9999999999999998
+          ]
+        ]
+      },
+      {
+        "receiver": 3,
+        "other": 4,
+        "transmitter_ids": [
+          11,
+          15,
+          4
+        ],
+        "primary_angle_names": [
+          "ab",
+          "ac"
+        ],
+        "candidate_count": 1,
+        "nearest_wrong_root_distance_d": null,
+        "angle_boundary_margin_rad": 0.2810349015028136,
+        "self_sigma_min": 0.1252169037564626,
+        "self_condition_number": 3.7766682343058133,
+        "best_response_derivative": [
+          [
+            0.7500000000000001,
+            -0.43301270189221935
+          ],
+          [
+            -3.0310889132455356,
+            1.7500000000000002
+          ]
+        ]
+      }
+    ],
+    "final_reference_feasible": true,
+    "final_global_unique_receiver_count": 11,
+    "final_worst_sigma_min": 0.34228977697161356,
+    "final_worst_condition_number": 3.840268861978609,
+    "final_minimum_angle_margin_rad": 0.33347317225183204
+  },
+  "top_20": [
+    {
+      "seed_ids": [
+        11,
+        15
+      ],
+      "bootstrap_order": [
+        4,
+        3
+      ],
+      "reference_ids": [
+        3,
+        4,
+        11,
+        15
+      ],
+      "seed_distance_d": 4.0,
+      "spectral_radius": 1.2129129157942428e-16,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.1252169037564626,
+      "bootstrap_worst_condition_number": 3.7766682343058133,
+      "bootstrap_minimum_angle_margin_rad": 0.2810349015028136,
+      "bootstrap_nodes": [
+        {
+          "receiver": 4,
+          "other": 3,
+          "transmitter_ids": [
+            11,
+            15,
+            3
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982987,
+          "self_sigma_min": 0.19549482833118856,
+          "self_condition_number": 3.7766682343058116,
+          "best_response_derivative": [
+            [
+              -0.9999999999999998,
+              0.5773502691896256
+            ],
+            [
+              -1.732050807568877,
+              0.9999999999999998
+            ]
+          ]
+        },
+        {
+          "receiver": 3,
+          "other": 4,
+          "transmitter_ids": [
+            11,
+            15,
+            4
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.2810349015028136,
+          "self_sigma_min": 0.1252169037564626,
+          "self_condition_number": 3.7766682343058133,
+          "best_response_derivative": [
+            [
+              0.7500000000000001,
+              -0.43301270189221935
+            ],
+            [
+              -3.0310889132455356,
+              1.7500000000000002
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.34228977697161356,
+      "final_worst_condition_number": 3.840268861978609,
+      "final_minimum_angle_margin_rad": 0.33347317225183204
+    },
+    {
+      "seed_ids": [
+        11,
+        15
+      ],
+      "bootstrap_order": [
+        6,
+        2
+      ],
+      "reference_ids": [
+        2,
+        6,
+        11,
+        15
+      ],
+      "seed_distance_d": 4.0,
+      "spectral_radius": 1.2129129157942428e-16,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.1252169037564626,
+      "bootstrap_worst_condition_number": 3.7766682343058133,
+      "bootstrap_minimum_angle_margin_rad": 0.2810349015028136,
+      "bootstrap_nodes": [
+        {
+          "receiver": 6,
+          "other": 2,
+          "transmitter_ids": [
+            11,
+            15,
+            2
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982987,
+          "self_sigma_min": 0.19549482833118856,
+          "self_condition_number": 3.7766682343058116,
+          "best_response_derivative": [
+            [
+              -0.9999999999999998,
+              -0.5773502691896256
+            ],
+            [
+              1.732050807568877,
+              0.9999999999999998
+            ]
+          ]
+        },
+        {
+          "receiver": 2,
+          "other": 6,
+          "transmitter_ids": [
+            11,
+            15,
+            6
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.2810349015028136,
+          "self_sigma_min": 0.1252169037564626,
+          "self_condition_number": 3.7766682343058133,
+          "best_response_derivative": [
+            [
+              0.7500000000000001,
+              0.43301270189221935
+            ],
+            [
+              3.0310889132455356,
+              1.7500000000000002
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.34228977697161356,
+      "final_worst_condition_number": 3.840268861978609,
+      "final_minimum_angle_margin_rad": 0.33347317225183204
+    },
+    {
+      "seed_ids": [
+        2,
+        11
+      ],
+      "bootstrap_order": [
+        6,
+        15
+      ],
+      "reference_ids": [
+        2,
+        6,
+        11,
+        15
+      ],
+      "seed_distance_d": 3.0,
+      "spectral_radius": 3.0378700563694897e-16,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.08133076472724583,
+      "bootstrap_worst_condition_number": 3.776668234305812,
+      "bootstrap_minimum_angle_margin_rad": 0.24256387409548522,
+      "bootstrap_nodes": [
+        {
+          "receiver": 6,
+          "other": 15,
+          "transmitter_ids": [
+            2,
+            11,
+            15
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982987,
+          "self_sigma_min": 0.1954948283311885,
+          "self_condition_number": 3.776668234305812,
+          "best_response_derivative": [
+            [
+              0.7499999999999999,
+              1.2990381056766578
+            ],
+            [
+              -0.43301270189221924,
+              -0.7499999999999998
+            ]
+          ]
+        },
+        {
+          "receiver": 15,
+          "other": 6,
+          "transmitter_ids": [
+            2,
+            11,
+            6
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 2,
+          "nearest_wrong_root_distance_d": 4.956957592256421,
+          "angle_boundary_margin_rad": 0.24256387409548522,
+          "self_sigma_min": 0.08133076472724583,
+          "self_condition_number": 3.7766682343058116,
+          "best_response_derivative": [
+            [
+              1.9999999999999993,
+              3.4641016151377535
+            ],
+            [
+              0.5773502691896255,
+              0.9999999999999994
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.34228977697161356,
+      "final_worst_condition_number": 3.840268861978609,
+      "final_minimum_angle_margin_rad": 0.33347317225183204
+    },
+    {
+      "seed_ids": [
+        3,
+        15
+      ],
+      "bootstrap_order": [
+        4,
+        11
+      ],
+      "reference_ids": [
+        3,
+        4,
+        11,
+        15
+      ],
+      "seed_distance_d": 3.0,
+      "spectral_radius": 3.0378700563694897e-16,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.08133076472724583,
+      "bootstrap_worst_condition_number": 3.776668234305812,
+      "bootstrap_minimum_angle_margin_rad": 0.24256387409548522,
+      "bootstrap_nodes": [
+        {
+          "receiver": 4,
+          "other": 11,
+          "transmitter_ids": [
+            3,
+            15,
+            11
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982987,
+          "self_sigma_min": 0.1954948283311885,
+          "self_condition_number": 3.776668234305812,
+          "best_response_derivative": [
+            [
+              0.7499999999999999,
+              -1.2990381056766578
+            ],
+            [
+              0.43301270189221924,
+              -0.7499999999999998
+            ]
+          ]
+        },
+        {
+          "receiver": 11,
+          "other": 4,
+          "transmitter_ids": [
+            3,
+            15,
+            4
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 2,
+          "nearest_wrong_root_distance_d": 4.956957592256421,
+          "angle_boundary_margin_rad": 0.24256387409548522,
+          "self_sigma_min": 0.08133076472724583,
+          "self_condition_number": 3.7766682343058116,
+          "best_response_derivative": [
+            [
+              1.9999999999999993,
+              -3.4641016151377535
+            ],
+            [
+              -0.5773502691896255,
+              0.9999999999999994
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.34228977697161356,
+      "final_worst_condition_number": 3.840268861978609,
+      "final_minimum_angle_margin_rad": 0.33347317225183204
+    },
+    {
+      "seed_ids": [
+        1,
+        11
+      ],
+      "bootstrap_order": [
+        6,
+        14
+      ],
+      "reference_ids": [
+        1,
+        6,
+        11,
+        14
+      ],
+      "seed_distance_d": 3.9999999999999996,
+      "spectral_radius": 1.850371707708594e-16,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.12521690375646258,
+      "bootstrap_worst_condition_number": 3.7766682343058138,
+      "bootstrap_minimum_angle_margin_rad": 0.2810349015028136,
+      "bootstrap_nodes": [
+        {
+          "receiver": 6,
+          "other": 14,
+          "transmitter_ids": [
+            1,
+            11,
+            14
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982987,
+          "self_sigma_min": 0.19549482833118853,
+          "self_condition_number": 3.7766682343058116,
+          "best_response_derivative": [
+            [
+              1.9737298215558332e-16,
+              2.3094010767585025
+            ],
+            [
+              -6.325681333090595e-33,
+              -7.401486830834375e-17
+            ]
+          ]
+        },
+        {
+          "receiver": 14,
+          "other": 6,
+          "transmitter_ids": [
+            1,
+            11,
+            6
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.2810349015028136,
+          "self_sigma_min": 0.12521690375646258,
+          "self_condition_number": 3.7766682343058138,
+          "best_response_derivative": [
+            [
+              -0.0,
+              2.5980762113533165
+            ],
+            [
+              0.0,
+              2.5000000000000004
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.34228977697161345,
+      "final_worst_condition_number": 3.8402688619786103,
+      "final_minimum_angle_margin_rad": 0.33347317225183204
+    },
+    {
+      "seed_ids": [
+        1,
+        11
+      ],
+      "bootstrap_order": [
+        14,
+        6
+      ],
+      "reference_ids": [
+        1,
+        6,
+        11,
+        14
+      ],
+      "seed_distance_d": 3.9999999999999996,
+      "spectral_radius": 1.8503717077085943e-16,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.12521690375646258,
+      "bootstrap_worst_condition_number": 3.7766682343058138,
+      "bootstrap_minimum_angle_margin_rad": 0.2810349015028136,
+      "bootstrap_nodes": [
+        {
+          "receiver": 14,
+          "other": 6,
+          "transmitter_ids": [
+            1,
+            11,
+            6
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.2810349015028136,
+          "self_sigma_min": 0.12521690375646258,
+          "self_condition_number": 3.7766682343058138,
+          "best_response_derivative": [
+            [
+              -0.0,
+              2.5980762113533165
+            ],
+            [
+              0.0,
+              2.5000000000000004
+            ]
+          ]
+        },
+        {
+          "receiver": 6,
+          "other": 14,
+          "transmitter_ids": [
+            1,
+            11,
+            14
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982987,
+          "self_sigma_min": 0.19549482833118853,
+          "self_condition_number": 3.7766682343058116,
+          "best_response_derivative": [
+            [
+              1.9737298215558332e-16,
+              2.3094010767585025
+            ],
+            [
+              -6.325681333090595e-33,
+              -7.401486830834375e-17
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.34228977697161345,
+      "final_worst_condition_number": 3.8402688619786103,
+      "final_minimum_angle_margin_rad": 0.33347317225183204
+    },
+    {
+      "seed_ids": [
+        1,
+        15
+      ],
+      "bootstrap_order": [
+        4,
+        12
+      ],
+      "reference_ids": [
+        1,
+        4,
+        12,
+        15
+      ],
+      "seed_distance_d": 3.9999999999999996,
+      "spectral_radius": 1.850371707708594e-16,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.12521690375646258,
+      "bootstrap_worst_condition_number": 3.7766682343058138,
+      "bootstrap_minimum_angle_margin_rad": 0.2810349015028136,
+      "bootstrap_nodes": [
+        {
+          "receiver": 4,
+          "other": 12,
+          "transmitter_ids": [
+            1,
+            15,
+            12
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982987,
+          "self_sigma_min": 0.19549482833118853,
+          "self_condition_number": 3.7766682343058116,
+          "best_response_derivative": [
+            [
+              1.9737298215558332e-16,
+              -2.3094010767585025
+            ],
+            [
+              6.325681333090595e-33,
+              -7.401486830834375e-17
+            ]
+          ]
+        },
+        {
+          "receiver": 12,
+          "other": 4,
+          "transmitter_ids": [
+            1,
+            15,
+            4
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.2810349015028136,
+          "self_sigma_min": 0.12521690375646258,
+          "self_condition_number": 3.7766682343058138,
+          "best_response_derivative": [
+            [
+              -0.0,
+              -2.5980762113533165
+            ],
+            [
+              0.0,
+              2.5000000000000004
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.34228977697161345,
+      "final_worst_condition_number": 3.8402688619786103,
+      "final_minimum_angle_margin_rad": 0.33347317225183204
+    },
+    {
+      "seed_ids": [
+        1,
+        15
+      ],
+      "bootstrap_order": [
+        12,
+        4
+      ],
+      "reference_ids": [
+        1,
+        4,
+        12,
+        15
+      ],
+      "seed_distance_d": 3.9999999999999996,
+      "spectral_radius": 1.8503717077085943e-16,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.12521690375646258,
+      "bootstrap_worst_condition_number": 3.7766682343058138,
+      "bootstrap_minimum_angle_margin_rad": 0.2810349015028136,
+      "bootstrap_nodes": [
+        {
+          "receiver": 12,
+          "other": 4,
+          "transmitter_ids": [
+            1,
+            15,
+            4
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.2810349015028136,
+          "self_sigma_min": 0.12521690375646258,
+          "self_condition_number": 3.7766682343058138,
+          "best_response_derivative": [
+            [
+              -0.0,
+              -2.5980762113533165
+            ],
+            [
+              0.0,
+              2.5000000000000004
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "other": 12,
+          "transmitter_ids": [
+            1,
+            15,
+            12
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982987,
+          "self_sigma_min": 0.19549482833118853,
+          "self_condition_number": 3.7766682343058116,
+          "best_response_derivative": [
+            [
+              1.9737298215558332e-16,
+              -2.3094010767585025
+            ],
+            [
+              6.325681333090595e-33,
+              -7.401486830834375e-17
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.34228977697161345,
+      "final_worst_condition_number": 3.8402688619786103,
+      "final_minimum_angle_margin_rad": 0.33347317225183204
+    },
+    {
+      "seed_ids": [
+        11,
+        14
+      ],
+      "bootstrap_order": [
+        6,
+        1
+      ],
+      "reference_ids": [
+        1,
+        6,
+        11,
+        14
+      ],
+      "seed_distance_d": 3.0,
+      "spectral_radius": 1.1102230246251565e-16,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.0813307647272458,
+      "bootstrap_worst_condition_number": 3.7766682343058133,
+      "bootstrap_minimum_angle_margin_rad": 0.2425638740954853,
+      "bootstrap_nodes": [
+        {
+          "receiver": 6,
+          "other": 1,
+          "transmitter_ids": [
+            11,
+            14,
+            1
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982987,
+          "self_sigma_min": 0.19549482833118853,
+          "self_condition_number": 3.776668234305812,
+          "best_response_derivative": [
+            [
+              -0.7499999999999999,
+              -1.2990381056766578
+            ],
+            [
+              0.43301270189221935,
+              0.75
+            ]
+          ]
+        },
+        {
+          "receiver": 1,
+          "other": 6,
+          "transmitter_ids": [
+            11,
+            14,
+            6
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 2,
+          "nearest_wrong_root_distance_d": 4.95695759225642,
+          "angle_boundary_margin_rad": 0.2425638740954853,
+          "self_sigma_min": 0.0813307647272458,
+          "self_condition_number": 3.7766682343058133,
+          "best_response_derivative": [
+            [
+              -0.49999999999999994,
+              -0.8660254037844384
+            ],
+            [
+              2.0207259421636903,
+              3.4999999999999996
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.34228977697161345,
+      "final_worst_condition_number": 3.8402688619786103,
+      "final_minimum_angle_margin_rad": 0.33347317225183204
+    },
+    {
+      "seed_ids": [
+        12,
+        15
+      ],
+      "bootstrap_order": [
+        4,
+        1
+      ],
+      "reference_ids": [
+        1,
+        4,
+        12,
+        15
+      ],
+      "seed_distance_d": 3.0,
+      "spectral_radius": 1.1102230246251565e-16,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.0813307647272458,
+      "bootstrap_worst_condition_number": 3.7766682343058133,
+      "bootstrap_minimum_angle_margin_rad": 0.2425638740954853,
+      "bootstrap_nodes": [
+        {
+          "receiver": 4,
+          "other": 1,
+          "transmitter_ids": [
+            12,
+            15,
+            1
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982987,
+          "self_sigma_min": 0.19549482833118853,
+          "self_condition_number": 3.776668234305812,
+          "best_response_derivative": [
+            [
+              -0.7499999999999999,
+              1.2990381056766578
+            ],
+            [
+              -0.43301270189221935,
+              0.75
+            ]
+          ]
+        },
+        {
+          "receiver": 1,
+          "other": 4,
+          "transmitter_ids": [
+            12,
+            15,
+            4
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 2,
+          "nearest_wrong_root_distance_d": 4.95695759225642,
+          "angle_boundary_margin_rad": 0.2425638740954853,
+          "self_sigma_min": 0.0813307647272458,
+          "self_condition_number": 3.7766682343058133,
+          "best_response_derivative": [
+            [
+              -0.49999999999999994,
+              0.8660254037844384
+            ],
+            [
+              -2.0207259421636903,
+              3.4999999999999996
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.34228977697161345,
+      "final_worst_condition_number": 3.8402688619786103,
+      "final_minimum_angle_margin_rad": 0.33347317225183204
+    },
+    {
+      "seed_ids": [
+        1,
+        11
+      ],
+      "bootstrap_order": [
+        13,
+        10
+      ],
+      "reference_ids": [
+        1,
+        10,
+        11,
+        13
+      ],
+      "seed_distance_d": 3.9999999999999996,
+      "spectral_radius": 1.6658854369614531e-15,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.12521690375646263,
+      "bootstrap_worst_condition_number": 3.7766682343058124,
+      "bootstrap_minimum_angle_margin_rad": 0.2810349015028135,
+      "bootstrap_nodes": [
+        {
+          "receiver": 13,
+          "other": 10,
+          "transmitter_ids": [
+            1,
+            11,
+            10
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982987,
+          "self_sigma_min": 0.19549482833118859,
+          "self_condition_number": 3.776668234305811,
+          "best_response_derivative": [
+            [
+              0.9999999999999997,
+              -0.5773502691896253
+            ],
+            [
+              1.7320508075688763,
+              -0.999999999999999
+            ]
+          ]
+        },
+        {
+          "receiver": 10,
+          "other": 13,
+          "transmitter_ids": [
+            1,
+            11,
+            13
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.2810349015028135,
+          "self_sigma_min": 0.12521690375646263,
+          "self_condition_number": 3.7766682343058124,
+          "best_response_derivative": [
+            [
+              2.9999999999999987,
+              -1.7320508075688759
+            ],
+            [
+              0.8660254037844385,
+              -0.49999999999999967
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.3422897769716134,
+      "final_worst_condition_number": 3.8402688619786107,
+      "final_minimum_angle_margin_rad": 0.33347317225183204
+    },
+    {
+      "seed_ids": [
+        1,
+        15
+      ],
+      "bootstrap_order": [
+        13,
+        7
+      ],
+      "reference_ids": [
+        1,
+        7,
+        13,
+        15
+      ],
+      "seed_distance_d": 3.9999999999999996,
+      "spectral_radius": 1.6658854369614531e-15,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.12521690375646263,
+      "bootstrap_worst_condition_number": 3.7766682343058124,
+      "bootstrap_minimum_angle_margin_rad": 0.2810349015028135,
+      "bootstrap_nodes": [
+        {
+          "receiver": 13,
+          "other": 7,
+          "transmitter_ids": [
+            1,
+            15,
+            7
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982987,
+          "self_sigma_min": 0.19549482833118859,
+          "self_condition_number": 3.776668234305811,
+          "best_response_derivative": [
+            [
+              0.9999999999999997,
+              0.5773502691896253
+            ],
+            [
+              -1.7320508075688763,
+              -0.999999999999999
+            ]
+          ]
+        },
+        {
+          "receiver": 7,
+          "other": 13,
+          "transmitter_ids": [
+            1,
+            15,
+            13
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.2810349015028135,
+          "self_sigma_min": 0.12521690375646263,
+          "self_condition_number": 3.7766682343058124,
+          "best_response_derivative": [
+            [
+              2.9999999999999987,
+              1.7320508075688759
+            ],
+            [
+              -0.8660254037844385,
+              -0.49999999999999967
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.3422897769716134,
+      "final_worst_condition_number": 3.8402688619786107,
+      "final_minimum_angle_margin_rad": 0.33347317225183204
+    },
+    {
+      "seed_ids": [
+        1,
+        7
+      ],
+      "bootstrap_order": [
+        13,
+        15
+      ],
+      "reference_ids": [
+        1,
+        7,
+        13,
+        15
+      ],
+      "seed_distance_d": 3.0,
+      "spectral_radius": 1.0255800994045666e-15,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.0813307647272458,
+      "bootstrap_worst_condition_number": 3.7766682343058133,
+      "bootstrap_minimum_angle_margin_rad": 0.24256387409548522,
+      "bootstrap_nodes": [
+        {
+          "receiver": 13,
+          "other": 15,
+          "transmitter_ids": [
+            1,
+            7,
+            15
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982987,
+          "self_sigma_min": 0.19549482833118859,
+          "self_condition_number": 3.776668234305811,
+          "best_response_derivative": [
+            [
+              3.418600331348556e-16,
+              -0.0
+            ],
+            [
+              1.7320508075688763,
+              -0.0
+            ]
+          ]
+        },
+        {
+          "receiver": 15,
+          "other": 13,
+          "transmitter_ids": [
+            1,
+            7,
+            13
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 2,
+          "nearest_wrong_root_distance_d": 4.95695759225642,
+          "angle_boundary_margin_rad": 0.24256387409548522,
+          "self_sigma_min": 0.0813307647272458,
+          "self_condition_number": 3.7766682343058133,
+          "best_response_derivative": [
+            [
+              2.9999999999999996,
+              0.0
+            ],
+            [
+              2.886751345948128,
+              0.0
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.3422897769716134,
+      "final_worst_condition_number": 3.8402688619786107,
+      "final_minimum_angle_margin_rad": 0.33347317225183204
+    },
+    {
+      "seed_ids": [
+        1,
+        7
+      ],
+      "bootstrap_order": [
+        15,
+        13
+      ],
+      "reference_ids": [
+        1,
+        7,
+        13,
+        15
+      ],
+      "seed_distance_d": 3.0,
+      "spectral_radius": 1.0255800994045666e-15,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.0813307647272458,
+      "bootstrap_worst_condition_number": 3.7766682343058133,
+      "bootstrap_minimum_angle_margin_rad": 0.24256387409548522,
+      "bootstrap_nodes": [
+        {
+          "receiver": 15,
+          "other": 13,
+          "transmitter_ids": [
+            1,
+            7,
+            13
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 2,
+          "nearest_wrong_root_distance_d": 4.95695759225642,
+          "angle_boundary_margin_rad": 0.24256387409548522,
+          "self_sigma_min": 0.0813307647272458,
+          "self_condition_number": 3.7766682343058133,
+          "best_response_derivative": [
+            [
+              2.9999999999999996,
+              0.0
+            ],
+            [
+              2.886751345948128,
+              0.0
+            ]
+          ]
+        },
+        {
+          "receiver": 13,
+          "other": 15,
+          "transmitter_ids": [
+            1,
+            7,
+            15
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982987,
+          "self_sigma_min": 0.19549482833118859,
+          "self_condition_number": 3.776668234305811,
+          "best_response_derivative": [
+            [
+              3.418600331348556e-16,
+              -0.0
+            ],
+            [
+              1.7320508075688763,
+              -0.0
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.3422897769716134,
+      "final_worst_condition_number": 3.8402688619786107,
+      "final_minimum_angle_margin_rad": 0.33347317225183204
+    },
+    {
+      "seed_ids": [
+        1,
+        10
+      ],
+      "bootstrap_order": [
+        11,
+        13
+      ],
+      "reference_ids": [
+        1,
+        10,
+        11,
+        13
+      ],
+      "seed_distance_d": 3.0,
+      "spectral_radius": 1.0255800994045666e-15,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.0813307647272458,
+      "bootstrap_worst_condition_number": 3.7766682343058133,
+      "bootstrap_minimum_angle_margin_rad": 0.24256387409548522,
+      "bootstrap_nodes": [
+        {
+          "receiver": 11,
+          "other": 13,
+          "transmitter_ids": [
+            1,
+            10,
+            13
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 2,
+          "nearest_wrong_root_distance_d": 4.95695759225642,
+          "angle_boundary_margin_rad": 0.24256387409548522,
+          "self_sigma_min": 0.0813307647272458,
+          "self_condition_number": 3.7766682343058133,
+          "best_response_derivative": [
+            [
+              2.9999999999999996,
+              -0.0
+            ],
+            [
+              -2.886751345948128,
+              -0.0
+            ]
+          ]
+        },
+        {
+          "receiver": 13,
+          "other": 11,
+          "transmitter_ids": [
+            1,
+            10,
+            11
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982987,
+          "self_sigma_min": 0.19549482833118859,
+          "self_condition_number": 3.776668234305811,
+          "best_response_derivative": [
+            [
+              3.418600331348556e-16,
+              -0.0
+            ],
+            [
+              -1.7320508075688763,
+              -0.0
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.3422897769716134,
+      "final_worst_condition_number": 3.8402688619786107,
+      "final_minimum_angle_margin_rad": 0.33347317225183204
+    },
+    {
+      "seed_ids": [
+        1,
+        10
+      ],
+      "bootstrap_order": [
+        13,
+        11
+      ],
+      "reference_ids": [
+        1,
+        10,
+        11,
+        13
+      ],
+      "seed_distance_d": 3.0,
+      "spectral_radius": 1.0255800994045666e-15,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.0813307647272458,
+      "bootstrap_worst_condition_number": 3.7766682343058133,
+      "bootstrap_minimum_angle_margin_rad": 0.24256387409548522,
+      "bootstrap_nodes": [
+        {
+          "receiver": 13,
+          "other": 11,
+          "transmitter_ids": [
+            1,
+            10,
+            11
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982987,
+          "self_sigma_min": 0.19549482833118859,
+          "self_condition_number": 3.776668234305811,
+          "best_response_derivative": [
+            [
+              3.418600331348556e-16,
+              -0.0
+            ],
+            [
+              -1.7320508075688763,
+              -0.0
+            ]
+          ]
+        },
+        {
+          "receiver": 11,
+          "other": 13,
+          "transmitter_ids": [
+            1,
+            10,
+            13
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 2,
+          "nearest_wrong_root_distance_d": 4.95695759225642,
+          "angle_boundary_margin_rad": 0.24256387409548522,
+          "self_sigma_min": 0.0813307647272458,
+          "self_condition_number": 3.7766682343058133,
+          "best_response_derivative": [
+            [
+              2.9999999999999996,
+              -0.0
+            ],
+            [
+              -2.886751345948128,
+              -0.0
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.3422897769716134,
+      "final_worst_condition_number": 3.8402688619786107,
+      "final_minimum_angle_margin_rad": 0.33347317225183204
+    },
+    {
+      "seed_ids": [
+        4,
+        11
+      ],
+      "bootstrap_order": [
+        13,
+        6
+      ],
+      "reference_ids": [
+        4,
+        6,
+        11,
+        13
+      ],
+      "seed_distance_d": 1.9999999999999998,
+      "spectral_radius": 3.3703244958057876e-16,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.20412414523193154,
+      "bootstrap_worst_condition_number": 1.7320508075688774,
+      "bootstrap_minimum_angle_margin_rad": 0.5235987755982988,
+      "bootstrap_nodes": [
+        {
+          "receiver": 13,
+          "other": 6,
+          "transmitter_ids": [
+            4,
+            11,
+            6
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 1.0471975511965974,
+          "self_sigma_min": 0.3535533905932738,
+          "self_condition_number": 1.7320508075688774,
+          "best_response_derivative": [
+            [
+              0.5,
+              -0.8660254037844385
+            ],
+            [
+              0.28867513459481275,
+              -0.4999999999999997
+            ]
+          ]
+        },
+        {
+          "receiver": 6,
+          "other": 13,
+          "transmitter_ids": [
+            4,
+            11,
+            13
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982988,
+          "self_sigma_min": 0.20412414523193154,
+          "self_condition_number": 1.7320508075688772,
+          "best_response_derivative": [
+            [
+              0.4999999999999998,
+              -0.8660254037844383
+            ],
+            [
+              -0.8660254037844385,
+              1.4999999999999998
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.23250784762950621,
+      "final_worst_condition_number": 3.568795184737502,
+      "final_minimum_angle_margin_rad": 0.2810349015028135
+    },
+    {
+      "seed_ids": [
+        4,
+        13
+      ],
+      "bootstrap_order": [
+        6,
+        15
+      ],
+      "reference_ids": [
+        4,
+        6,
+        13,
+        15
+      ],
+      "seed_distance_d": 1.9999999999999998,
+      "spectral_radius": 3.3703244958057876e-16,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.20412414523193154,
+      "bootstrap_worst_condition_number": 1.7320508075688774,
+      "bootstrap_minimum_angle_margin_rad": 0.5235987755982988,
+      "bootstrap_nodes": [
+        {
+          "receiver": 6,
+          "other": 15,
+          "transmitter_ids": [
+            4,
+            13,
+            15
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 1.0471975511965974,
+          "self_sigma_min": 0.3535533905932738,
+          "self_condition_number": 1.7320508075688774,
+          "best_response_derivative": [
+            [
+              0.5,
+              0.8660254037844385
+            ],
+            [
+              -0.28867513459481275,
+              -0.4999999999999997
+            ]
+          ]
+        },
+        {
+          "receiver": 15,
+          "other": 6,
+          "transmitter_ids": [
+            4,
+            13,
+            6
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982988,
+          "self_sigma_min": 0.20412414523193154,
+          "self_condition_number": 1.7320508075688772,
+          "best_response_derivative": [
+            [
+              0.4999999999999998,
+              0.8660254037844383
+            ],
+            [
+              0.8660254037844385,
+              1.4999999999999998
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.23250784762950621,
+      "final_worst_condition_number": 3.5687951847375032,
+      "final_minimum_angle_margin_rad": 0.2810349015028135
+    },
+    {
+      "seed_ids": [
+        6,
+        13
+      ],
+      "bootstrap_order": [
+        4,
+        11
+      ],
+      "reference_ids": [
+        4,
+        6,
+        11,
+        13
+      ],
+      "seed_distance_d": 1.9999999999999998,
+      "spectral_radius": 3.3703244958057876e-16,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.20412414523193154,
+      "bootstrap_worst_condition_number": 1.7320508075688774,
+      "bootstrap_minimum_angle_margin_rad": 0.5235987755982988,
+      "bootstrap_nodes": [
+        {
+          "receiver": 4,
+          "other": 11,
+          "transmitter_ids": [
+            6,
+            13,
+            11
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 1.0471975511965974,
+          "self_sigma_min": 0.3535533905932738,
+          "self_condition_number": 1.7320508075688774,
+          "best_response_derivative": [
+            [
+              0.5,
+              -0.8660254037844385
+            ],
+            [
+              0.28867513459481275,
+              -0.4999999999999997
+            ]
+          ]
+        },
+        {
+          "receiver": 11,
+          "other": 4,
+          "transmitter_ids": [
+            6,
+            13,
+            4
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982988,
+          "self_sigma_min": 0.20412414523193154,
+          "self_condition_number": 1.7320508075688772,
+          "best_response_derivative": [
+            [
+              0.4999999999999998,
+              -0.8660254037844383
+            ],
+            [
+              -0.8660254037844385,
+              1.4999999999999998
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.23250784762950621,
+      "final_worst_condition_number": 3.568795184737502,
+      "final_minimum_angle_margin_rad": 0.2810349015028135
+    },
+    {
+      "seed_ids": [
+        6,
+        15
+      ],
+      "bootstrap_order": [
+        13,
+        4
+      ],
+      "reference_ids": [
+        4,
+        6,
+        13,
+        15
+      ],
+      "seed_distance_d": 1.9999999999999998,
+      "spectral_radius": 3.3703244958057876e-16,
+      "locally_contracting": true,
+      "bootstrap_worst_self_sigma_min": 0.20412414523193154,
+      "bootstrap_worst_condition_number": 1.7320508075688774,
+      "bootstrap_minimum_angle_margin_rad": 0.5235987755982988,
+      "bootstrap_nodes": [
+        {
+          "receiver": 13,
+          "other": 4,
+          "transmitter_ids": [
+            6,
+            15,
+            4
+          ],
+          "primary_angle_names": [
+            "ab",
+            "ac"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 1.0471975511965974,
+          "self_sigma_min": 0.3535533905932738,
+          "self_condition_number": 1.7320508075688774,
+          "best_response_derivative": [
+            [
+              0.5,
+              0.8660254037844385
+            ],
+            [
+              -0.28867513459481275,
+              -0.4999999999999997
+            ]
+          ]
+        },
+        {
+          "receiver": 4,
+          "other": 13,
+          "transmitter_ids": [
+            6,
+            15,
+            13
+          ],
+          "primary_angle_names": [
+            "ab",
+            "bc"
+          ],
+          "candidate_count": 1,
+          "nearest_wrong_root_distance_d": null,
+          "angle_boundary_margin_rad": 0.5235987755982988,
+          "self_sigma_min": 0.20412414523193154,
+          "self_condition_number": 1.7320508075688772,
+          "best_response_derivative": [
+            [
+              0.4999999999999998,
+              0.8660254037844383
+            ],
+            [
+              0.8660254037844385,
+              1.4999999999999998
+            ]
+          ]
+        }
+      ],
+      "final_reference_feasible": true,
+      "final_global_unique_receiver_count": 11,
+      "final_worst_sigma_min": 0.23250784762950621,
+      "final_worst_condition_number": 3.5687951847375032,
+      "final_minimum_angle_margin_rad": 0.2810349015028135
+    }
+  ],
+  "requested_schedule_record": {
+    "seed_ids": [
+      6,
+      14
+    ],
+    "bootstrap_order": [
+      8,
+      1
+    ],
+    "reference_ids": [
+      1,
+      6,
+      8,
+      14
+    ],
+    "seed_distance_d": 1.7320508075688772,
+    "spectral_radius": 0.29629629629629667,
+    "locally_contracting": true,
+    "bootstrap_worst_self_sigma_min": 0.17456124816050006,
+    "bootstrap_worst_condition_number": 1.4054198267586697,
+    "bootstrap_minimum_angle_margin_rad": 0.2425638740954853,
+    "bootstrap_nodes": [
+      {
+        "receiver": 8,
+        "other": 1,
+        "transmitter_ids": [
+          6,
+          14,
+          1
+        ],
+        "primary_angle_names": [
+          "ab",
+          "ac"
+        ],
+        "candidate_count": 2,
+        "nearest_wrong_root_distance_d": 2.481510575605533,
+        "angle_boundary_margin_rad": 0.8570719478501309,
+        "self_sigma_min": 0.41959302063445136,
+        "self_condition_number": 1.4054198267586688,
+        "best_response_derivative": [
+          [
+            -0.16666666666666674,
+            0.8660254037844388
+          ],
+          [
+            3.70074341541719e-17,
+            -1.9229626863835646e-16
+          ]
+        ]
+      },
+      {
+        "receiver": 1,
+        "other": 8,
+        "transmitter_ids": [
+          6,
+          14,
+          8
+        ],
+        "primary_angle_names": [
+          "ab",
+          "bc"
+        ],
+        "candidate_count": 2,
+        "nearest_wrong_root_distance_d": 4.430753767404415,
+        "angle_boundary_margin_rad": 0.2425638740954853,
+        "self_sigma_min": 0.17456124816050006,
+        "self_condition_number": 1.4054198267586697,
+        "best_response_derivative": [
+          [
+            0.2777777777777777,
+            -1.4433756729740645
+          ],
+          [
+            -0.28867513459481287,
+            1.5000000000000004
+          ]
+        ]
+      }
+    ],
+    "final_reference_feasible": true,
+    "final_global_unique_receiver_count": 11,
+    "final_worst_sigma_min": 0.2665103464655792,
+    "final_worst_condition_number": 5.345880143259103,
+    "final_minimum_angle_margin_rad": 0.2425638740954854
+  }
+}

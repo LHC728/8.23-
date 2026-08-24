@@ -1,0 +1,101 @@
+{
+  "gate": "Q2_FINAL_ROUTE_DESIGN_GATE",
+  "status": "PASS",
+  "scope": "路线设计与小范围确定性验证；尚未改写 Strategy Freeze，也不是 Q2 正式结果冻结。",
+  "checks": {
+    "anchor_route_audit": true,
+    "final_four_reference_ids": true,
+    "final_four_all_11_unique": true,
+    "final_four_independent_root_check": true,
+    "complete_schedule_enumeration": true,
+    "winner_identity": true,
+    "bootstrap_audit": true,
+    "bootstrap_first_order_nilpotent": true,
+    "bootstrap_exact_grid": true,
+    "bootstrap_finite_probe_grid": true,
+    "follower_local_grid": true,
+    "reference_perturbation_sensitivity": true,
+    "similarity_invariance": true,
+    "controller_information_interface": true,
+    "independent_30_edge_and_line_evaluator": true
+  },
+  "winner": {
+    "trusted_seed_ids": [
+      11,
+      15
+    ],
+    "trusted_baseline_length_in_d_star": 4.0,
+    "bootstrap_order": [
+      4,
+      3
+    ],
+    "final_reference_ids": [
+      3,
+      4,
+      11,
+      15
+    ],
+    "remaining_parallel_receivers": 11
+  },
+  "similarity_invariance_check": {
+    "status": "PASS",
+    "interpretation": "本机夹角对共同平移、旋转、反射和缩放不变；指定尺度必须来自可信基线。",
+    "cases": [
+      {
+        "scale": 0.37,
+        "theta": 0.41,
+        "reflected": false,
+        "translation": [
+          2.3,
+          -1.7
+        ],
+        "maximum_angle_error": 8.881784197001252e-16,
+        "pass": true
+      },
+      {
+        "scale": 2.4,
+        "theta": -0.83,
+        "reflected": false,
+        "translation": [
+          -3.2,
+          4.1
+        ],
+        "maximum_angle_error": 8.881784197001252e-16,
+        "pass": true
+      },
+      {
+        "scale": 1.6,
+        "theta": 1.17,
+        "reflected": true,
+        "translation": [
+          0.5,
+          2.2
+        ],
+        "maximum_angle_error": 4.440892098500626e-16,
+        "pass": true
+      }
+    ]
+  },
+  "controller_interface_check": {
+    "status": "PASS",
+    "actual_parameters": [
+      "observe_offset",
+      "target_angles",
+      "probe",
+      "gain",
+      "damping",
+      "max_step"
+    ],
+    "forbidden_parameters_found": [],
+    "interpretation": "在线动作函数只接收本机试探观测回调、预装目标角和本机数值参数。"
+  },
+  "ideal_geometry_evaluator": {
+    "nearest_neighbor_edge_count": 30,
+    "edge_mean": 1.0,
+    "edge_relative_std": 1.5960461584102712e-16,
+    "edge_max_abs_error_from_d": 2.220446049250313e-16,
+    "maximum_line_distance": 3.0331857110087204e-16
+  },
+  "required_assumption": "FY11 与 FY15 的实际相对位置无偏差，因而其基线长度为 4 d*；否则只能退回自由尺度结论。",
+  "claim_limit": "仅目标邻域、非退化和明示可信基线条件；不声称任意初态全局收敛。"
+}
