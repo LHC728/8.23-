@@ -44,7 +44,7 @@ Q1_FORMULA_RENDERING_AUDIT = PASS
 Q1_MID_REVIEW_HUMAN_CHECK_CARD = human_check/Q1_MID_REVIEW_HUMAN_CHECK_CARD.md
 Q1_MID_REVIEW_HUMAN_VERDICT = PASS
 Q1_MID_REVIEW_FINAL_CHECKPOINT = SUCCESS
-Q2_STARTED = NO
+Q2_STARTED = YES
 Q2_ROUTE_DESIGN_REVIEW = COMPLETE
 Q2_ROUTE_PROPOSAL_GATE = PASS
 Q2_ROUTE_PROPOSAL = review/Q2_FINAL_ROUTE_PROPOSAL.md
@@ -55,6 +55,13 @@ Q2_REFERENCE_FRAME_AND_SCALE_REOPEN_APPROVED = YES
 Q2_REOPEN_REQUEST = APPROVED
 Q2_REOPEN_SCOPE = REFERENCE_FRAME_AND_SCALE_LAYER
 Q2_PROVISIONAL_WINNER = FY11/FY15_TRUSTED_SEEDS_TO_FY04/FY03_BOOTSTRAP_TO_FOUR_REFERENCE_PLACEMENT
+Q2_STRATEGY_AMENDMENT = PASS
+Q2_MODEL_CONTRACT = model_contract/Q2_MODEL_CONTRACT.md
+Q2_STRATEGY_SCOPE = APPROVED_REFERENCE_FRAME_AND_SCALE_LAYER_ONLY
+Q2_TRUSTED_BASELINE_CONDITION = FY11_FY15_UNBIASED_BASELINE_EQUALS_4D_STAR
+Q2_PROGRAM_GATE = PENDING
+Q2_HUMAN_VERDICT = PENDING
+Q2_FINAL_FREEZE = PENDING
 Q2_ROUTE_EVIDENCE_COMMIT = 9eae6d839bcb864958ddd3add9304b8b76d0b0f3
 Q2_ROUTE_APPROVAL_COMMIT = c392944403c6f4941102b624d2ef927d745cf5f0
 Q2_ROUTE_REMOTE_CHECKPOINT = SUCCESS
@@ -72,7 +79,7 @@ Q1_3_PAPER_HANDOFF = paper_handoff/Q1_3_PAPER_HANDOFF.md
 Q1_3_HUMAN_VERDICT = PASS
 Q1_3_FINAL_FREEZE = PASS
 Q1_3_SOL_DELEGATION = NO
-CODEX_NEXT_ACTION = Q2_APPROVED_STRATEGY_AMENDMENT_AND_CORE_IMPLEMENTATION
+CODEX_NEXT_ACTION = Q2_CORE_IMPLEMENTATION_AFTER_STRATEGY_CHECKPOINT
 ```
 
 ## Frozen winner
@@ -81,22 +88,21 @@ CODEX_NEXT_ACTION = Q2_APPROVED_STRATEGY_AMENDMENT_AND_CORE_IMPLEMENTATION
 - Q1(1)：双侧定夹角完整候选与局部单射。
 - Q1(2)：匿名身份—连续位置联合枚举，局部 (m_{\min}=1)，第二匿名机为 fail-safe。
 - Q1(3)：FY04/FY07 严格本地交替自举，随后固定 FY00/FY01/FY04/FY07、六机并行本机归槽。
-- Q2：FY01/FY11/FY15 各自本机内角均衡，固定自由尺度等边外框后十二机并行本机签名归槽。
+- Q2：FY11/FY15 可信尺度种子，FY04/FY03 严格本机交替建锚，再由 FY03/FY04/FY11/FY15 四参考机完成 11 机本机归槽。
 
 ## Frozen information decisions
 
 1. 禁止跨接收机上报或汇总夹角；某个夹角只可由测得它的无人机用于本机动作与本机验收。
 2. 允许预编排收发时序、固定编号、预装目标签名和本机动作历史。
-3. Q2 的“如 50 m”只是例示；共同尺度为自由相似规范。
+3. Q2 的“如 50 m”只是例示；本次获批路线以 FY11/FY15 的可信无偏差基线 \(4d^\ast\) 提供参数化尺度，整体平移、旋转和镜像仍自由。
 4. 表 1 除题给且保持不动的 FY00/FY01 种子外只进入离线评估器，不进入在线决策器。
 5. 旧跨机互易两角、在线全图因子、集中 Route A/B 和依赖跨机合角的 2-tree 均已淘汰。
 
-## Pending Q2 route proposal
+## Active Q2 execution route
 
-- 当前 Strategy Freeze 尚未修改；正式 Q2 仍是上面的自由尺度路线。
-- 已完成固定参数间距 $d^\ast$ 路线的设计 Gate：FY11/FY15 可信种子，FY04/FY03 严格本机交替建锚，随后四参考机下 11 机并行归槽。
-- 用户已明确批准 FY11/FY15 的无偏差可信基线 $4d^\ast$，并批准只重开 Q2 的参考框架与尺度层。
-- 设计证据见 `review/Q2_FINAL_ROUTE_PROPOSAL.md`。Codex 可在远程检查点恢复后按批准范围修订 Q2 Strategy Freeze 并实施；不得修改 Q1、扩大重开范围或自动最终冻结。
+- Q2 已按用户批准仅修订参考框架与尺度层：FY11/FY15 可信种子提供 \(4d^\ast\) 基线，FY04/FY03 严格本机交替建锚，随后四参考机下 11 机并行归槽。
+- 整体平移、旋转和镜像仍自由；可信种子绝对坐标不得进入在线控制器。
+- 若可信基线条件撤销，正式 fallback 为冻结文件保留的自由尺度路线；不得扩大到其他路线。
 
 ## Core innovations
 
