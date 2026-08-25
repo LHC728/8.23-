@@ -561,8 +561,8 @@
         "negative_control_illegal_field_rejected": true,
         "cross_receiver_angle_exchange": false,
         "actual_event_counts": {
-          "4": 17495,
-          "3": 17495,
+          "4": 19746,
+          "3": 19867,
           "1": 5975,
           "2": 6131,
           "5": 6065,
@@ -752,6 +752,17 @@
         ]
       }
     },
+    "fixed_bootstrap_schedule_audit": {
+      "status": "PASS",
+      "evidence": {
+        "fixed_bootstrap_cycles": 20,
+        "for_loop_count": 1,
+        "break_count": 0,
+        "truth_based_stage_switch_found": false,
+        "cross_receiver_residual_aggregation_found": false,
+        "offline_terminal_evaluation_after_schedule": true
+      }
+    },
     "metamorphic_and_ideal_target_geometry": {
       "status": "PASS",
       "evidence": {
@@ -777,6 +788,8 @@
     "actual_end_to_end_formation": {
       "status": "PASS",
       "evidence": {
+        "fixed_bootstrap_cycles": 20,
+        "fixed_cycles_executed_for_all_cases": true,
         "full_formation_case_count": 33,
         "nonzero_case_count": 32,
         "radius_levels": [
@@ -809,7 +822,7 @@
               },
               "max_error": 0.0,
               "threshold": 2e-07,
-              "cycles": 1
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -885,20 +898,20 @@
             "direction_index": 0,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254035961487,
-                0.49999999931698436
+                -0.8660254037844387,
+                0.500000000000001
               ],
               "FY04": [
-                -1.7320508249769562,
-                -1.0000000302131062
+                -1.7320508075688763,
+                -0.9999999999999981
               ],
               "errors": {
-                "4": 3.486937054678545e-08,
-                "3": 7.084938046375312e-10
+                "4": 2.085919684541963e-15,
+                "3": 1.0053497077208614e-15
               },
-              "max_error": 3.486937054678545e-08,
+              "max_error": 2.085919684541963e-15,
               "threshold": 2e-07,
-              "cycles": 9
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -911,12 +924,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254035961487,
-                  0.49999999931698436
+                  -0.8660254037844387,
+                  0.500000000000001
                 ],
                 [
-                  -1.7320508249769562,
-                  -1.0000000302131062
+                  -1.7320508075688763,
+                  -0.9999999999999981
                 ],
                 [
                   -3.4641016151377544,
@@ -929,12 +942,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254035961487,
-                  0.49999999931698436
+                  -0.8660254037844387,
+                  0.500000000000001
                 ],
                 [
-                  -1.7320508249769562,
-                  -1.0000000302131062
+                  -1.7320508075688763,
+                  -0.9999999999999981
                 ],
                 [
                   -3.4641016151377544,
@@ -946,22 +959,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 3.486937054678545e-08,
+              "fy03_fy04_nonideal_difference": 2.085919684541963e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 3.609106274673613e-08,
+              "node_error": 2.6623143190388716e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 3.5050643609757515e-08,
+              "edge_error": 2.3381652169973677e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 1.7061866920239455e-08,
-              "collinearity_error": 9.71995284267374e-09,
+              "edge_relative_std": 1.1311613056199165e-10,
+              "collinearity_error": 1.1534599808949826e-10,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
-            "max_main_residual": 1.7982482169998093e-10,
-            "max_holdout_residual": 1.7313577571620442e-08,
+            "max_main_residual": 1.7982437761077108e-10,
+            "max_holdout_residual": 1.9049561927886316e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -974,20 +987,20 @@
             "direction_index": 1,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254037250463,
-                0.5000000002016214
+                -0.8660254037844387,
+                0.5000000000000006
               ],
               "FY04": [
-                -1.7320507838177366,
-                -0.999999958942567
+                -1.7320508075688765,
+                -0.9999999999999986
               ],
               "errors": {
-                "4": 4.743236748838969e-08,
-                "3": 2.1018711900941815e-10
+                "4": 1.5895974606912448e-15,
+                "3": 5.661048867003676e-16
               },
-              "max_error": 4.743236748838969e-08,
+              "max_error": 1.5895974606912448e-15,
               "threshold": 2e-07,
-              "cycles": 8
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -1000,12 +1013,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254037250463,
-                  0.5000000002016214
+                  -0.8660254037844387,
+                  0.5000000000000006
                 ],
                 [
-                  -1.7320507838177366,
-                  -0.999999958942567
+                  -1.7320508075688765,
+                  -0.9999999999999986
                 ],
                 [
                   -3.4641016151377544,
@@ -1018,12 +1031,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254037250463,
-                  0.5000000002016214
+                  -0.8660254037844387,
+                  0.5000000000000006
                 ],
                 [
-                  -1.7320507838177366,
-                  -0.999999958942567
+                  -1.7320508075688765,
+                  -0.9999999999999986
                 ],
                 [
                   -3.4641016151377544,
@@ -1035,22 +1048,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 4.743236748838969e-08,
+              "fy03_fy04_nonideal_difference": 1.5895974606912448e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 4.956405682146121e-08,
+              "node_error": 1.9583397362005047e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 4.78865113118232e-08,
+              "edge_error": 1.8777057686492071e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 2.344516998511232e-08,
-              "collinearity_error": 1.3197989368053845e-08,
+              "edge_relative_std": 8.981869600841058e-11,
+              "collinearity_error": 1.4816725624200248e-10,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
             "max_main_residual": 1.7510459748848461e-10,
-            "max_holdout_residual": 2.3776643320871926e-08,
+            "max_holdout_residual": 1.6357271093170311e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -1063,20 +1076,20 @@
             "direction_index": 2,
             "bootstrap_terminal": {
               "FY03": [
-                -0.866025403470612,
-                0.499999998717087
+                -0.8660254037844386,
+                0.500000000000001
               ],
               "FY04": [
-                -1.7320508278711924,
-                -1.0000000353057918
+                -1.7320508075688765,
+                -0.9999999999999986
               ],
               "errors": {
-                "4": 4.0726931369783905e-08,
-                "3": 1.3207395334160807e-09
+                "4": 1.5895974606912448e-15,
+                "3": 9.992007221626409e-16
               },
-              "max_error": 4.0726931369783905e-08,
+              "max_error": 1.5895974606912448e-15,
               "threshold": 2e-07,
-              "cycles": 9
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -1089,12 +1102,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.866025403470612,
-                  0.499999998717087
+                  -0.8660254037844386,
+                  0.500000000000001
                 ],
                 [
-                  -1.7320508278711924,
-                  -1.0000000353057918
+                  -1.7320508075688765,
+                  -0.9999999999999986
                 ],
                 [
                   -3.4641016151377544,
@@ -1107,12 +1120,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.866025403470612,
-                  0.499999998717087
+                  -0.8660254037844386,
+                  0.500000000000001
                 ],
                 [
-                  -1.7320508278711924,
-                  -1.0000000353057918
+                  -1.7320508075688765,
+                  -0.9999999999999986
                 ],
                 [
                   -3.4641016151377544,
@@ -1124,22 +1137,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 4.0726931369783905e-08,
+              "fy03_fy04_nonideal_difference": 1.5895974606912448e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 4.25333698538669e-08,
+              "node_error": 2.3676636059073483e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 4.129301234279126e-08,
+              "edge_error": 1.9358836755856146e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 1.983408262579461e-08,
-              "collinearity_error": 1.1234560837106912e-08,
+              "edge_relative_std": 8.678906718294573e-11,
+              "collinearity_error": 1.0568887987327076e-10,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
-            "max_main_residual": 1.9838686249329385e-10,
-            "max_holdout_residual": 1.994320686371509e-08,
+            "max_main_residual": 1.9838664044868892e-10,
+            "max_holdout_residual": 2.2316415382306332e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -1152,20 +1165,20 @@
             "direction_index": 3,
             "bootstrap_terminal": {
               "FY03": [
-                -0.866025403451585,
-                0.4999999985833661
+                -0.8660254037844386,
+                0.500000000000001
               ],
               "FY04": [
-                -1.7320508316405892,
-                -1.0000000418408272
+                -1.7320508075688767,
+                -0.9999999999999988
               ],
               "errors": {
-                "4": 4.8271131551743095e-08,
-                "3": 1.4552124272032644e-09
+                "4": 1.2994827337208943e-15,
+                "3": 9.992007221626409e-16
               },
-              "max_error": 4.8271131551743095e-08,
+              "max_error": 1.2994827337208943e-15,
               "threshold": 2e-07,
-              "cycles": 9
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -1178,12 +1191,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.866025403451585,
-                  0.4999999985833661
+                  -0.8660254037844386,
+                  0.500000000000001
                 ],
                 [
-                  -1.7320508316405892,
-                  -1.0000000418408272
+                  -1.7320508075688767,
+                  -0.9999999999999988
                 ],
                 [
                   -3.4641016151377544,
@@ -1196,12 +1209,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.866025403451585,
-                  0.4999999985833661
+                  -0.8660254037844386,
+                  0.500000000000001
                 ],
                 [
-                  -1.7320508316405892,
-                  -1.0000000418408272
+                  -1.7320508075688767,
+                  -0.9999999999999988
                 ],
                 [
                   -3.4641016151377544,
@@ -1213,22 +1226,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 4.8271131551743095e-08,
+              "fy03_fy04_nonideal_difference": 1.2994827337208943e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 5.0575657220848974e-08,
+              "node_error": 2.1956548170477351e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 4.911182505118461e-08,
+              "edge_error": 2.1154211715668225e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 2.357017212951274e-08,
-              "collinearity_error": 1.3277557719862732e-08,
+              "edge_relative_std": 1.1408847515936576e-10,
+              "collinearity_error": 1.048740321492102e-10,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
             "max_main_residual": 1.7428547494091617e-10,
-            "max_holdout_residual": 2.3669783022484125e-08,
+            "max_holdout_residual": 1.826179207853329e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -1241,20 +1254,20 @@
             "direction_index": 4,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660253944174509,
-                0.4999998793494014
+                -0.8660254037844388,
+                0.5000000000000009
               ],
               "FY04": [
-                -1.732050719164211,
-                -0.999999869805507
+                -1.7320508075688767,
+                -0.9999999999999988
               ],
               "errors": {
-                "4": 1.573721417969373e-07,
-                "3": 1.2101366620096239e-07
+                "4": 1.2994827337208943e-15,
+                "3": 9.155133597044475e-16
               },
-              "max_error": 1.573721417969373e-07,
+              "max_error": 1.2994827337208943e-15,
               "threshold": 2e-07,
-              "cycles": 6
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -1267,12 +1280,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660253944174509,
-                  0.4999998793494014
+                  -0.8660254037844388,
+                  0.5000000000000009
                 ],
                 [
-                  -1.732050719164211,
-                  -0.999999869805507
+                  -1.7320508075688767,
+                  -0.9999999999999988
                 ],
                 [
                   -3.4641016151377544,
@@ -1285,12 +1298,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660253944174509,
-                  0.4999998793494014
+                  -0.8660254037844388,
+                  0.5000000000000009
                 ],
                 [
-                  -1.732050719164211,
-                  -0.999999869805507
+                  -1.7320508075688767,
+                  -0.9999999999999988
                 ],
                 [
                   -3.4641016151377544,
@@ -1302,22 +1315,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 1.573721417969373e-07,
+              "fy03_fy04_nonideal_difference": 1.2994827337208943e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 2.2728512119088573e-07,
+              "node_error": 2.219107017429217e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 2.7039859440414205e-07,
+              "edge_error": 1.950226646840747e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 1.1692566211910136e-07,
-              "collinearity_error": 7.433019177920441e-08,
+              "edge_relative_std": 9.763051712359225e-11,
+              "collinearity_error": 9.78954998677466e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
-            "max_main_residual": 1.6643197930932274e-10,
-            "max_holdout_residual": 1.166958620846259e-07,
+            "max_main_residual": 1.6643308953234737e-10,
+            "max_holdout_residual": 1.8319656902576753e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -1330,20 +1343,20 @@
             "direction_index": 5,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254027916506,
-                0.49999999561710795
+                -0.8660254037844387,
+                0.5000000000000013
               ],
               "FY04": [
-                -1.7320509008889822,
-                -1.0000001620538839
+                -1.7320508075688765,
+                -0.9999999999999984
               ],
               "errors": {
-                "4": 1.8700294989508226e-07,
-                "3": 4.493925973481577e-09
+                "4": 1.6910413304902302e-15,
+                "3": 1.336885555457667e-15
               },
-              "max_error": 1.8700294989508226e-07,
+              "max_error": 1.6910413304902302e-15,
               "threshold": 2e-07,
-              "cycles": 8
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -1356,12 +1369,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254027916506,
-                  0.49999999561710795
+                  -0.8660254037844387,
+                  0.5000000000000013
                 ],
                 [
-                  -1.7320509008889822,
-                  -1.0000001620538839
+                  -1.7320508075688765,
+                  -0.9999999999999984
                 ],
                 [
                   -3.4641016151377544,
@@ -1374,12 +1387,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254027916506,
-                  0.49999999561710795
+                  -0.8660254037844387,
+                  0.5000000000000013
                 ],
                 [
-                  -1.7320509008889822,
-                  -1.0000001620538839
+                  -1.7320508075688765,
+                  -0.9999999999999984
                 ],
                 [
                   -3.4641016151377544,
@@ -1391,22 +1404,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 1.8700294989508226e-07,
+              "fy03_fy04_nonideal_difference": 1.6910413304902302e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 1.9502160317758797e-07,
+              "node_error": 2.3247589208309274e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 1.893078227510614e-07,
+              "edge_error": 2.0990609250759462e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 9.147912592300333e-08,
-              "collinearity_error": 5.1528049826997795e-08,
+              "edge_relative_std": 1.0316720932971581e-10,
+              "collinearity_error": 1.5430323685450304e-10,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
-            "max_main_residual": 1.905313684602561e-10,
-            "max_holdout_residual": 9.22910563527779e-08,
+            "max_main_residual": 1.9053070232644131e-10,
+            "max_holdout_residual": 2.0350632290444537e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -1419,20 +1432,20 @@
             "direction_index": 6,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254032278282,
-                0.49999999777985044
+                -0.8660254037844385,
+                0.5000000000000006
               ],
               "FY04": [
-                -1.7320508582676215,
-                -1.0000000880218882
+                -1.7320508075688767,
+                -0.999999999999999
               ],
               "errors": {
-                "4": 1.01578617244392e-07,
-                "3": 2.288859814831616e-09
+                "4": 1.0934428697813141e-15,
+                "3": 5.661048867003676e-16
               },
-              "max_error": 1.01578617244392e-07,
+              "max_error": 1.0934428697813141e-15,
               "threshold": 2e-07,
-              "cycles": 9
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -1445,12 +1458,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254032278282,
-                  0.49999999777985044
+                  -0.8660254037844385,
+                  0.5000000000000006
                 ],
                 [
-                  -1.7320508582676215,
-                  -1.0000000880218882
+                  -1.7320508075688767,
+                  -0.999999999999999
                 ],
                 [
                   -3.4641016151377544,
@@ -1463,12 +1476,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254032278282,
-                  0.49999999777985044
+                  -0.8660254037844385,
+                  0.5000000000000006
                 ],
                 [
-                  -1.7320508582676215,
-                  -1.0000000880218882
+                  -1.7320508075688767,
+                  -0.999999999999999
                 ],
                 [
                   -3.4641016151377544,
@@ -1480,22 +1493,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 1.01578617244392e-07,
+              "fy03_fy04_nonideal_difference": 1.0934428697813141e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 1.0591386475254608e-07,
+              "node_error": 2.1253639179037734e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 1.0280938567142073e-07,
+              "edge_error": 2.106496088671861e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 4.97142432799945e-08,
-              "collinearity_error": 2.802311005507891e-08,
+              "edge_relative_std": 8.994965007590105e-11,
+              "collinearity_error": 9.660432453661207e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
-            "max_main_residual": 1.793871717836737e-10,
-            "max_holdout_residual": 5.0215378522011633e-08,
+            "max_main_residual": 1.79386283605254e-10,
+            "max_holdout_residual": 1.7910029015411055e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -1508,20 +1521,20 @@
             "direction_index": 7,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254031449597,
-                0.49999999748991814
+                -0.8660254037844388,
+                0.5000000000000002
               ],
               "FY04": [
-                -1.732050864648076,
-                -1.0000000991036964
+                -1.7320508075688767,
+                -0.9999999999999988
               ],
               "errors": {
-                "4": 1.1436598076632451e-07,
-                "3": 2.5902594944702607e-09
+                "4": 1.2994827337208943e-15,
+                "3": 3.1401849173675503e-16
               },
-              "max_error": 1.1436598076632451e-07,
+              "max_error": 1.2994827337208943e-15,
               "threshold": 2e-07,
-              "cycles": 9
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -1534,12 +1547,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254031449597,
-                  0.49999999748991814
+                  -0.8660254037844388,
+                  0.5000000000000002
                 ],
                 [
-                  -1.732050864648076,
-                  -1.0000000991036964
+                  -1.7320508075688767,
+                  -0.9999999999999988
                 ],
                 [
                   -3.4641016151377544,
@@ -1552,12 +1565,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254031449597,
-                  0.49999999748991814
+                  -0.8660254037844388,
+                  0.5000000000000002
                 ],
                 [
-                  -1.732050864648076,
-                  -1.0000000991036964
+                  -1.7320508075688767,
+                  -0.9999999999999988
                 ],
                 [
                   -3.4641016151377544,
@@ -1569,22 +1582,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 1.1436598076632451e-07,
+              "fy03_fy04_nonideal_difference": 1.2994827337208943e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 1.1907561675569407e-07,
+              "node_error": 2.0990857759803127e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 1.1557435308784392e-07,
+              "edge_error": 2.0422841195966157e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 5.595581646181779e-08,
-              "collinearity_error": 3.1640488007605013e-08,
+              "edge_relative_std": 1.0676201747850488e-10,
+              "collinearity_error": 1.1893924780559266e-10,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
             "max_main_residual": 1.594884224687121e-10,
-            "max_holdout_residual": 5.6506578194337465e-08,
+            "max_holdout_residual": 2.0229240504932022e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -1597,20 +1610,20 @@
             "direction_index": 0,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254027190506,
-                0.49999999588566546
+                -0.8660254037844389,
+                0.5000000000000012
               ],
               "FY04": [
-                -1.732050898221227,
-                -1.000000157423101
+                -1.7320508075688772,
+                -0.9999999999999994
               ],
               "errors": {
-                "4": 1.8165869442824834e-07,
-                "3": 4.250035328728612e-09
+                "4": 5.551115123125783e-16,
+                "3": 1.2658490090568385e-15
               },
-              "max_error": 1.8165869442824834e-07,
+              "max_error": 1.2658490090568385e-15,
               "threshold": 2e-07,
-              "cycles": 9
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -1623,12 +1636,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254027190506,
-                  0.49999999588566546
+                  -0.8660254037844389,
+                  0.5000000000000012
                 ],
                 [
-                  -1.732050898221227,
-                  -1.000000157423101
+                  -1.7320508075688772,
+                  -0.9999999999999994
                 ],
                 [
                   -3.4641016151377544,
@@ -1641,12 +1654,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254027190506,
-                  0.49999999588566546
+                  -0.8660254037844389,
+                  0.5000000000000012
                 ],
                 [
-                  -1.732050898221227,
-                  -1.000000157423101
+                  -1.7320508075688772,
+                  -0.9999999999999994
                 ],
                 [
                   -3.4641016151377544,
@@ -1658,22 +1671,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 1.8165869442824834e-07,
+              "fy03_fy04_nonideal_difference": 1.2658490090568385e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 1.8935090398306668e-07,
+              "node_error": 9.42305826109694e-11,
               "node_error_threshold": 2e-06,
-              "edge_error": 1.8381015243207344e-07,
+              "edge_error": 8.851275268284553e-11,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 8.887437168739029e-08,
-              "collinearity_error": 5.02479649001901e-08,
+              "edge_relative_std": 3.591918076312635e-11,
+              "collinearity_error": 2.667700945695548e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
-            "max_main_residual": 5.7210236548144167e-11,
-            "max_holdout_residual": 8.960460173845775e-08,
+            "max_main_residual": 5.7209792458934317e-11,
+            "max_holdout_residual": 5.6272764226150684e-11,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -1686,20 +1699,20 @@
             "direction_index": 1,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254016470529,
-                0.4999999926003468
+                -0.8660254037844387,
+                0.5000000000000012
               ],
               "FY04": [
-                -1.7320508829668047,
-                -1.0000001317042964
+                -1.7320508075688763,
+                -0.9999999999999982
               ],
               "errors": {
-                "4": 1.5175924730939596e-07,
-                "3": 7.702161093714157e-09
+                "4": 1.9860273225978185e-15,
+                "3": 1.2262814116578437e-15
               },
-              "max_error": 1.5175924730939596e-07,
+              "max_error": 1.9860273225978185e-15,
               "threshold": 2e-07,
-              "cycles": 8
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -1712,12 +1725,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254016470529,
-                  0.4999999926003468
+                  -0.8660254037844387,
+                  0.5000000000000012
                 ],
                 [
-                  -1.7320508829668047,
-                  -1.0000001317042964
+                  -1.7320508075688763,
+                  -0.9999999999999982
                 ],
                 [
                   -3.4641016151377544,
@@ -1730,12 +1743,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254016470529,
-                  0.4999999926003468
+                  -0.8660254037844387,
+                  0.5000000000000012
                 ],
                 [
-                  -1.7320508829668047,
-                  -1.0000001317042964
+                  -1.7320508075688763,
+                  -0.9999999999999982
                 ],
                 [
                   -3.4641016151377544,
@@ -1747,22 +1760,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 1.5175924730939596e-07,
+              "fy03_fy04_nonideal_difference": 1.9860273225978185e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 1.5893282681057193e-07,
+              "node_error": 4.312915139803419e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 1.5429083399798316e-07,
+              "edge_error": 4.262522557141324e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 7.324690563602386e-08,
-              "collinearity_error": 4.0958811009537875e-08,
+              "edge_relative_std": 1.2051860064837167e-10,
+              "collinearity_error": 1.1810672439300815e-10,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
-            "max_main_residual": 1.4139556192560576e-10,
-            "max_holdout_residual": 7.358942588631123e-08,
+            "max_main_residual": 1.4139533988100084e-10,
+            "max_holdout_residual": 1.1955703094201908e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -1775,20 +1788,20 @@
             "direction_index": 2,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254034161883,
-                0.4999999985133994
+                -0.8660254037844389,
+                0.5000000000000013
               ],
               "FY04": [
-                -1.732050840834851,
-                -1.0000000577519066
+                -1.7320508075688767,
+                -0.9999999999999988
               ],
               "errors": {
-                "4": 6.664763855214532e-08,
-                "3": 1.531531815554818e-09
+                "4": 1.2994827337208943e-15,
+                "3": 1.3732700395566711e-15
               },
-              "max_error": 6.664763855214532e-08,
+              "max_error": 1.3732700395566711e-15,
               "threshold": 2e-07,
-              "cycles": 10
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -1801,12 +1814,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254034161883,
-                  0.4999999985133994
+                  -0.8660254037844389,
+                  0.5000000000000013
                 ],
                 [
-                  -1.732050840834851,
-                  -1.0000000577519066
+                  -1.7320508075688767,
+                  -0.9999999999999988
                 ],
                 [
                   -3.4641016151377544,
@@ -1819,12 +1832,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254034161883,
-                  0.4999999985133994
+                  -0.8660254037844389,
+                  0.5000000000000013
                 ],
                 [
-                  -1.732050840834851,
-                  -1.0000000577519066
+                  -1.7320508075688767,
+                  -0.9999999999999988
                 ],
                 [
                   -3.4641016151377544,
@@ -1836,22 +1849,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 6.664763855214532e-08,
+              "fy03_fy04_nonideal_difference": 1.3732700395566711e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 6.95586138938117e-08,
+              "node_error": 8.978114382210796e-11,
               "node_error_threshold": 2e-06,
-              "edge_error": 6.753603210007952e-08,
+              "edge_error": 8.090106362601546e-11,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 3.2627233987497e-08,
-              "collinearity_error": 1.845337305179546e-08,
+              "edge_relative_std": 3.308375637248838e-11,
+              "collinearity_error": 2.8098856574967305e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
             "max_main_residual": 6.348610526174525e-11,
-            "max_holdout_residual": 3.286722449757917e-08,
+            "max_holdout_residual": 6.559996990063155e-11,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -1864,20 +1877,20 @@
             "direction_index": 3,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254034183829,
-                0.49999999850503485
+                -0.8660254037844389,
+                0.5000000000000013
               ],
               "FY04": [
-                -1.7320508419583587,
-                -1.000000059695904
+                -1.7320508075688765,
+                -0.9999999999999983
               ],
               "errors": {
-                "4": 6.88929415172608e-08,
-                "3": 1.539128847898168e-09
+                "4": 1.793620188084545e-15,
+                "3": 1.3732700395566711e-15
               },
-              "max_error": 6.88929415172608e-08,
+              "max_error": 1.793620188084545e-15,
               "threshold": 2e-07,
-              "cycles": 10
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -1890,12 +1903,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254034183829,
-                  0.49999999850503485
+                  -0.8660254037844389,
+                  0.5000000000000013
                 ],
                 [
-                  -1.7320508419583587,
-                  -1.000000059695904
+                  -1.7320508075688765,
+                  -0.9999999999999983
                 ],
                 [
                   -3.4641016151377544,
@@ -1908,12 +1921,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254034183829,
-                  0.49999999850503485
+                  -0.8660254037844389,
+                  0.5000000000000013
                 ],
                 [
-                  -1.7320508419583587,
-                  -1.000000059695904
+                  -1.7320508075688765,
+                  -0.9999999999999983
                 ],
                 [
                   -3.4641016151377544,
@@ -1925,22 +1938,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 6.88929415172608e-08,
+              "fy03_fy04_nonideal_difference": 1.793620188084545e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 7.1879262965494e-08,
+              "node_error": 6.343029578299163e-11,
               "node_error_threshold": 2e-06,
-              "edge_error": 6.977953215248078e-08,
+              "edge_error": 5.755551590880259e-11,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 3.373754636536644e-08,
-              "collinearity_error": 1.9072394330482865e-08,
+              "edge_relative_std": 3.152130716457854e-11,
+              "collinearity_error": 2.9480819215435765e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
             "max_main_residual": 6.967804111468467e-11,
-            "max_holdout_residual": 3.39855164011027e-08,
+            "max_holdout_residual": 1.0620082591117352e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -1953,20 +1966,20 @@
             "direction_index": 4,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254033219639,
-                0.4999999979137702
+                -0.8660254037844389,
+                0.5000000000000004
               ],
               "FY04": [
-                -1.7320508512497828,
-                -1.0000000758440388
+                -1.7320508075688767,
+                -0.9999999999999987
               ],
               "errors": {
-                "4": 8.752336680044799e-08,
-                "3": 2.1368756748915608e-09
+                "4": 1.4043333874306805e-15,
+                "3": 5.551115123125783e-16
               },
-              "max_error": 8.752336680044799e-08,
+              "max_error": 1.4043333874306805e-15,
               "threshold": 2e-07,
-              "cycles": 9
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -1979,12 +1992,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254033219639,
-                  0.4999999979137702
+                  -0.8660254037844389,
+                  0.5000000000000004
                 ],
                 [
-                  -1.7320508512497828,
-                  -1.0000000758440388
+                  -1.7320508075688767,
+                  -0.9999999999999987
                 ],
                 [
                   -3.4641016151377544,
@@ -1997,12 +2010,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254033219639,
-                  0.4999999979137702
+                  -0.8660254037844389,
+                  0.5000000000000004
                 ],
                 [
-                  -1.7320508512497828,
-                  -1.0000000758440388
+                  -1.7320508075688767,
+                  -0.9999999999999987
                 ],
                 [
                   -3.4641016151377544,
@@ -2014,22 +2027,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 8.752336680044799e-08,
+              "fy03_fy04_nonideal_difference": 1.4043333874306805e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 9.126281862166137e-08,
+              "node_error": 6.47436763307068e-11,
               "node_error_threshold": 2e-06,
-              "edge_error": 8.858293543134721e-08,
+              "edge_error": 6.306943856060343e-11,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 4.280851675291118e-08,
-              "collinearity_error": 2.4167678525093963e-08,
+              "edge_relative_std": 2.8546477522084646e-11,
+              "collinearity_error": 3.152447085485256e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
             "max_main_residual": 6.443001687728156e-11,
-            "max_holdout_residual": 4.314873458532986e-08,
+            "max_holdout_residual": 6.022826681828519e-11,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -2042,20 +2055,20 @@
             "direction_index": 5,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254032540222,
-                0.4999999977771544
+                -0.8660254037844389,
+                0.5000000000000008
               ],
               "FY04": [
-                -1.7320508575741251,
-                -1.000000086817962
+                -1.7320508075688765,
+                -0.9999999999999983
               ],
               "errors": {
-                "4": 1.001892376234883e-07,
-                "3": 2.2852535921803164e-09
+                "4": 1.793620188084545e-15,
+                "3": 8.455206652451151e-16
               },
-              "max_error": 1.001892376234883e-07,
+              "max_error": 1.793620188084545e-15,
               "threshold": 2e-07,
-              "cycles": 9
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -2068,12 +2081,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254032540222,
-                  0.4999999977771544
+                  -0.8660254037844389,
+                  0.5000000000000008
                 ],
                 [
-                  -1.7320508575741251,
-                  -1.000000086817962
+                  -1.7320508075688765,
+                  -0.9999999999999983
                 ],
                 [
                   -3.4641016151377544,
@@ -2086,12 +2099,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254032540222,
-                  0.4999999977771544
+                  -0.8660254037844389,
+                  0.5000000000000008
                 ],
                 [
-                  -1.7320508575741251,
-                  -1.000000086817962
+                  -1.7320508075688765,
+                  -0.9999999999999983
                 ],
                 [
                   -3.4641016151377544,
@@ -2103,22 +2116,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 1.001892376234883e-07,
+              "fy03_fy04_nonideal_difference": 1.793620188084545e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 1.0447492455139836e-07,
+              "node_error": 5.661920698461518e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 1.0140483031051417e-07,
+              "edge_error": 5.64768010136163e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 4.906248303729556e-08,
-              "collinearity_error": 2.769894180687962e-08,
+              "edge_relative_std": 1.5353103909788279e-10,
+              "collinearity_error": 1.7022492305746937e-10,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
-            "max_main_residual": 1.674702598819522e-10,
-            "max_holdout_residual": 4.945358300645353e-08,
+            "max_main_residual": 1.6747048192655711e-10,
+            "max_holdout_residual": 1.4834233841298783e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -2131,20 +2144,20 @@
             "direction_index": 6,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254033780829,
-                0.4999999983692534
+                -0.8660254037844388,
+                0.5000000000000008
               ],
               "FY04": [
-                -1.7320508455485395,
-                -1.0000000659329114
+                -1.7320508075688765,
+                -0.9999999999999986
               ],
               "errors": {
-                "4": 7.608944439398385e-08,
-                "3": 1.6806128133381138e-09
+                "4": 1.5895974606912448e-15,
+                "3": 8.08254562088053e-16
               },
-              "max_error": 7.608944439398385e-08,
+              "max_error": 1.5895974606912448e-15,
               "threshold": 2e-07,
-              "cycles": 10
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -2157,12 +2170,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254033780829,
-                  0.4999999983692534
+                  -0.8660254037844388,
+                  0.5000000000000008
                 ],
                 [
-                  -1.7320508455485395,
-                  -1.0000000659329114
+                  -1.7320508075688765,
+                  -0.9999999999999986
                 ],
                 [
                   -3.4641016151377544,
@@ -2175,12 +2188,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254033780829,
-                  0.4999999983692534
+                  -0.8660254037844388,
+                  0.5000000000000008
                 ],
                 [
-                  -1.7320508455485395,
-                  -1.0000000659329114
+                  -1.7320508075688765,
+                  -0.9999999999999986
                 ],
                 [
                   -3.4641016151377544,
@@ -2192,22 +2205,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 7.608944439398385e-08,
+              "fy03_fy04_nonideal_difference": 1.5895974606912448e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 7.935808344997402e-08,
+              "node_error": 6.646326695138803e-11,
               "node_error_threshold": 2e-06,
-              "edge_error": 7.70267792882251e-08,
+              "edge_error": 6.433431565255887e-11,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 3.7252271533362484e-08,
-              "collinearity_error": 2.1050817533553083e-08,
+              "edge_relative_std": 3.0522958934991834e-11,
+              "collinearity_error": 3.4822231275882154e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
             "max_main_residual": 6.392730789173129e-11,
-            "max_holdout_residual": 3.7575197620043355e-08,
+            "max_holdout_residual": 1.0542899886445412e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -2220,20 +2233,20 @@
             "direction_index": 7,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254032970911,
-                0.4999999980519757
+                -0.8660254037844385,
+                0.5000000000000001
               ],
               "FY04": [
-                -1.732050852456249,
-                -1.0000000779288882
+                -1.7320508075688772,
+                -0.9999999999999997
               ],
               "errors": {
-                "4": 8.993212868510246e-08,
-                "3": 2.0080603190449166e-09
+                "4": 3.3306690738754696e-16,
+                "3": 1.5700924586837752e-16
               },
-              "max_error": 8.993212868510246e-08,
+              "max_error": 3.3306690738754696e-16,
               "threshold": 2e-07,
-              "cycles": 10
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -2246,12 +2259,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254032970911,
-                  0.4999999980519757
+                  -0.8660254037844385,
+                  0.5000000000000001
                 ],
                 [
-                  -1.732050852456249,
-                  -1.0000000779288882
+                  -1.7320508075688772,
+                  -0.9999999999999997
                 ],
                 [
                   -3.4641016151377544,
@@ -2264,12 +2277,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254032970911,
-                  0.4999999980519757
+                  -0.8660254037844385,
+                  0.5000000000000001
                 ],
                 [
-                  -1.732050852456249,
-                  -1.0000000779288882
+                  -1.7320508075688772,
+                  -0.9999999999999997
                 ],
                 [
                   -3.4641016151377544,
@@ -2281,22 +2294,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 8.993212868510246e-08,
+              "fy03_fy04_nonideal_difference": 3.3306690738754696e-16,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 9.337517616542932e-08,
+              "node_error": 4.2062011615052566e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 9.06055206417733e-08,
+              "edge_error": 4.1749803614266057e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 4.397325452618963e-08,
-              "collinearity_error": 2.489208617010402e-08,
+              "edge_relative_std": 1.229465274800799e-10,
+              "collinearity_error": 1.3309378044570948e-10,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
-            "max_main_residual": 1.6633650012920498e-10,
-            "max_holdout_residual": 4.43999822463681e-08,
+            "max_main_residual": 1.6633627808460005e-10,
+            "max_holdout_residual": 1.2107115310300287e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -2309,20 +2322,20 @@
             "direction_index": 0,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254031883308,
-                0.4999999976314994
+                -0.8660254037844387,
+                0.5000000000000019
               ],
               "FY04": [
-                -1.7320508617957104,
-                -1.0000000941469267
+                -1.7320508075688756,
+                -0.999999999999997
               ],
               "errors": {
-                "4": 1.0864710419870902e-07,
-                "3": 2.4423635522762692e-09
+                "4": 3.37661150723213e-15,
+                "3": 1.8906416838689214e-15
               },
-              "max_error": 1.0864710419870902e-07,
+              "max_error": 3.37661150723213e-15,
               "threshold": 2e-07,
-              "cycles": 10
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -2335,12 +2348,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254031883308,
-                  0.4999999976314994
+                  -0.8660254037844387,
+                  0.5000000000000019
                 ],
                 [
-                  -1.7320508617957104,
-                  -1.0000000941469267
+                  -1.7320508075688756,
+                  -0.999999999999997
                 ],
                 [
                   -3.4641016151377544,
@@ -2353,12 +2366,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254031883308,
-                  0.4999999976314994
+                  -0.8660254037844387,
+                  0.5000000000000019
                 ],
                 [
-                  -1.7320508617957104,
-                  -1.0000000941469267
+                  -1.7320508075688756,
+                  -0.999999999999997
                 ],
                 [
                   -3.4641016151377544,
@@ -2370,22 +2383,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 1.0864710419870902e-07,
+              "fy03_fy04_nonideal_difference": 3.37661150723213e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 1.1299581133044482e-07,
+              "node_error": 2.889099317321533e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 1.0968752373052837e-07,
+              "edge_error": 2.808224763839462e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 5.315276378014316e-08,
-              "collinearity_error": 3.0093351810727295e-08,
+              "edge_relative_std": 1.0344249687921972e-10,
+              "collinearity_error": 9.493759112297588e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
-            "max_main_residual": 1.3748646665590059e-10,
-            "max_holdout_residual": 5.3654099940736444e-08,
+            "max_main_residual": 1.3748624461129566e-10,
+            "max_holdout_residual": 1.400315419175513e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -2398,20 +2411,20 @@
             "direction_index": 1,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254024440909,
-                0.4999999948775111
+                -0.8660254037844387,
+                0.5000000000000017
               ],
               "FY04": [
-                -1.7320509022978148,
-                -1.000000164620133
+                -1.7320508075688763,
+                -0.9999999999999981
               ],
               "errors": {
-                "4": 1.8992988135392734e-07,
-                "3": 5.294943277823279e-09
+                "4": 2.085919684541963e-15,
+                "3": 1.6690311775283582e-15
               },
-              "max_error": 1.8992988135392734e-07,
+              "max_error": 2.085919684541963e-15,
               "threshold": 2e-07,
-              "cycles": 9
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -2424,12 +2437,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254024440909,
-                  0.4999999948775111
+                  -0.8660254037844387,
+                  0.5000000000000017
                 ],
                 [
-                  -1.7320509022978148,
-                  -1.000000164620133
+                  -1.7320508075688763,
+                  -0.9999999999999981
                 ],
                 [
                   -3.4641016151377544,
@@ -2442,12 +2455,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254024440909,
-                  0.4999999948775111
+                  -0.8660254037844387,
+                  0.5000000000000017
                 ],
                 [
-                  -1.7320509022978148,
-                  -1.000000164620133
+                  -1.7320508075688763,
+                  -0.9999999999999981
                 ],
                 [
                   -3.4641016151377544,
@@ -2459,22 +2472,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 1.8992988135392734e-07,
+              "fy03_fy04_nonideal_difference": 2.085919684541963e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 1.981168792988097e-07,
+              "node_error": 1.4023966210874493e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 1.9233672343688113e-07,
+              "edge_error": 1.4014855942434679e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 9.271743912798757e-08,
-              "collinearity_error": 5.2349420354226653e-08,
+              "edge_relative_std": 5.805526588679689e-11,
+              "collinearity_error": 6.777316578273483e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
-            "max_main_residual": 1.571227592478408e-10,
-            "max_holdout_residual": 9.341513451666117e-08,
+            "max_main_residual": 1.5712298129244573e-10,
+            "max_holdout_residual": 1.599826937592752e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -2487,20 +2500,20 @@
             "direction_index": 2,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254034794043,
-                0.49999999877239587
+                -0.8660254037844388,
+                0.5000000000000012
               ],
               "FY04": [
-                -1.7320508374824302,
-                -1.0000000519182144
+                -1.732050807568877,
+                -0.9999999999999992
               ],
               "errors": {
-                "4": 5.991929269495534e-08,
-                "3": 1.2649339278541333e-09
+                "4": 8.08254562088053e-16,
+                "3": 1.2412670766236366e-15
               },
-              "max_error": 5.991929269495534e-08,
+              "max_error": 1.2412670766236366e-15,
               "threshold": 2e-07,
-              "cycles": 11
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -2513,12 +2526,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254034794043,
-                  0.49999999877239587
+                  -0.8660254037844388,
+                  0.5000000000000012
                 ],
                 [
-                  -1.7320508374824302,
-                  -1.0000000519182144
+                  -1.732050807568877,
+                  -0.9999999999999992
                 ],
                 [
                   -3.4641016151377544,
@@ -2531,12 +2544,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254034794043,
-                  0.49999999877239587
+                  -0.8660254037844388,
+                  0.5000000000000012
                 ],
                 [
-                  -1.7320508374824302,
-                  -1.0000000519182144
+                  -1.732050807568877,
+                  -0.9999999999999992
                 ],
                 [
                   -3.4641016151377544,
@@ -2548,22 +2561,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 5.991929269495534e-08,
+              "fy03_fy04_nonideal_difference": 1.2412670766236366e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 6.269416153946972e-08,
+              "node_error": 2.706033737134401e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 6.089206860959706e-08,
+              "edge_error": 2.587372538442878e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 2.9382716722843803e-08,
-              "collinearity_error": 1.663656767890365e-08,
+              "edge_relative_std": 9.748637699591267e-11,
+              "collinearity_error": 8.96176466369101e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
             "max_main_residual": 1.5429812982858948e-10,
-            "max_holdout_residual": 2.9570996762373625e-08,
+            "max_holdout_residual": 1.6290879756297727e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -2576,20 +2589,20 @@
             "direction_index": 3,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254034870675,
-                0.49999999879876866
+                -0.8660254037844386,
+                0.5000000000000002
               ],
               "FY04": [
-                -1.732050836877555,
-                -1.000000050869053
+                -1.732050807568876,
+                -0.999999999999998
               ],
               "errors": {
-                "4": 5.870825443657188e-08,
-                "3": 1.2374919440898206e-09
+                "4": 2.286089127109703e-15,
+                "3": 2.220446049250313e-16
               },
-              "max_error": 5.870825443657188e-08,
+              "max_error": 2.286089127109703e-15,
               "threshold": 2e-07,
-              "cycles": 11
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -2602,12 +2615,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254034870675,
-                  0.49999999879876866
+                  -0.8660254037844386,
+                  0.5000000000000002
                 ],
                 [
-                  -1.732050836877555,
-                  -1.000000050869053
+                  -1.732050807568876,
+                  -0.999999999999998
                 ],
                 [
                   -3.4641016151377544,
@@ -2620,12 +2633,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254034870675,
-                  0.49999999879876866
+                  -0.8660254037844386,
+                  0.5000000000000002
                 ],
                 [
-                  -1.732050836877555,
-                  -1.000000050869053
+                  -1.732050807568876,
+                  -0.999999999999998
                 ],
                 [
                   -3.4641016151377544,
@@ -2637,22 +2650,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 5.870825443657188e-08,
+              "fy03_fy04_nonideal_difference": 2.286089127109703e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 6.132455093422444e-08,
+              "node_error": 1.5682899236685378e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 5.9539530417040964e-08,
+              "edge_error": 1.491204937309476e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 2.8786418897946306e-08,
-              "collinearity_error": 1.6276445080539075e-08,
+              "edge_relative_std": 7.174460863155736e-11,
+              "collinearity_error": 6.035487565211789e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
-            "max_main_residual": 1.3875611770686191e-10,
-            "max_holdout_residual": 2.8966624432413823e-08,
+            "max_main_residual": 1.3875567361765206e-10,
+            "max_holdout_residual": 1.3707834867204838e-10,
             "slowest_follower_cycles": 10,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -2665,20 +2678,20 @@
             "direction_index": 4,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254033672944,
-                0.4999999982723946
+                -0.8660254037844388,
+                0.5000000000000024
               ],
               "FY04": [
-                -1.7320508482378558,
-                -1.0000000705955743
+                -1.732050807568876,
+                -0.9999999999999974
               ],
               "errors": {
-                "4": 8.147208681501846e-08,
-                "3": 1.7772534093523388e-09
+                "4": 2.7844251801988247e-15,
+                "3": 2.4525628233156873e-15
               },
-              "max_error": 8.147208681501846e-08,
+              "max_error": 2.7844251801988247e-15,
               "threshold": 2e-07,
-              "cycles": 10
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -2691,12 +2704,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254033672944,
-                  0.4999999982723946
+                  -0.8660254037844388,
+                  0.5000000000000024
                 ],
                 [
-                  -1.7320508482378558,
-                  -1.0000000705955743
+                  -1.732050807568876,
+                  -0.9999999999999974
                 ],
                 [
                   -3.4641016151377544,
@@ -2709,12 +2722,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254033672944,
-                  0.4999999982723946
+                  -0.8660254037844388,
+                  0.5000000000000024
                 ],
                 [
-                  -1.7320508482378558,
-                  -1.0000000705955743
+                  -1.732050807568876,
+                  -0.9999999999999974
                 ],
                 [
                   -3.4641016151377544,
@@ -2726,22 +2739,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 8.147208681501846e-08,
+              "fy03_fy04_nonideal_difference": 2.7844251801988247e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 8.484274400997396e-08,
+              "node_error": 1.6423026913080812e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 8.233560366832648e-08,
+              "edge_error": 1.8960710779225565e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 3.99012723962929e-08,
-              "collinearity_error": 2.253659658898718e-08,
+              "edge_relative_std": 8.330630279602053e-11,
+              "collinearity_error": 9.009812895711071e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
             "max_main_residual": 1.6306533900944942e-10,
-            "max_holdout_residual": 4.0251324939788446e-08,
+            "max_holdout_residual": 1.3753220784451514e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -2754,20 +2767,20 @@
             "direction_index": 5,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254035602638,
-                0.499999999082835
+                -0.8660254037844387,
+                0.5000000000000019
               ],
               "FY04": [
-                -1.7320508297416046,
-                -1.0000000384847463
+                -1.7320508075688767,
+                -0.9999999999999988
               ],
               "errors": {
-                "4": 4.441514986917068e-08,
-                "3": 9.441641769733618e-10
+                "4": 1.2994827337208943e-15,
+                "3": 1.8906416838689214e-15
               },
-              "max_error": 4.441514986917068e-08,
+              "max_error": 1.8906416838689214e-15,
               "threshold": 2e-07,
-              "cycles": 10
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -2780,12 +2793,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254035602638,
-                  0.499999999082835
+                  -0.8660254037844387,
+                  0.5000000000000019
                 ],
                 [
-                  -1.7320508297416046,
-                  -1.0000000384847463
+                  -1.7320508075688767,
+                  -0.9999999999999988
                 ],
                 [
                   -3.4641016151377544,
@@ -2798,12 +2811,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254035602638,
-                  0.499999999082835
+                  -0.8660254037844387,
+                  0.5000000000000019
                 ],
                 [
-                  -1.7320508297416046,
-                  -1.0000000384847463
+                  -1.7320508075688767,
+                  -0.9999999999999988
                 ],
                 [
                   -3.4641016151377544,
@@ -2815,22 +2828,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 4.441514986917068e-08,
+              "fy03_fy04_nonideal_difference": 1.8906416838689214e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 4.6301004680966745e-08,
+              "node_error": 1.9256376081844153e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 4.492221672425245e-08,
+              "edge_error": 1.6467116559226724e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 2.1763520597220797e-08,
-              "collinearity_error": 1.2260506832019968e-08,
+              "edge_relative_std": 6.715349692344754e-11,
+              "collinearity_error": 6.944080097079565e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
-            "max_main_residual": 1.461728516005678e-10,
-            "max_holdout_residual": 2.1997796473272047e-08,
+            "max_main_residual": 1.4617262955596289e-10,
+            "max_holdout_residual": 1.4736034614770688e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -2843,20 +2856,20 @@
             "direction_index": 6,
             "bootstrap_terminal": {
               "FY03": [
-                -0.866025403063761,
-                0.4999999971048387
+                -0.866025403784439,
+                0.5000000000000014
               ],
               "FY04": [
-                -1.7320508727097248,
-                -1.0000001131032348
+                -1.7320508075688776,
+                -1.0
               ],
               "errors": {
-                "4": 1.305207713120842e-07,
-                "3": 2.98351052730597e-09
+                "4": 4.440892098500626e-16,
+                "3": 1.5100665727558131e-15
               },
-              "max_error": 1.305207713120842e-07,
+              "max_error": 1.5100665727558131e-15,
               "threshold": 2e-07,
-              "cycles": 11
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -2869,12 +2882,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.866025403063761,
-                  0.4999999971048387
+                  -0.866025403784439,
+                  0.5000000000000014
                 ],
                 [
-                  -1.7320508727097248,
-                  -1.0000001131032348
+                  -1.7320508075688776,
+                  -1.0
                 ],
                 [
                   -3.4641016151377544,
@@ -2887,12 +2900,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.866025403063761,
-                  0.4999999971048387
+                  -0.866025403784439,
+                  0.5000000000000014
                 ],
                 [
-                  -1.7320508727097248,
-                  -1.0000001131032348
+                  -1.7320508075688776,
+                  -1.0
                 ],
                 [
                   -3.4641016151377544,
@@ -2904,22 +2917,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 1.305207713120842e-07,
+              "fy03_fy04_nonideal_difference": 1.5100665727558131e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 1.3624025471753334e-07,
+              "node_error": 1.692084371526119e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 1.322397017444743e-07,
+              "edge_error": 1.5525580820963114e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 6.388025304213434e-08,
-              "collinearity_error": 3.6081906351473524e-08,
+              "edge_relative_std": 8.710637765815254e-11,
+              "collinearity_error": 9.154823565873888e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
             "max_main_residual": 1.606621502503458e-10,
-            "max_holdout_residual": 6.44260018667353e-08,
+            "max_holdout_residual": 2.5157831373689987e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -2932,20 +2945,20 @@
             "direction_index": 7,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254034258587,
-                0.4999999985590289
+                -0.8660254037844387,
+                0.5000000000000012
               ],
               "FY04": [
-                -1.7320508415625482,
-                -1.0000000590096574
+                -1.7320508075688763,
+                -0.9999999999999983
               ],
               "errors": {
-                "4": 6.81007293040771e-08,
-                "3": 1.4849166121881037e-09
+                "4": 1.887379141862766e-15,
+                "3": 1.2262814116578437e-15
               },
-              "max_error": 6.81007293040771e-08,
+              "max_error": 1.887379141862766e-15,
               "threshold": 2e-07,
-              "cycles": 11
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -2958,12 +2971,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254034258587,
-                  0.4999999985590289
+                  -0.8660254037844387,
+                  0.5000000000000012
                 ],
                 [
-                  -1.7320508415625482,
-                  -1.0000000590096574
+                  -1.7320508075688763,
+                  -0.9999999999999983
                 ],
                 [
                   -3.4641016151377544,
@@ -2976,12 +2989,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254034258587,
-                  0.4999999985590289
+                  -0.8660254037844387,
+                  0.5000000000000012
                 ],
                 [
-                  -1.7320508415625482,
-                  -1.0000000590096574
+                  -1.7320508075688763,
+                  -0.9999999999999983
                 ],
                 [
                   -3.4641016151377544,
@@ -2993,22 +3006,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 6.81007293040771e-08,
+              "fy03_fy04_nonideal_difference": 1.887379141862766e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 7.09377183936221e-08,
+              "node_error": 1.283487762529642e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 6.885449532756382e-08,
+              "edge_error": 1.3156831180083373e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 3.332534752757436e-08,
-              "collinearity_error": 1.8858680395129803e-08,
+              "edge_relative_std": 5.895370087333555e-11,
+              "collinearity_error": 7.206402700023403e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
             "max_main_residual": 1.6709389427660426e-10,
-            "max_holdout_residual": 3.3666553878042293e-08,
+            "max_holdout_residual": 1.7317924871917967e-10,
             "slowest_follower_cycles": 9,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -3021,20 +3034,20 @@
             "direction_index": 0,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254034352336,
-                0.49999999859720096
+                -0.8660254037844389,
+                0.500000000000001
               ],
               "FY04": [
-                -1.7320508407394302,
-                -1.0000000575802082
+                -1.732050807568878,
+                -1.0000000000000009
               ],
               "errors": {
-                "4": 6.645122990444121e-08,
-                "3": 1.4456103512040696e-09
+                "4": 1.2560739669470201e-15,
+                "3": 1.0532500405730103e-15
               },
-              "max_error": 6.645122990444121e-08,
+              "max_error": 1.2560739669470201e-15,
               "threshold": 2e-07,
-              "cycles": 12
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -3047,12 +3060,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254034352336,
-                  0.49999999859720096
+                  -0.8660254037844389,
+                  0.500000000000001
                 ],
                 [
-                  -1.7320508407394302,
-                  -1.0000000575802082
+                  -1.732050807568878,
+                  -1.0000000000000009
                 ],
                 [
                   -3.4641016151377544,
@@ -3065,12 +3078,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254034352336,
-                  0.49999999859720096
+                  -0.8660254037844389,
+                  0.500000000000001
                 ],
                 [
-                  -1.7320508407394302,
-                  -1.0000000575802082
+                  -1.732050807568878,
+                  -1.0000000000000009
                 ],
                 [
                   -3.4641016151377544,
@@ -3082,22 +3095,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 6.645122990444121e-08,
+              "fy03_fy04_nonideal_difference": 1.2560739669470201e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 6.917599006622834e-08,
+              "node_error": 2.447454245896325e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 6.714870304236342e-08,
+              "edge_error": 3.225149036722996e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 3.2566269193321306e-08,
-              "collinearity_error": 1.848624187051196e-08,
+              "edge_relative_std": 1.0952231237682772e-10,
+              "collinearity_error": 1.636273672621882e-10,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
             "max_main_residual": 1.6127366109230934e-10,
-            "max_holdout_residual": 3.2905243307901344e-08,
+            "max_holdout_residual": 2.3538904159181584e-10,
             "slowest_follower_cycles": 10,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -3110,20 +3123,20 @@
             "direction_index": 1,
             "bootstrap_terminal": {
               "FY03": [
-                -0.866025402984363,
-                0.4999999968478627
+                -0.8660254037844388,
+                0.5000000000000007
               ],
               "FY04": [
-                -1.7320508785776958,
-                -1.0000001232831353
+                -1.7320508075688765,
+                -0.9999999999999987
               ],
               "errors": {
-                "4": 1.422708113350316e-07,
-                "3": 3.2520901424119527e-09
+                "4": 1.4895204919483639e-15,
+                "3": 7.021666937153402e-16
               },
-              "max_error": 1.422708113350316e-07,
+              "max_error": 1.4895204919483639e-15,
               "threshold": 2e-07,
-              "cycles": 10
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -3136,12 +3149,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.866025402984363,
-                  0.4999999968478627
+                  -0.8660254037844388,
+                  0.5000000000000007
                 ],
                 [
-                  -1.7320508785776958,
-                  -1.0000001232831353
+                  -1.7320508075688765,
+                  -0.9999999999999987
                 ],
                 [
                   -3.4641016151377544,
@@ -3154,12 +3167,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.866025402984363,
-                  0.4999999968478627
+                  -0.8660254037844388,
+                  0.5000000000000007
                 ],
                 [
-                  -1.7320508785776958,
-                  -1.0000001232831353
+                  -1.7320508075688765,
+                  -0.9999999999999987
                 ],
                 [
                   -3.4641016151377544,
@@ -3171,22 +3184,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 1.422708113350316e-07,
+              "fy03_fy04_nonideal_difference": 1.4895204919483639e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 1.4832946449441336e-07,
+              "node_error": 2.493318147103688e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 1.4399011816212948e-07,
+              "edge_error": 3.174673857131438e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 6.961222515408515e-08,
-              "collinearity_error": 3.943801818470228e-08,
+              "edge_relative_std": 1.0348287728494439e-10,
+              "collinearity_error": 9.1398507841956e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
-            "max_main_residual": 1.5005063858097856e-10,
-            "max_holdout_residual": 7.017505210260566e-08,
+            "max_main_residual": 1.500510826701884e-10,
+            "max_holdout_residual": 1.695763529596661e-10,
             "slowest_follower_cycles": 10,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -3199,20 +3212,20 @@
             "direction_index": 2,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254030906518,
-                0.49999999721229665
+                -0.8660254037844387,
+                0.5000000000000002
               ],
               "FY04": [
-                -1.7320508708595725,
-                -1.0000001098872677
+                -1.7320508075688796,
+                -1.000000000000004
               ],
               "errors": {
-                "4": 1.2681058207868304e-07,
-                "3": 2.872739124398584e-09
+                "4": 4.6840360722841785e-15,
+                "3": 2.482534153247273e-16
               },
-              "max_error": 1.2681058207868304e-07,
+              "max_error": 4.6840360722841785e-15,
               "threshold": 2e-07,
-              "cycles": 12
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -3225,12 +3238,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254030906518,
-                  0.49999999721229665
+                  -0.8660254037844387,
+                  0.5000000000000002
                 ],
                 [
-                  -1.7320508708595725,
-                  -1.0000001098872677
+                  -1.7320508075688796,
+                  -1.000000000000004
                 ],
                 [
                   -3.4641016151377544,
@@ -3243,12 +3256,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254030906518,
-                  0.49999999721229665
+                  -0.8660254037844387,
+                  0.5000000000000002
                 ],
                 [
-                  -1.7320508708595725,
-                  -1.0000001098872677
+                  -1.7320508075688796,
+                  -1.000000000000004
                 ],
                 [
                   -3.4641016151377544,
@@ -3260,22 +3273,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 1.2681058207868304e-07,
+              "fy03_fy04_nonideal_difference": 4.6840360722841785e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 1.3230915704323858e-07,
+              "node_error": 1.739032592229655e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 1.284448544192074e-07,
+              "edge_error": 2.0408519318948493e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 6.210331512631315e-08,
-              "collinearity_error": 3.5211878301988917e-08,
+              "edge_relative_std": 7.641264273275427e-11,
+              "collinearity_error": 1.2087086886939327e-10,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
             "max_main_residual": 1.6579049244569433e-10,
-            "max_holdout_residual": 6.255754181339057e-08,
+            "max_holdout_residual": 1.4387691038564299e-10,
             "slowest_follower_cycles": 10,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -3288,20 +3301,20 @@
             "direction_index": 3,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254029272855,
-                0.49999999655659766
+                -0.8660254037844383,
+                0.49999999999999917
               ],
               "FY04": [
-                -1.7320508838850985,
-                -1.0000001325176446
+                -1.7320508075689098,
+                -1.0000000000000566
               ],
               "errors": {
-                "4": 1.5292184860149192e-07,
-                "3": 3.5484829384028913e-09
+                "4": 6.535584119979118e-14,
+                "3": 8.968100940422724e-16
               },
-              "max_error": 1.5292184860149192e-07,
+              "max_error": 6.535584119979118e-14,
               "threshold": 2e-07,
-              "cycles": 13
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -3314,12 +3327,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254029272855,
-                  0.49999999655659766
+                  -0.8660254037844383,
+                  0.49999999999999917
                 ],
                 [
-                  -1.7320508838850985,
-                  -1.0000001325176446
+                  -1.7320508075689098,
+                  -1.0000000000000566
                 ],
                 [
                   -3.4641016151377544,
@@ -3332,12 +3345,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254029272855,
-                  0.49999999655659766
+                  -0.8660254037844383,
+                  0.49999999999999917
                 ],
                 [
-                  -1.7320508838850985,
-                  -1.0000001325176446
+                  -1.7320508075689098,
+                  -1.0000000000000566
                 ],
                 [
                   -3.4641016151377544,
@@ -3349,22 +3362,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 1.5292184860149192e-07,
+              "fy03_fy04_nonideal_difference": 6.535584119979118e-14,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 1.597868661347436e-07,
+              "node_error": 3.394081117857757e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 1.5513646856035734e-07,
+              "edge_error": 3.377292889794603e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 7.48508597805337e-08,
-              "collinearity_error": 4.2316137704357765e-08,
+              "edge_relative_std": 1.3916276138850548e-10,
+              "collinearity_error": 9.962884004517537e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
             "max_main_residual": 1.3175061042147718e-10,
-            "max_holdout_residual": 7.53884745741118e-08,
+            "max_holdout_residual": 1.6574031036498127e-10,
             "slowest_follower_cycles": 10,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -3377,20 +3390,20 @@
             "direction_index": 4,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254027111868,
-                0.4999999956777431
+                -0.8660254037844385,
+                0.5000000000000004
               ],
               "FY04": [
-                -1.7320509037084695,
-                -1.000000166933963
+                -1.7320508075688772,
+                -1.0
               ],
               "errors": {
-                "4": 1.9263896085806796e-07,
-                "3": 4.45351255269736e-09
+                "4": 0.0,
+                "3": 4.577566798522237e-16
               },
-              "max_error": 1.9263896085806796e-07,
+              "max_error": 4.577566798522237e-16,
               "threshold": 2e-07,
-              "cycles": 11
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -3403,12 +3416,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254027111868,
-                  0.4999999956777431
+                  -0.8660254037844385,
+                  0.5000000000000004
                 ],
                 [
-                  -1.7320509037084695,
-                  -1.000000166933963
+                  -1.7320508075688772,
+                  -1.0
                 ],
                 [
                   -3.4641016151377544,
@@ -3421,12 +3434,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254027111868,
-                  0.4999999956777431
+                  -0.8660254037844385,
+                  0.5000000000000004
                 ],
                 [
-                  -1.7320509037084695,
-                  -1.000000166933963
+                  -1.7320508075688772,
+                  -1.0
                 ],
                 [
                   -3.4641016151377544,
@@ -3438,22 +3451,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 1.9263896085806796e-07,
+              "fy03_fy04_nonideal_difference": 4.577566798522237e-16,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 2.0093307099382067e-07,
+              "node_error": 4.748363957683698e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 1.9504282522397887e-07,
+              "edge_error": 4.846729684260254e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 9.426071335602254e-08,
-              "collinearity_error": 5.328907537450353e-08,
+              "edge_relative_std": 1.84839107838081e-10,
+              "collinearity_error": 1.2345228782548314e-10,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
-            "max_main_residual": 1.5775647455029684e-10,
-            "max_holdout_residual": 9.50974927693693e-08,
+            "max_main_residual": 1.5775669659490177e-10,
+            "max_holdout_residual": 1.325851650690879e-10,
             "slowest_follower_cycles": 10,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -3466,20 +3479,20 @@
             "direction_index": 5,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254028073568,
-                0.49999999605082773
+                -0.8660254037844387,
+                0.5000000000000004
               ],
               "FY04": [
-                -1.7320508938170691,
-                -1.0000001497716433
+                -1.7320508075688767,
+                -0.999999999999999
               ],
               "errors": {
-                "4": 1.728302512566507e-07,
-                "3": 4.0682490506627474e-09
+                "4": 1.0934428697813141e-15,
+                "3": 4.577566798522237e-16
               },
-              "max_error": 1.728302512566507e-07,
+              "max_error": 1.0934428697813141e-15,
               "threshold": 2e-07,
-              "cycles": 10
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -3492,12 +3505,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254028073568,
-                  0.49999999605082773
+                  -0.8660254037844387,
+                  0.5000000000000004
                 ],
                 [
-                  -1.7320508938170691,
-                  -1.0000001497716433
+                  -1.7320508075688767,
+                  -0.999999999999999
                 ],
                 [
                   -3.4641016151377544,
@@ -3510,12 +3523,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254028073568,
-                  0.49999999605082773
+                  -0.8660254037844387,
+                  0.5000000000000004
                 ],
                 [
-                  -1.7320508938170691,
-                  -1.0000001497716433
+                  -1.7320508075688767,
+                  -0.999999999999999
                 ],
                 [
                   -3.4641016151377544,
@@ -3527,22 +3540,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 1.728302512566507e-07,
+              "fy03_fy04_nonideal_difference": 1.0934428697813141e-15,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 1.8022032910155452e-07,
+              "node_error": 3.0090287451335e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 1.7493953885505675e-07,
+              "edge_error": 3.007585291925352e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 8.456912747637495e-08,
-              "collinearity_error": 4.7776689715586704e-08,
+              "edge_relative_std": 8.42803485737774e-11,
+              "collinearity_error": 9.407006285323922e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
-            "max_main_residual": 1.5457457536172114e-10,
-            "max_holdout_residual": 8.523523953307688e-08,
+            "max_main_residual": 1.545741312725113e-10,
+            "max_holdout_residual": 1.1252554443785812e-10,
             "slowest_follower_cycles": 10,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -3555,20 +3568,20 @@
             "direction_index": 6,
             "bootstrap_terminal": {
               "FY03": [
-                -0.866025402735526,
-                0.4999999957817579
+                -0.8660254037844385,
+                0.4999999999999995
               ],
               "FY04": [
-                -1.7320508996606054,
-                -1.000000159921605
+                -1.7320508075689183,
+                -1.0000000000000708
               ],
               "errors": {
-                "4": 1.8454215285094466e-07,
-                "3": 4.346698058602151e-09
+                "4": 8.188178943505406e-14,
+                "3": 5.117875266520903e-16
               },
-              "max_error": 1.8454215285094466e-07,
+              "max_error": 8.188178943505406e-14,
               "threshold": 2e-07,
-              "cycles": 13
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -3581,12 +3594,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.866025402735526,
-                  0.4999999957817579
+                  -0.8660254037844385,
+                  0.4999999999999995
                 ],
                 [
-                  -1.7320508996606054,
-                  -1.000000159921605
+                  -1.7320508075689183,
+                  -1.0000000000000708
                 ],
                 [
                   -3.4641016151377544,
@@ -3599,12 +3612,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.866025402735526,
-                  0.4999999957817579
+                  -0.8660254037844385,
+                  0.4999999999999995
                 ],
                 [
-                  -1.7320508996606054,
-                  -1.000000159921605
+                  -1.7320508075689183,
+                  -1.0000000000000708
                 ],
                 [
                   -3.4641016151377544,
@@ -3616,22 +3629,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 1.8454215285094466e-07,
+              "fy03_fy04_nonideal_difference": 8.188178943505406e-14,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 1.9236056439732642e-07,
+              "node_error": 3.0940759877264877e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 1.8670827051092687e-07,
+              "edge_error": 5.574567474297965e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 9.025090763967661e-08,
-              "collinearity_error": 5.102063083117295e-08,
+              "edge_relative_std": 1.4930608330852283e-10,
+              "collinearity_error": 1.370827673541598e-10,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
             "max_main_residual": 1.3774492657603332e-10,
-            "max_holdout_residual": 9.10568929146649e-08,
+            "max_holdout_residual": 1.0455836196854307e-10,
             "slowest_follower_cycles": 10,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -3644,20 +3657,20 @@
             "direction_index": 7,
             "bootstrap_terminal": {
               "FY03": [
-                -0.8660254035971429,
-                0.49999999924710037
+                -0.8660254037844385,
+                0.4999999999999998
               ],
               "FY04": [
-                -1.7320508261036813,
-                -1.0000000321689797
+                -1.7320508075689405,
+                -1.000000000000109
               ],
               "errors": {
-                "4": 3.712657026230972e-08,
-                "3": 7.758463425894503e-10
+                "4": 1.260591634209319e-13,
+                "3": 2.482534153247273e-16
               },
-              "max_error": 3.712657026230972e-08,
+              "max_error": 1.260591634209319e-13,
               "threshold": 2e-07,
-              "cycles": 14
+              "cycles": 20
             },
             "follower_anchor_source": "BOOTSTRAP_TERMINAL_STATE",
             "anchor_data_flow": {
@@ -3670,12 +3683,12 @@
               ],
               "actual_anchor_arrays": [
                 [
-                  -0.8660254035971429,
-                  0.49999999924710037
+                  -0.8660254037844385,
+                  0.4999999999999998
                 ],
                 [
-                  -1.7320508261036813,
-                  -1.0000000321689797
+                  -1.7320508075689405,
+                  -1.000000000000109
                 ],
                 [
                   -3.4641016151377544,
@@ -3688,12 +3701,12 @@
               ],
               "bootstrap_terminal_arrays": [
                 [
-                  -0.8660254035971429,
-                  0.49999999924710037
+                  -0.8660254037844385,
+                  0.4999999999999998
                 ],
                 [
-                  -1.7320508261036813,
-                  -1.0000000321689797
+                  -1.7320508075689405,
+                  -1.000000000000109
                 ],
                 [
                   -3.4641016151377544,
@@ -3705,22 +3718,22 @@
                 ]
               ],
               "arrays_match_bootstrap_terminal": true,
-              "fy03_fy04_nonideal_difference": 3.712657026230972e-08,
+              "fy03_fy04_nonideal_difference": 1.260591634209319e-13,
               "status": "PASS"
             },
             "geometry": {
-              "node_error": 3.86544289577357e-08,
+              "node_error": 2.0444770795205286e-10,
               "node_error_threshold": 2e-06,
-              "edge_error": 3.7511292960701326e-08,
+              "edge_error": 1.7512191696766877e-10,
               "edge_error_threshold": 4e-06,
               "edge_threshold_source": "| ||p_i-p_j||-d* | <= ||p_i-q_i|| + ||p_j-q_j|| <= 2*node_error_threshold",
-              "edge_relative_std": 1.816712574340546e-08,
-              "collinearity_error": 1.0294502139668865e-08,
+              "edge_relative_std": 7.546876445553079e-11,
+              "collinearity_error": 9.414589429933097e-11,
               "collinearity_threshold": 2e-06,
               "collinearity_threshold_source": "ideal line distance is bounded conservatively by maximum node position error"
             },
-            "max_main_residual": 1.1622902640340271e-10,
-            "max_holdout_residual": 1.8349062824718487e-08,
+            "max_main_residual": 1.1622880435879779e-10,
+            "max_holdout_residual": 1.4844081519527208e-10,
             "slowest_follower_cycles": 10,
             "rejected_nodes": [],
             "failed_reason": null,
@@ -3761,12 +3774,12 @@
           ],
           "bootstrap_terminal_arrays": [
             [
-              -0.8660254035961487,
-              0.49999999931698436
+              -0.8660254037844387,
+              0.500000000000001
             ],
             [
-              -1.7320508249769562,
-              -1.0000000302131062
+              -1.7320508075688763,
+              -0.9999999999999981
             ],
             [
               -3.4641016151377544,
@@ -3778,7 +3791,7 @@
             ]
           ],
           "arrays_match_bootstrap_terminal": false,
-          "fy03_fy04_nonideal_difference": 3.486937054678545e-08,
+          "fy03_fy04_nonideal_difference": 2.085919684541963e-15,
           "status": "ANCHOR_SOURCE_VIOLATION",
           "trigger_case": "r0.02_d0"
         }
@@ -3815,18 +3828,18 @@
           {
             "seed_offset_d": 0.001,
             "status": "FAIL",
-            "worst_node_error": 0.0020114183047885994,
-            "edge_error": 0.002427014414758899,
-            "collinearity_error": 0.00048706036279928046,
-            "holdout_residual": 0.00045068615564702874
+            "worst_node_error": 0.002011416977247143,
+            "edge_error": 0.002427012917686877,
+            "collinearity_error": 0.00048705571958938685,
+            "holdout_residual": 0.0004506715599019717
           },
           {
             "seed_offset_d": 0.01,
             "status": "FAIL",
-            "worst_node_error": 0.020092249967194917,
-            "edge_error": 0.024268545406759268,
-            "collinearity_error": 0.004877511346687228,
-            "holdout_residual": 0.004506738202113114
+            "worst_node_error": 0.020092248645676318,
+            "edge_error": 0.024268543914105933,
+            "collinearity_error": 0.004877506764552907,
+            "holdout_residual": 0.00450672362314708
           }
         ],
         "interpretation": "离线诊断记录可信参考误差的传播；不构成有偏差参考下的成功保证"

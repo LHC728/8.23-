@@ -186,17 +186,30 @@ def _deterministic_full_formation_initial_state(lattice, radius: float, directio
 
 
 def _run_actual_bootstrap(points: dict[int,np.ndarray], lattice: dict[int,np.ndarray], event_log=None) -> dict[str,object]:
-    """冻结的 FY04/FY03 有限试探建锚；绝不以精确 oracle 或理想重置替代。"""
+    """固定宏周期的 FY04/FY03 本机建锚；真值仅在排程结束后离线验收。"""
     world={node:np.asarray(point,dtype=float).copy() for node,point in points.items()}
     traces=[]
     for cycle in range(END_TO_END_MAX_BOOTSTRAP_CYCLES):
         before4=world[4].copy(); world[4]=_fd_step(4,3,world[4],world[3],lattice,event_log)
         before3=world[3].copy(); world[3]=_fd_step(3,4,world[3],world[4],lattice,event_log)
         traces.append({'cycle':cycle+1,'FY04_displacement':float(np.linalg.norm(world[4]-before4)),'FY03_displacement':float(np.linalg.norm(world[3]-before3))})
-        error=max(float(np.linalg.norm(world[4]-lattice[4])),float(np.linalg.norm(world[3]-lattice[3])))
-        if error <= BOOTSTRAP_FINITE_POSITION_TOL: break
+    # 固定排程结束后，离线评估器才可读取仿真真值并计算终点误差。
     errors={str(node):float(np.linalg.norm(world[node]-lattice[node])) for node in BOOT}
-    return {'world':world,'cycles':len(traces),'terminal_errors':errors,'max_terminal_error':max(errors.values()),'terminal_error_threshold':BOOTSTRAP_FINITE_POSITION_TOL,'pass':max(errors.values())<=BOOTSTRAP_FINITE_POSITION_TOL,'traces':traces}
+    return {'world':world,'cycles':len(traces),'fixed_bootstrap_cycles':END_TO_END_MAX_BOOTSTRAP_CYCLES,'terminal_errors':errors,'max_terminal_error':max(errors.values()),'terminal_error_threshold':BOOTSTRAP_FINITE_POSITION_TOL,'pass':max(errors.values())<=BOOTSTRAP_FINITE_POSITION_TOL,'traces':traces}
+
+
+def _fixed_bootstrap_schedule_audit() -> dict[str, object]:
+    """机械审计：实际端到端建锚不得用真值或跨机残差提前结束排程。"""
+    source=inspect.getsource(_run_actual_bootstrap)
+    tree=ast.parse(source)
+    function=next(node for node in ast.walk(tree) if isinstance(node,ast.FunctionDef) and node.name=='_run_actual_bootstrap')
+    breaks=[node for node in ast.walk(function) if isinstance(node,ast.Break)]
+    loops=[node for node in ast.walk(function) if isinstance(node,ast.For)]
+    fixed_range=bool(len(loops)==1 and isinstance(loops[0].iter,ast.Call) and isinstance(loops[0].iter.func,ast.Name) and loops[0].iter.func.id=='range' and len(loops[0].iter.args)==1 and isinstance(loops[0].iter.args[0],ast.Name) and loops[0].iter.args[0].id=='END_TO_END_MAX_BOOTSTRAP_CYCLES')
+    # 当且仅当无 break 时，离线真值终点误差不可能控制在线阶段切换。
+    truth_based_stage_switch_found=bool(breaks)
+    cross_receiver_residual_aggregation_found=any(isinstance(node,ast.Name) and ('residual' in node.id.lower() and node.id not in {'residual'}) for node in ast.walk(function))
+    return _status(fixed_range and not truth_based_stage_switch_found and not cross_receiver_residual_aggregation_found,fixed_bootstrap_cycles=END_TO_END_MAX_BOOTSTRAP_CYCLES,for_loop_count=len(loops),break_count=len(breaks),truth_based_stage_switch_found=truth_based_stage_switch_found,cross_receiver_residual_aggregation_found=cross_receiver_residual_aggregation_found,offline_terminal_evaluation_after_schedule=True)
 
 
 def _audit_follower_anchor_source(anchors: np.ndarray, bootstrap: dict[str,object], lattice: dict[int,np.ndarray], declared_source: str) -> dict[str,object]:
@@ -294,8 +307,9 @@ def _end_to_end_checks(lattice, event_log=None):
         diagnostic=run_q2_end_to_end_case(lattice,radius=.05,direction_index=3,case_id=f'trusted_seed_offset_{magnitude:.3f}',seed_offset=magnitude)
         sensitivity.append({'seed_offset_d':magnitude,'status':diagnostic['status'],'worst_node_error':max(diagnostic['geometry']['node_error'],diagnostic['bootstrap_terminal']['max_error']),'edge_error':diagnostic['geometry']['edge_error'],'collinearity_error':diagnostic['geometry']['collinearity_error'],'holdout_residual':diagnostic['max_holdout_residual']})
     sensitivity_status=_status(all(np.isfinite(value) for entry in sensitivity for value in (entry['worst_node_error'],entry['edge_error'],entry['collinearity_error'],entry['holdout_residual'])) and all(entry['worst_node_error']>0 for entry in sensitivity),scenarios=sensitivity,interpretation='离线诊断记录可信参考误差的传播；不构成有偏差参考下的成功保证')
-    evidence={'full_formation_case_count':len(cases),'nonzero_case_count':len(nominal),'radius_levels':[.02,.05,.10,.20],'directions_per_radius':8,'all_moving_nodes_perturbed':True,'actual_bootstrap_terminal_used':actual_anchor_ok,'nonideal_bootstrap_terminal_seen':nonideal_seen,'cases':compact}
-    return _status(passed,**evidence),ideal_reset_negative,geometry_negative,sensitivity_status
+    fixed_cycles=all(case['bootstrap_terminal']['cycles']==END_TO_END_MAX_BOOTSTRAP_CYCLES for case in cases)
+    evidence={'fixed_bootstrap_cycles':END_TO_END_MAX_BOOTSTRAP_CYCLES,'fixed_cycles_executed_for_all_cases':fixed_cycles,'full_formation_case_count':len(cases),'nonzero_case_count':len(nominal),'radius_levels':[.02,.05,.10,.20],'directions_per_radius':8,'all_moving_nodes_perturbed':True,'actual_bootstrap_terminal_used':actual_anchor_ok,'nonideal_bootstrap_terminal_seen':nonideal_seen,'cases':compact}
+    return _status(passed and fixed_cycles,**evidence),ideal_reset_negative,geometry_negative,sensitivity_status
 
 
 def _firewall_and_metamorphic(lattice,event_log):
@@ -325,10 +339,10 @@ def _firewall_and_metamorphic(lattice,event_log):
     return firewall,metamorphic
 
 def run_gate():
-    lattice=target_lattice(); event_log={}; baseline=float(np.linalg.norm(lattice[11]-lattice[15])); candidate,independent,negative,degenerate=_candidate_checks(lattice); analytic,exact,finite=_bootstrap_checks(lattice,event_log); follower=_follower_checks(lattice,event_log); firewall,metamorphic=_firewall_and_metamorphic(lattice,event_log); end_to_end,ideal_reset,geometry_negative,sensitivity=_end_to_end_checks(lattice,event_log)
+    lattice=target_lattice(); event_log={}; baseline=float(np.linalg.norm(lattice[11]-lattice[15])); candidate,independent,negative,degenerate=_candidate_checks(lattice); analytic,exact,finite=_bootstrap_checks(lattice,event_log); follower=_follower_checks(lattice,event_log); firewall,metamorphic=_firewall_and_metamorphic(lattice,event_log); fixed_schedule=_fixed_bootstrap_schedule_audit(); end_to_end,ideal_reset,geometry_negative,sensitivity=_end_to_end_checks(lattice,event_log)
     scale_angles=max(float(np.max(abs(four_angles(2*lattice[i],np.vstack([2*lattice[j] for j in REFERENCES]))-four_angles(lattice[i],np.vstack([lattice[j] for j in REFERENCES]))))) for i in lattice if i not in REFERENCES)
     scale=_status(scale_angles<3e-12,maximum_angle_difference=scale_angles,threshold=3e-12,interpretation='无可信基线时 d* 与 2d* 的纯角不可区分')
-    checks={'four_reference_complete_candidates':candidate,'independent_root_check':independent,'old_route_double_root_negative':negative,'boundary_collision_negative':degenerate,'bootstrap_analytic_check':analytic,'bootstrap_exact_replay':exact,'bootstrap_finite_replay':finite,'follower_local_replay':follower,'information_firewall':firewall,'metamorphic_and_ideal_target_geometry':metamorphic,'scale_indistinguishability_negative':scale,'actual_end_to_end_formation':end_to_end,'ideal_anchor_reset_negative':ideal_reset,'actual_geometry_negative':geometry_negative,'trusted_reference_sensitivity':sensitivity}
+    checks={'four_reference_complete_candidates':candidate,'independent_root_check':independent,'old_route_double_root_negative':negative,'boundary_collision_negative':degenerate,'bootstrap_analytic_check':analytic,'bootstrap_exact_replay':exact,'bootstrap_finite_replay':finite,'follower_local_replay':follower,'information_firewall':firewall,'fixed_bootstrap_schedule_audit':fixed_schedule,'metamorphic_and_ideal_target_geometry':metamorphic,'scale_indistinguishability_negative':scale,'actual_end_to_end_formation':end_to_end,'ideal_anchor_reset_negative':ideal_reset,'actual_geometry_negative':geometry_negative,'trusted_reference_sensitivity':sensitivity}
     return {'gate':'Q2_PROGRAM_GATE','status':'PASS' if all(v['status']=='PASS' for v in checks.values()) else 'FAIL','scope':'目标邻域、非退化、FY11/FY15 可信基线、确定性回放；不声明全局收敛。','trusted_baseline_length_in_d_star':baseline,'checks':checks}
 
 if __name__=='__main__':
