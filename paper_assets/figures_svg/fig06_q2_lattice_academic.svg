@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#202020"/></marker></defs>
+<rect x="0" y="0" width="100%" height="100%" fill="white"/>
+<line x1="120.00" y1="620.00" x2="1050.00" y2="620.00" stroke="#202020" stroke-width="1.5" opacity="1.0"/>
+<line x1="120.00" y1="70.00" x2="120.00" y2="620.00" stroke="#202020" stroke-width="1.5" opacity="1.0"/>
+<line x1="352.50" y1="70.00" x2="352.50" y2="620.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<line x1="120.00" y1="207.50" x2="1050.00" y2="207.50" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<line x1="585.00" y1="70.00" x2="585.00" y2="620.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<line x1="120.00" y1="345.00" x2="1050.00" y2="345.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<line x1="817.50" y1="70.00" x2="817.50" y2="620.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<line x1="120.00" y1="482.50" x2="1050.00" y2="482.50" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<text x="585.00" y="658.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="20" fill="#202020" text-anchor="middle" dominant-baseline="middle" font-weight="normal" font-style="italic">x / d*</text>
+<text x="85.00" y="345.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="20" fill="#202020" text-anchor="middle" dominant-baseline="middle" font-weight="normal" font-style="italic" transform="rotate(-90 85 345.0)">y / d*</text>
+<line x1="777.50" y1="345.00" x2="682.24" y2="400.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="777.50" y1="345.00" x2="682.24" y2="290.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="682.24" y1="400.00" x2="682.24" y2="290.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="682.24" y1="400.00" x2="586.97" y2="455.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="682.24" y1="400.00" x2="586.97" y2="345.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="682.24" y1="290.00" x2="586.97" y2="345.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="682.24" y1="290.00" x2="586.97" y2="235.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="586.97" y1="455.00" x2="586.97" y2="345.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="586.97" y1="455.00" x2="491.71" y2="510.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="586.97" y1="455.00" x2="491.71" y2="400.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="586.97" y1="345.00" x2="586.97" y2="235.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="586.97" y1="345.00" x2="491.71" y2="400.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="586.97" y1="345.00" x2="491.71" y2="290.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="586.97" y1="235.00" x2="491.71" y2="290.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="586.97" y1="235.00" x2="491.71" y2="180.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="491.71" y1="510.00" x2="491.71" y2="400.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="491.71" y1="510.00" x2="396.45" y2="565.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="491.71" y1="510.00" x2="396.45" y2="455.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="491.71" y1="400.00" x2="491.71" y2="290.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="491.71" y1="400.00" x2="396.45" y2="455.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="491.71" y1="400.00" x2="396.45" y2="345.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="491.71" y1="290.00" x2="491.71" y2="180.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="491.71" y1="290.00" x2="396.45" y2="345.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="491.71" y1="290.00" x2="396.45" y2="235.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="491.71" y1="180.00" x2="396.45" y2="235.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="491.71" y1="180.00" x2="396.45" y2="125.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="396.45" y1="565.00" x2="396.45" y2="455.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="396.45" y1="455.00" x2="396.45" y2="345.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="396.45" y1="345.00" x2="396.45" y2="235.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<line x1="396.45" y1="235.00" x2="396.45" y2="125.00" stroke="#D9D9D9" stroke-width="1.5" opacity="1.0"/>
+<circle cx="777.50" cy="345.00" r="7.00" fill="#2F5597" stroke="#2F5597" stroke-width="2" opacity="1.0"/>
+<text x="777.50" y="327.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="15" fill="#2F5597" text-anchor="middle" dominant-baseline="middle" font-weight="normal">1</text>
+<circle cx="682.24" cy="400.00" r="7.00" fill="#2F5597" stroke="#2F5597" stroke-width="2" opacity="1.0"/>
+<text x="682.24" y="382.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="15" fill="#2F5597" text-anchor="middle" dominant-baseline="middle" font-weight="normal">2</text>
+<rect x="675.24" y="283.00" width="14.00" height="14.00" fill="#A61C1C" stroke="#A61C1C" stroke-width="2"/>
+<text x="682.24" y="272.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="15" fill="#A61C1C" text-anchor="middle" dominant-baseline="middle" font-weight="normal">3</text>
+<rect x="579.97" y="448.00" width="14.00" height="14.00" fill="#A61C1C" stroke="#A61C1C" stroke-width="2"/>
+<text x="586.97" y="437.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="15" fill="#A61C1C" text-anchor="middle" dominant-baseline="middle" font-weight="normal">4</text>
+<circle cx="586.97" cy="345.00" r="7.00" fill="#2F5597" stroke="#2F5597" stroke-width="2" opacity="1.0"/>
+<text x="586.97" y="327.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="15" fill="#2F5597" text-anchor="middle" dominant-baseline="middle" font-weight="normal">5</text>
+<circle cx="586.97" cy="235.00" r="7.00" fill="#2F5597" stroke="#2F5597" stroke-width="2" opacity="1.0"/>
+<text x="586.97" y="217.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="15" fill="#2F5597" text-anchor="middle" dominant-baseline="middle" font-weight="normal">6</text>
+<circle cx="491.71" cy="510.00" r="7.00" fill="#2F5597" stroke="#2F5597" stroke-width="2" opacity="1.0"/>
+<text x="491.71" y="492.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="15" fill="#2F5597" text-anchor="middle" dominant-baseline="middle" font-weight="normal">7</text>
+<circle cx="491.71" cy="400.00" r="7.00" fill="#2F5597" stroke="#2F5597" stroke-width="2" opacity="1.0"/>
+<text x="491.71" y="382.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="15" fill="#2F5597" text-anchor="middle" dominant-baseline="middle" font-weight="normal">8</text>
+<circle cx="491.71" cy="290.00" r="7.00" fill="#2F5597" stroke="#2F5597" stroke-width="2" opacity="1.0"/>
+<text x="491.71" y="272.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="15" fill="#2F5597" text-anchor="middle" dominant-baseline="middle" font-weight="normal">9</text>
+<circle cx="491.71" cy="180.00" r="7.00" fill="#2F5597" stroke="#2F5597" stroke-width="2" opacity="1.0"/>
+<text x="491.71" y="162.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="15" fill="#2F5597" text-anchor="middle" dominant-baseline="middle" font-weight="normal">10</text>
+<rect x="389.45" y="558.00" width="14.00" height="14.00" fill="#A61C1C" stroke="#A61C1C" stroke-width="2"/>
+<text x="396.45" y="547.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="15" fill="#A61C1C" text-anchor="middle" dominant-baseline="middle" font-weight="normal">11</text>
+<circle cx="396.45" cy="455.00" r="7.00" fill="#2F5597" stroke="#2F5597" stroke-width="2" opacity="1.0"/>
+<text x="396.45" y="437.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="15" fill="#2F5597" text-anchor="middle" dominant-baseline="middle" font-weight="normal">12</text>
+<circle cx="396.45" cy="345.00" r="7.00" fill="#2F5597" stroke="#2F5597" stroke-width="2" opacity="1.0"/>
+<text x="396.45" y="327.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="15" fill="#2F5597" text-anchor="middle" dominant-baseline="middle" font-weight="normal">13</text>
+<circle cx="396.45" cy="235.00" r="7.00" fill="#2F5597" stroke="#2F5597" stroke-width="2" opacity="1.0"/>
+<text x="396.45" y="217.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="15" fill="#2F5597" text-anchor="middle" dominant-baseline="middle" font-weight="normal">14</text>
+<rect x="389.45" y="118.00" width="14.00" height="14.00" fill="#A61C1C" stroke="#A61C1C" stroke-width="2"/>
+<text x="396.45" y="107.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="15" fill="#A61C1C" text-anchor="middle" dominant-baseline="middle" font-weight="normal">15</text>
+<line x1="396.45" y1="595.00" x2="396.45" y2="155.00" stroke="#A61C1C" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
+<text x="396.45" y="620.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="21" fill="#A61C1C" text-anchor="middle" dominant-baseline="middle" font-weight="normal" font-style="italic">4d*</text>
+<rect x="1080.00" y="180.00" width="14.00" height="14.00" fill="#A61C1C" stroke="#A61C1C" stroke-width="1"/>
+<text x="1105.00" y="187.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#202020" text-anchor="start" dominant-baseline="middle" font-weight="normal">参考机</text>
+<circle cx="1087.00" cy="235.00" r="7.00" fill="#2F5597" stroke="#2F5597" stroke-width="1" opacity="1.0"/>
+<text x="1105.00" y="235.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#202020" text-anchor="start" dominant-baseline="middle" font-weight="normal">跟随机</text>
+<text x="600.00" y="675.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="21" fill="#202020" text-anchor="middle" dominant-baseline="middle" font-weight="normal">FY11-FY15 注入尺度；FY03、FY04 交替建锚；其余 11 架使用四参考机归槽</text>
+</svg>

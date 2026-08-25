@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#202020"/></marker></defs>
+<rect x="0" y="0" width="100%" height="100%" fill="white"/>
+<text x="260.00" y="52.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="21" fill="#202020" text-anchor="middle" dominant-baseline="middle" font-weight="bold">子轮 1</text>
+<text x="540.00" y="52.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="21" fill="#202020" text-anchor="middle" dominant-baseline="middle" font-weight="bold">子轮 2</text>
+<text x="820.00" y="52.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="21" fill="#202020" text-anchor="middle" dominant-baseline="middle" font-weight="bold">四锚阶段</text>
+<text x="115.00" y="90.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#202020" text-anchor="start" dominant-baseline="middle" font-weight="normal">FY00</text>
+<line x1="190.00" y1="90.00" x2="930.00" y2="90.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<text x="115.00" y="140.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#202020" text-anchor="start" dominant-baseline="middle" font-weight="normal">FY01</text>
+<line x1="190.00" y1="140.00" x2="930.00" y2="140.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<text x="115.00" y="190.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#202020" text-anchor="start" dominant-baseline="middle" font-weight="normal">FY02</text>
+<line x1="190.00" y1="190.00" x2="930.00" y2="190.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<text x="115.00" y="240.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#202020" text-anchor="start" dominant-baseline="middle" font-weight="normal">FY03</text>
+<line x1="190.00" y1="240.00" x2="930.00" y2="240.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<text x="115.00" y="290.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#202020" text-anchor="start" dominant-baseline="middle" font-weight="normal">FY04</text>
+<line x1="190.00" y1="290.00" x2="930.00" y2="290.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<text x="115.00" y="340.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#202020" text-anchor="start" dominant-baseline="middle" font-weight="normal">FY05</text>
+<line x1="190.00" y1="340.00" x2="930.00" y2="340.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<text x="115.00" y="390.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#202020" text-anchor="start" dominant-baseline="middle" font-weight="normal">FY06</text>
+<line x1="190.00" y1="390.00" x2="930.00" y2="390.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<text x="115.00" y="440.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#202020" text-anchor="start" dominant-baseline="middle" font-weight="normal">FY07</text>
+<line x1="190.00" y1="440.00" x2="930.00" y2="440.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<text x="115.00" y="490.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#202020" text-anchor="start" dominant-baseline="middle" font-weight="normal">FY08</text>
+<line x1="190.00" y1="490.00" x2="930.00" y2="490.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<text x="115.00" y="540.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#202020" text-anchor="start" dominant-baseline="middle" font-weight="normal">FY09</text>
+<line x1="190.00" y1="540.00" x2="930.00" y2="540.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<rect x="253.00" y="83.00" width="14.00" height="14.00" fill="#202020" stroke="#202020" stroke-width="1.5"/>
+<rect x="253.00" y="133.00" width="14.00" height="14.00" fill="#202020" stroke="#202020" stroke-width="1.5"/>
+<circle cx="260.00" cy="290.00" r="8.00" fill="white" stroke="#A61C1C" stroke-width="2" opacity="1.0"/>
+<rect x="253.00" y="433.00" width="14.00" height="14.00" fill="#202020" stroke="#202020" stroke-width="1.5"/>
+<rect x="533.00" y="83.00" width="14.00" height="14.00" fill="#202020" stroke="#202020" stroke-width="1.5"/>
+<rect x="533.00" y="133.00" width="14.00" height="14.00" fill="#202020" stroke="#202020" stroke-width="1.5"/>
+<rect x="533.00" y="283.00" width="14.00" height="14.00" fill="#202020" stroke="#202020" stroke-width="1.5"/>
+<circle cx="540.00" cy="440.00" r="8.00" fill="white" stroke="#A61C1C" stroke-width="2" opacity="1.0"/>
+<rect x="813.00" y="83.00" width="14.00" height="14.00" fill="#202020" stroke="#202020" stroke-width="1.5"/>
+<rect x="813.00" y="133.00" width="14.00" height="14.00" fill="#202020" stroke="#202020" stroke-width="1.5"/>
+<circle cx="820.00" cy="190.00" r="8.00" fill="white" stroke="#A61C1C" stroke-width="2" opacity="1.0"/>
+<circle cx="820.00" cy="240.00" r="8.00" fill="white" stroke="#A61C1C" stroke-width="2" opacity="1.0"/>
+<rect x="813.00" y="283.00" width="14.00" height="14.00" fill="#202020" stroke="#202020" stroke-width="1.5"/>
+<circle cx="820.00" cy="340.00" r="8.00" fill="white" stroke="#A61C1C" stroke-width="2" opacity="1.0"/>
+<circle cx="820.00" cy="390.00" r="8.00" fill="white" stroke="#A61C1C" stroke-width="2" opacity="1.0"/>
+<rect x="813.00" y="433.00" width="14.00" height="14.00" fill="#202020" stroke="#202020" stroke-width="1.5"/>
+<circle cx="820.00" cy="490.00" r="8.00" fill="white" stroke="#A61C1C" stroke-width="2" opacity="1.0"/>
+<circle cx="820.00" cy="540.00" r="8.00" fill="white" stroke="#A61C1C" stroke-width="2" opacity="1.0"/>
+<rect x="985.00" y="185.00" width="14.00" height="14.00" fill="#202020" stroke="#202020" stroke-width="1.5"/>
+<text x="1010.00" y="192.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#202020" text-anchor="start" dominant-baseline="middle" font-weight="normal">发射</text>
+<circle cx="992.00" cy="240.00" r="8.00" fill="white" stroke="#A61C1C" stroke-width="2" opacity="1.0"/>
+<text x="1010.00" y="240.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#202020" text-anchor="start" dominant-baseline="middle" font-weight="normal">接收并移动</text>
+<text x="600.00" y="625.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="21" fill="#202020" text-anchor="middle" dominant-baseline="middle" font-weight="normal">每个红圈仅处理本机纯方位观测；不同接收机之间不汇总夹角</text>
+</svg>

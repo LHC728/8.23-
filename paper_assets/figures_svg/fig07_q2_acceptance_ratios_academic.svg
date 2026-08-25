@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#202020"/></marker></defs>
+<rect x="0" y="0" width="100%" height="100%" fill="white"/>
+<line x1="250.00" y1="610.00" x2="1070.00" y2="610.00" stroke="#202020" stroke-width="1.5" opacity="1.0"/>
+<line x1="250.00" y1="100.00" x2="250.00" y2="610.00" stroke="#202020" stroke-width="1.5" opacity="1.0"/>
+<line x1="250.00" y1="100.00" x2="250.00" y2="610.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<text x="250.00" y="636.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="17" fill="#202020" text-anchor="middle" dominant-baseline="middle" font-weight="normal">0.0</text>
+<line x1="414.00" y1="100.00" x2="414.00" y2="610.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<text x="414.00" y="636.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="17" fill="#202020" text-anchor="middle" dominant-baseline="middle" font-weight="normal">0.2</text>
+<line x1="578.00" y1="100.00" x2="578.00" y2="610.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<text x="578.00" y="636.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="17" fill="#202020" text-anchor="middle" dominant-baseline="middle" font-weight="normal">0.4</text>
+<line x1="742.00" y1="100.00" x2="742.00" y2="610.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<text x="742.00" y="636.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="17" fill="#202020" text-anchor="middle" dominant-baseline="middle" font-weight="normal">0.6</text>
+<line x1="906.00" y1="100.00" x2="906.00" y2="610.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<text x="906.00" y="636.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="17" fill="#202020" text-anchor="middle" dominant-baseline="middle" font-weight="normal">0.8</text>
+<line x1="1070.00" y1="100.00" x2="1070.00" y2="610.00" stroke="#D9D9D9" stroke-width="1" opacity="1.0"/>
+<text x="1070.00" y="636.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="17" fill="#202020" text-anchor="middle" dominant-baseline="middle" font-weight="normal">1.0</text>
+<line x1="1070.00" y1="100.00" x2="1070.00" y2="610.00" stroke="#A61C1C" stroke-width="2" opacity="1.0" stroke-dasharray="8 6"/>
+<text x="1062.00" y="75.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#A61C1C" text-anchor="end" dominant-baseline="middle" font-weight="normal">验收阈值</text>
+<text x="225.00" y="175.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="20" fill="#202020" text-anchor="end" dominant-baseline="middle" font-weight="normal">节点位置</text>
+<rect x="250.00" y="157.00" width="93.19" height="36.00" fill="#2F5597" stroke="#2F5597" stroke-width="1"/>
+<text x="355.19" y="175.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#202020" text-anchor="start" dominant-baseline="middle" font-weight="normal">2.27e-07 d*</text>
+<text x="225.00" y="285.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="20" fill="#202020" text-anchor="end" dominant-baseline="middle" font-weight="normal">相邻边长</text>
+<rect x="250.00" y="267.00" width="55.43" height="36.00" fill="#2F5597" stroke="#2F5597" stroke-width="1"/>
+<text x="317.43" y="285.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#202020" text-anchor="start" dominant-baseline="middle" font-weight="normal">2.70e-07 d*</text>
+<text x="225.00" y="395.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="20" fill="#202020" text-anchor="end" dominant-baseline="middle" font-weight="normal">共线距离</text>
+<rect x="250.00" y="377.00" width="30.48" height="36.00" fill="#2F5597" stroke="#2F5597" stroke-width="1"/>
+<text x="292.48" y="395.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#202020" text-anchor="start" dominant-baseline="middle" font-weight="normal">7.43e-08 d*</text>
+<text x="225.00" y="505.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="20" fill="#202020" text-anchor="end" dominant-baseline="middle" font-weight="normal">留出角</text>
+<rect x="250.00" y="487.00" width="47.85" height="36.00" fill="#2F5597" stroke="#2F5597" stroke-width="1"/>
+<text x="309.85" y="505.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="18" fill="#202020" text-anchor="start" dominant-baseline="middle" font-weight="normal">1.17e-07 rad</text>
+<text x="660.00" y="665.00" font-family="Times New Roman, Microsoft YaHei, SimSun" font-size="21" fill="#202020" text-anchor="middle" dominant-baseline="middle" font-weight="normal">最坏误差 / 对应验收阈值（33/33 个端到端算例通过）</text>
+</svg>
